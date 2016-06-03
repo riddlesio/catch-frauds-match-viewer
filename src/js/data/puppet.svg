@@ -1,0 +1,104 @@
+<svg id="export_-_puppet" data-name="export - puppet" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 170 220">
+    <defs>
+        <style>
+            .cls-1{fill:#6f6;}.cls-2{fill:#e2c137;}.cls-3{fill:#4d1b0a;}.cls-4{fill:#8836e8;}.cls-5{fill:#fff;}.cls-6{fill:#0057e2;}.cls-7{fill:#ffd9c0;}.cls-8{opacity:0.3;}.cls-9{fill:#cdced5;}.cls-10{fill:#606060;}.cls-11{fill:#ff5552;}.cls-12{fill:#00953a;}
+        </style>
+    </defs>
+    <title>puppet_05</title>
+    <rect id="hitbox" class="cls-1" y="50" width="170" height="170"/>
+    <polygon id="hair_-_white_woman" data-name="hair - white woman" class="cls-2"
+             points="116 148 116 118 104 118 104 113 99 113 99 108 79 108 79 113 60 113 60 118 55 118 55 148 50 148 50 165 55 165 55 170 110 170 110 165 120 165 120 148 116 148"/>
+    <polygon id="hair_-_black_woman" data-name="hair - black woman"
+             points="125 120 120 120 120 115 115 115 115 110 110 110 110 105 105 105 105 100 65 100 65 105 60 105 60 110 55 110 55 115 50 115 50 120 45 120 45 135 50 135 50 148 56 148 56 155 114 155 114 148 120 148 120 135 125 135 125 120"/>
+    <polygon id="hair_-_black_man" data-name="hair - black man"
+             points="110 120 65 120 60 120 60 125 60 135 65 135 65 125 110 125 110 120"/>
+    <polygon id="hair_-_white_man" data-name="hair - white man" class="cls-3"
+             points="99 115 99 110 79 110 79 115 65 115 65 120 60 120 60 125 60 135 65 135 65 125 110 125 110 122.33 110 120 110 115 99 115"/>
+    <path id="shirt_-_arms_up" data-name="shirt - arms up" class="cls-4"
+          d="M120,165v5h-5v-5h5Zm-70,0v5h5v-5H50Zm9.67,5H55v5h5v22h50V175h5v-5H59.67Z"/>
+    <path id="shirt_-_arms_down" data-name="shirt - arms down" class="cls-4"
+          d="M120,175v5h-5v-5h5Zm-70,0v5h5v-5H50Zm10-5H55v5h5v22h50V175h5v-5H60Z"/>
+    <polygon id="shirt_-skull" data-name="shirt -skull" class="cls-5"
+             points="94 177 94 173 77 173 77 177 73 177 73 187 77 187 77 180 83 180 83 183 77 183 77 190.38 77 194 81 194 81 190 83 190 83 194 87 194 87 190 90 190 90 194 94 194 94 190.38 94 183 87 183 87 180 94 180 94 187 98 187 98 177 94 177"/>
+    <g id="shirt_-_prison" data-name="shirt - prison">
+        <path id="shirt_-_prison_-_black" data-name="shirt - prison - black"
+              d="M120,175v5h-5v-5h5Zm-70,0v5h5v-5H50Zm10-5H55v5h5v22h50V175h5v-5H60Z"/>
+        <rect id="shirt_-_prison_-_stripe" data-name="shirt - prison - stripe" class="cls-5" x="60"
+              y="175" width="50" height="5"/>
+        <rect id="shirt_-_prison_-_stripe-2" data-name="shirt - prison - stripe" class="cls-5"
+              x="60" y="186" width="50" height="5"/>
+    </g>
+    <path id="legs_-_forward" data-name="legs - forward" class="cls-6"
+          d="M105,203H60v-6h50v6h-5Zm-50,0v5h5v-5H55Zm55,0v5h5v-5h-5Zm-60,5v12h5V208H50Zm65,0v12h5V208h-5Z"/>
+    <path id="legs_-_crossed" data-name="legs - crossed" class="cls-6"
+          d="M105,203H60v-6h50v6h-5Zm-45,0v5h5v-5H60Zm45,0v5h5v-5h-5Zm-40,5v5h5v-5H65Zm35,0v5h5v-5h-5Zm-30,5v7h5v-7H70Zm25,0v7h5v-7H95Z"/>
+    <polygon id="legs_-_standing" data-name="legs - standing" class="cls-6"
+             points="60 197 60 202.74 60 220 66 220 66 203 105 203 105 220 110 220 110 202.74 110 197 60 197"/>
+    <polygon id="arm_up_-_left" data-name="arm up - left" class="cls-7"
+             points="45 153.81 45 159.28 45 165 50 165 50 159.28 50 153.81 50 148 45 148 45 153.81"/>
+    <polygon id="arm_up_-_right" data-name="arm up - right" class="cls-7"
+             points="120 148 120 153.81 120 159.28 120 165 125 165 125 159.28 125 153.81 125 148 120 148"/>
+    <polygon id="face" class="cls-7"
+             points="65 125 65 135 60 135 60 145 65 145 65 165 65 170 95 170 95 165 110 165 110 125 65 125"/>
+    <rect id="eye_-_left" data-name="eye - left" x="74" y="135" width="5" height="5"/>
+    <rect id="eye_-_right" data-name="eye - right" x="99" y="135" width="5" height="5"/>
+    <polygon id="mouth_-_smile" data-name="mouth - smile" class="cls-5"
+             points="74 145 74 150 79 150 79 155 99 155 99 150 104 150 104 145 74 145"/>
+    <path id="mouth_-_frown" data-name="mouth - frown" class="cls-5"
+          d="M99,145v5H79v-5H99ZM74,155h5v-5H74v5Zm25-5v5h5v-5H99Z"/>
+    <g id="eyes_-_bandana" data-name="eyes - bandana">
+        <path id="eyes_-_bandana-2" data-name="eyes - bandana" class="cls-4"
+              d="M110,130v15H65V135H60v-5h50Zm-55-5v5h5v-5H55Zm0,15h5v-5H55v5Z"/>
+        <rect id="bandana_eye_-_left" data-name="bandana eye - left" class="cls-5" x="74" y="135"
+              width="5" height="5"/>
+        <rect id="bandana_eye_-_right" data-name="bandana eye - right" class="cls-5" x="99" y="135"
+              width="5" height="5"/>
+    </g>
+    <g id="platform">
+        <rect id="platform_-_shadow" data-name="platform - shadow" class="cls-8" x="85" y="110"
+              width="5" height="45" transform="translate(220 45) rotate(90)"/>
+        <rect id="platform-2" data-name="platform" class="cls-9" x="65" y="80" width="40"
+              height="60" transform="translate(195 25) rotate(90)"/>
+    </g>
+    <g id="pants">
+        <path id="pants_-_legs" data-name="pants - legs" class="cls-6"
+              d="M70,98.3h4.08v7.62H70V98.3Zm25.91,0H91.84v7.62h4.08V98.3ZM70,110h8.16v-4.08H70V110Zm30-4.08H91.84V110H100v-4.08ZM95.92,98.3v-15H70v15H95.92Z"/>
+        <rect id="pants_-_belt" data-name="pants - belt" x="80.47" y="72.85" width="5"
+              height="25.91" transform="translate(168.77 2.84) rotate(90)"/>
+        <rect id="pants_-_belt_buckle" data-name="pants - belt buckle" class="cls-2" x="80.47"
+              y="83.3" width="5" height="5"/>
+    </g>
+    <g id="tv">
+        <path id="tv_-_body" data-name="tv - body"
+              d="M60,70h50v40H60V70Zm19.25,0h5V65h-5v5Zm-5-5h5V60h-5v5Zm-5-5h5V55h-5v5Zm15,10h5V65h-5v5Zm5-5h5V60h-5v5Zm5-5h5V55h-5v5Zm-30-5h5V50h-5v5Z"/>
+        <rect id="tv_-_screen" data-name="tv - screen" class="cls-10" x="65" y="75" width="40"
+              height="30"/>
+    </g>
+    <path id="shirt" class="cls-4"
+          d="M107,85V95h-5V85h5ZM62,95h5V85H62V95ZM92,80v5H87v5H82V85H77V80H67v5h5v25H97V85h5V80H92Z"/>
+    <path id="boots" class="cls-11"
+          d="M70,80V95H65v5H60v10H75V100h5V80H70Zm10,0H75v25h5V80Zm-5,25H60v5H75v-5Zm30-5V95h-5V80H90v20h5v10h15V100h-5Zm-15,5h5V80H90v25Zm20,0H95v5h15v-5Z"/>
+    <polygon id="text_bubble_-_background" data-name="text bubble - background" class="cls-12"
+             points="110 5 110 0 60 0 60 5 55 5 55 35 60 35 60 40 77 40 77 45 82 45 82 50 87 50 87 45 92 45 92 40 110 40 110 35 115 35 115 5 110 5"/>
+    <path id="text_bubble_-_smile" data-name="text bubble - smile" class="cls-5"
+          d="M100,9V19H95V9h5ZM75,9H70V19h5V9ZM70,24v5h5v5H95V29h5V24H70Z"/>
+    <path id="text_bubble_-_jail" data-name="text bubble - jail" class="cls-5"
+          d="M67,4V35h36V4H67Zm5,26V9h5V30H72Zm10,0V9h6V30H82Zm16,0H93V9h5V30Z"/>
+    <polygon id="text_bubble_-_skull" data-name="text bubble - skull" class="cls-5"
+             points="97 10 97 5 72 5 72 10 66 10 66 25 72 25 72 15 82 15 82 20 72 20 72 30.18 72 35 78 35 78 30 82 30 82 35 87 35 87 30 91 30 91 35 97 35 97 30.18 97 20 87 20 87 15 97 15 97 25 103 25 103 10 97 10"/>
+    <path id="text_bubble_-_sad_face" data-name="text bubble - sad face" class="cls-5"
+          d="M100,8V18H95V8h5ZM75,8H70V18h5V8ZM95,33h5V28H95v5ZM70,33h5V28H70v5Zm5-10v5H95V23H75Z"/>
+    <polygon id="arm_down_-_left" data-name="arm down - left" class="cls-7"
+             points="45 185.81 45 191.28 45 197 50 197 50 191.28 50 185.81 50 180 45 180 45 185.81"/>
+    <polygon id="arm_down_-_right" data-name="arm down - right" class="cls-7"
+             points="120 180 120 185.81 120 191.28 120 197 125 197 125 191.28 125 185.81 125 180 120 180"/>
+    <polygon id="legs_-_staafjes_-_back" data-name="legs - staafjes - back" class="cls-6"
+             points="60 197 60 197.04 50.44 217.47 55.88 220.02 63.84 203 66 203 104 203 104 217.95 104 220 110 220 110 203 110 199 110 197 60 197"/>
+    <polygon id="legs_-_staafjes_-_crossed" data-name="legs - staafjes - crossed" class="cls-6"
+             points="60 197 60 203 60.01 203 67.97 220.02 73.4 217.47 66.63 203 103.37 203 96.6 217.47 102.03 220.02 109.99 203 110 203 110 197 60 197"/>
+    <polygon id="legs_-_staafjes_-_forward" data-name="legs - staafjes - forward" class="cls-6"
+             points="119.58 217.47 110 197 110 197 60 197 60 199 60 203 60 220 66 220 66 217.95 66 203 104.44 203 106.18 203 114.14 220.02 119.58 217.47"/>
+    <polygon id="legs_-_staafjes_-_open" data-name="legs - staafjes - open" class="cls-6"
+             points="119.58 217.47 110 197 110 197 110 197 60 197 60 197 50.42 217.47 55.85 220.02 63.82 203 65.44 203 104.44 203 106.19 203 114.15 220.02 119.58 217.47"/>
+</svg>

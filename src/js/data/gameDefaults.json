@@ -1,0 +1,9 @@
+{
+    "canvas": {
+        "width": 1920,
+        "height": 1080
+    },
+    "routeSteps": 400,
+    "spawnDelay": 15,
+    "checkoutPosition": 350
+}

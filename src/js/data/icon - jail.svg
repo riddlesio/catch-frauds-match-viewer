@@ -1,0 +1,11 @@
+<svg id="export_-_icons" data-name="export - icons" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 60 40">
+    <defs>
+        <style>.fairlyJailed-1{fill:#00953a;}.fairlyJailed-2{fill:#e8d5bc;}</style>
+    </defs>
+    <title>adyen_tower_defense_v3</title>
+    <polygon id="icon_-_background" data-name="icon - background" class="fairlyJailed-1"
+             points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"/>
+    <path id="icon_-_jail" data-name="icon - jail" class="fairlyJailed-2"
+          d="M12,5V36H48V5H12Zm5,26V10h5V31H17Zm10,0V10h6V31H27Zm16,0H38V10h5V31Z"/>
+</svg>

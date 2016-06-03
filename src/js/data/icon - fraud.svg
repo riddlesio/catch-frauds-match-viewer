@@ -1,0 +1,11 @@
+<svg id="export_-_icons" data-name="export - icons" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 60 40">
+    <defs>
+        <style>.theft-1{fill:#ff5552;}.theft-2{fill:#e8d5bc;}</style>
+    </defs>
+    <title>adyen_tower_defense_v3</title>
+    <polygon id="icon_-_background" data-name="icon - background" class="theft-1"
+             points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"/>
+    <polygon id="icon_-_skull" data-name="icon - skull" class="theft-2"
+             points="42 10 42 5 17 5 17 10 11 10 11 25 17 25 17 15 27 15 27 20 17 20 17 29.89 17 35 23 35 23 30 27 30 27 35 32 35 32 30 36 30 36 35 42 35 42 29.89 42 20 32 20 32 15 42 15 42 25 48 25 48 10 42 10"/>
+</svg>

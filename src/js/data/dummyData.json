@@ -1,0 +1,51 @@
+{
+  "settings": {
+    "players": {
+      "names": ["player1"],
+      "count": 1
+    },
+    "checkpoints": [
+      {
+        "description": "Checkpoint 01 - First check"
+      },
+      {
+        "description": "Checkpoint 02 - Second check"
+      },
+      {
+        "description": "Checkpoint 03 - Third check"
+      }
+    ]
+  },
+  "results": [
+    {
+      "isBusted": false,
+      "isApproved": [true, true, false],
+      "isFraudulent": false
+    },
+    {
+      "isBusted": false,
+      "isApproved": [true, true, false],
+      "isFraudulent": false
+    },
+    {
+      "isBusted": false,
+      "isApproved": [true, true, false],
+      "isFraudulent": false
+    },
+    {
+      "isBusted": true,
+      "isApproved": [true, false, false],
+      "isFraudulent": true
+    },
+    {
+      "isBusted": true,
+      "isApproved": [true, false, false],
+      "isFraudulent": false
+    },
+    {
+      "isBusted": false,
+      "isApproved": [true, true, false],
+      "isFraudulent": true
+    }
+  ]
+}

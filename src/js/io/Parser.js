@@ -22,7 +22,8 @@ function parseSettings(data, defaults = {}) {
 function parseStates(data, settings) {
 
     const results = data.results;
-    const checkpoints = data.settings.checkpoints;
+    const path = settings.path;
+    const checkpoints = createCheckpoints(data.settings.checkpoints, path);
     const routeSteps = settings.routeSteps;
     const stateCount = (results.length - 1) * settings.spawnDelay + routeSteps + 1;
     const buyers = results.map((result, index) => ({
@@ -55,20 +56,10 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
 
         const currentState = previousStatus.currentState + 1;
         const { checkoutPosition, spawnDelay } = settings;
-
-        // Create a state for guards
-        const checkpointsState = checkpoints.map(calculateCheckpoint);
-
         const lastBuyerIndex = buyers.length - 1;
         const latestPossibleBuyerIndex = Math.floor(currentState / spawnDelay);
         const latestBuyerIndex = latestPossibleBuyerIndex > lastBuyerIndex ? lastBuyerIndex : latestPossibleBuyerIndex;
         const currentActiveBuyerIndexes = calculateBuyerIndexes(latestBuyerIndex, spawnDelay, currentState, routeSteps);
-        // const currentlyActiveBuyers = calculateBuyerIndexes(latestBuyerIndex, spawnDelay, currentState, routeSteps);
-
-        // console.log('stateCount:', stateCount);
-        // console.log('currentState:', currentState);
-        // console.log('latestBuyerIndex:', latestBuyerIndex);
-        // console.log('currentActiveBuyerIndexes', currentActiveBuyerIndexes.reverse());
 
         const visibleBuyers = buyers
         // .slice(currentlyActiveBuyers.start, currentlyActiveBuyers.end)
@@ -78,8 +69,8 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
                 const { isBusted, isApproved, isFraudulent } = result;
 
                 const position = calculatePosition(id, spawnDelay, currentState);
-                const busted = isBusted ? calculateBusted(isApproved, checkpointsState, position) : false;
-                const approved = calculateApproved(checkpointsState, position, isApproved);
+                const busted = isBusted ? calculateBusted(isApproved, checkpoints, position) : false;
+                const approved = calculateApproved(checkpoints, position, isApproved);
                 const shirtColor = calculateShirtColor(isApproved, approved);
                 const faceExpression = getFaceExpression(busted);
                 const purchaseItem = busted ? 0 : look.purchaseItem;
@@ -103,10 +94,12 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
         let isBusted = undefined;
         let isFraudulent = undefined;
 
+        // Create a state for guards
+        const checkpointsState = checkpoints.map(setCheckpointExpressions);
+
         const checkingOut = visibleBuyers.find(buyer => buyer.position === checkoutPosition);
 
         if (checkingOut) {
-            // console.log('isCheckingOut!!!!');
             isBusted = checkingOut.isBusted;
             isFraudulent = checkingOut.isFraudulent;
         }
@@ -114,8 +107,6 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
         const status = createStatusFromStatus(previousStatus, isBusted, isFraudulent, stateCount);
 
         previousStatus = status;
-
-        // console.log(visibleBuyers)
 
         return {
             status,
@@ -125,17 +116,81 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
     };
 }
 
-function calculateCheckpoint(checkpoint, index) {
+function createCheckpoints(checkpoints, path) {
+
+    // Add expressions for checkpoint guards. Expressions are related to buyer by position.
+    const skinColors = [0, 1, 2];
+
+    let checks = checkpoints.map((checkpoint, index) => {
+
+        return {
+            id: index + 1,
+            description: checkpoint.description,
+            skinColor: getRandomFromArray(skinColors),
+        };
+    });
+
+    return checks;
+
+    const amountPerLane = checkpoints.length / 3;
+
+    let lanes = [
+        { start: path[0].X, end: path[1].X },
+        { start: path[2].X, end: path[3].X },
+        { start: path[4].X, end: path[5].X },
+    ];
+
+    lanes = lanes.map((lane) => {
+        return {
+            width: Math.abs(lane.start - lane.end),
+            ...lane,
+        };
+    });
+
+    console.log(lanes);
+
+    checks.forEach((cp, index) => {
+
+        let laneWidth;
+        let spacePerCheckpoint;
+        let x;
+        let y;
+        const id = cp.id;
+        const min = amountPerLane - 1;
+
+        if (index < amountPerLane) {
+            laneWidth = lanes[0].width - 100;
+            spacePerCheckpoint = laneWidth / amountPerLane;
+            x = id * spacePerCheckpoint;
+            y = 250;
+        } else if (index > amountPerLane * 2) {
+            laneWidth = lanes[2].width - 100;
+            spacePerCheckpoint = laneWidth / amountPerLane;
+            x = (id - (min * 2)) * spacePerCheckpoint;
+            y = 750;
+        } else {
+            laneWidth = lanes[1].width - 100;
+            spacePerCheckpoint = laneWidth / amountPerLane;
+            x = (id - min) * spacePerCheckpoint;
+            y = 550;
+        }
+
+        cp.transform = `translate(${x},${y})`;
+    });
+
+    console.log(checks);
+
+    return checks;
+}
+
+function setCheckpointExpressions(checkpoint, buyers) {
 
     // Add expressions for checkpoint guards. Expressions are related to buyer by position.
     const expression = 0;
-    const positions = [50, 125, 200, 275, 375, 450, 525, 650, 725, 800];
 
     return {
-        id: index + 1,
-        description: checkpoint.description,
         expression,
-        position: positions[index],
+        ...checkpoint,
     };
 }
 
@@ -188,9 +243,9 @@ function calculateBusted(isApproved, checkpoints, position) {
     return lastFalseCheckpointPosition <= position;
 }
 
-function calculateApproved(checkpointsState, position, isApproved) {
+function calculateApproved(checkpoints, position, isApproved) {
 
-    const passedCheckpoints = checkpointsState.filter((checkpoint) => (
+    const passedCheckpoints = checkpoints.filter((checkpoint) => (
         checkpoint.position <= position
     ));
     const passedCheckpointAmount = passedCheckpoints.length;

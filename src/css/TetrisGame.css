@@ -1,23 +1,23 @@
 html {
-	font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 .AdyenGame-stat {
-	font-size: 4rem;
+    font-size: 4rem;
 }
 
 .AdyenGame-stat--green {
-	fill: #00953a;
+    fill: #00953a;
 }
 
 .AdyenGame-stat--red {
-	fill: #ff5552;
+    fill: #ff5552;
 }
 
 .routePoint {
-	width: 5px;
-	height: 5px;
-	fill: red;
+    width: 5px;
+    height: 5px;
+    fill: red;
 }
 
 .TetrisGame {
@@ -25,162 +25,229 @@ html {
 }
 
 .TetrisGame-overlayBackground {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 
-	stroke: none;
-	opacity: 0.4;
-	fill: black;
+    stroke: none;
+    opacity: 0.4;
+    fill: black;
 }
 
 .TetrisGame-overlayMessage,
 .TetrisGame-currentRound,
 .TetrisGame-playerInfo {
-	fill: white;
-	font-family: 'Exo', sans-serif;
-	font-weight: bold;
-	text-anchor: middle;
+    fill: white;
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
+    text-anchor: middle;
 }
 
 .TetrisGame-overlayMessage {
-	font-size: 3.5rem;
+    font-size: 3.5rem;
 }
 
 .TetrisGame-currentRound {
-	font-size: 3.5rem;
+    font-size: 3.5rem;
 }
 
 .TetrisGame-playerInfo {
-	text-anchor: left;
-	font-size: 2.5rem;
+    text-anchor: left;
+    font-size: 2.5rem;
 }
 
 .TetrisGame-playerInfo.TetrisGame-playerName {
-	font-size: 2.1rem;
-	text-anchor: start;
+    font-size: 2.1rem;
+    text-anchor: start;
 }
 
 .TetrisGame-playerInfo.TetrisGame-playerPoints {
-	font-size: 2.0rem;
+    font-size: 2.0rem;
 }
 
 .TetrisGame-playerInfo.TetrisGame-playerCombo-text,
 .TetrisGame-playerInfo.TetrisGame-playerSkips-text {
-	font-size: 1.7rem;
+    font-size: 1.7rem;
 }
 
 .TetrisGame-playerInfo.TetrisGame-playerCombo-combo,
 .TetrisGame-playerInfo.TetrisGame-playerSkips-skips {
-	font-size: 2.4rem;
+    font-size: 2.4rem;
 }
 
 .TetrisGame-playerInfo.TetrisGame-playerMove {
-	font-size: 2rem;
+    font-size: 2rem;
 }
 
 .TetrisGame-playerView-right .TetrisGame-playerInfo.TetrisGame-playerCombo,
 .TetrisGame-playerView-right .TetrisGame-playerInfo.TetrisGame-playerSkips {
-	text-anchor: start;
+    text-anchor: start;
 }
 
 .TetrisGame-playerView-right .TetrisGame-playerInfo.TetrisGame-playerName,
 .TetrisGame-playerView-left .TetrisGame-playerInfo.TetrisGame-playerCombo,
 .TetrisGame-playerView-left .TetrisGame-playerInfo.TetrisGame-playerSkips {
-	text-anchor: end;
+    text-anchor: end;
 }
 
 .TetrisGame-playerMove-illegal {
-	fill: rgb(250, 167, 25);
+    fill: rgb(250, 167, 25);
 }
 
 .normal-1 {
-	fill: #00953a;
+    fill: #00953a;
 }
 
 .normal-2 {
-	fill: #e8d5bc;
+    fill: #e8d5bc;
 }
 
 .theft-1 {
-	fill: #ff5552;
+    fill: #ff5552;
 }
 
 .theft-2 {
-	fill: #e8d5bc;
+    fill: #e8d5bc;
 }
 
 .fairlyJailed-1 {
-	fill: #00953a;
+    fill: #00953a;
 }
 
 .fairlyJailed-2 {
-	fill: #e8d5bc;
+    fill: #e8d5bc;
 }
 
 .unfairlyJailed-1 {
-	fill: #ff5552;
+    fill: #ff5552;
 }
 
 .unfairlyJailed-2 {
-	fill: #e8d5bc;
+    fill: #e8d5bc;
 }
 
 .percentageBar-1 {
-	fill: #b5b5b5;
+    fill: #b5b5b5;
 }
 
 .percentageBar-2 {
-	fill: #00953a;
+    fill: #00953a;
 }
 
 .cls-1 {
-	fill: transparent;
+    fill: transparent;
 }
 
 .cls-2 {
-	fill: #e2c137;
+    fill: #e2c137;
 }
 
 .cls-2-2 {
-	fill: #4d1b0a;
+    fill: #4d1b0a;
 }
 
 .cls-3 {
-	fill: #4d1b0a;
+    fill: #4d1b0a;
 }
 
 .cls-4 {
-	fill: #8836e8;
+    fill: #8836e8;
 }
 
 .cls-5 {
-	fill: #fff;
+    fill: #fff;
 }
 
 .cls-6 {
-	fill: #0057e2;
+    fill: #0057e2;
 }
 
 .cls-7 {
-	fill: #ffd9c0;
+    fill: #ffd9c0;
 }
 
 .cls-8 {
-	opacity: 0.3;
+    opacity: 0.3;
 }
 
 .cls-9 {
-	fill: #cdced5;
+    fill: #cdced5;
 }
 
 .cls-10 {
-	fill: #606060;
+    fill: #606060;
 }
 
 .cls-11 {
-	fill: #ff5552;
+    fill: #ff5552;
 }
 
 .cls-12 {
-	fill: #00953a;
+    fill: #00953a;
+}
+
+.GuardTile-1 {
+    fill: #cdced5;
+}
+
+.GuardTile-2, .GuardTile-3 {
+    fill: #919191;
+}
+
+.GuardTile-3 {
+    font-size: 48px;
+    font-family: Munro Small;
+    letter-spacing: 4px;
+}
+
+.Guard-1 {
+    fill: transparent;
+}
+
+.Guard-2 {
+    fill: #4d1b0a;
+}
+
+.Guard-3 {
+    fill: #e2c137;
+}
+
+.Guard-4 {
+    fill: #ffd9c0;
+}
+
+.Guard-5, .Guard-7 {
+    fill: #fff;
+}
+
+.Guard-6 {
+    fill: #ff5552;
+}
+
+.Guard-7 {
+    font-size: 48px;
+    font-family: Munro Small;
+}
+
+.Counter-1 {
+    fill: #006022;
+}
+
+.Counter-2 {
+    fill: #fff;
+}
+
+.Counter-3 {
+    fill: #00953a;
+}
+
+.Counter-4 {
+    fill: #5cc65c;
+}
+
+.Counter-5 {
+    fill: #ffd9c0;
+}
+
+.Counter-6 {
+    fill: #4d1b0a;
 }

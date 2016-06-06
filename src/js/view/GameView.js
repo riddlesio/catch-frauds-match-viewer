@@ -1,7 +1,9 @@
 import React        from 'react';
 import Overlay      from './Overlay.jsx';
 import Status       from './Status.jsx';
-import Buyer       from './Buyer.jsx';
+import Buyer        from './Buyer.jsx';
+import Checkpoint   from './Checkpoint.jsx';
+import Counter      from './Counter.jsx';
 
 function GameView(props) {
 
@@ -9,8 +11,12 @@ function GameView(props) {
     const { status, checkpoints, buyers } = state;
     const { width, height } = settings.canvas;
 
+    const renderCheckpoint = (checkpoint) => (
+        <Checkpoint checkpoint={ checkpoint } />
+    );
+
     const renderBuyer = (buyer) => (
-        <Buyer buyer={ buyer } key={ buyer.id } settings={ settings }/>
+        <Buyer buyer={ buyer } key={ buyer.id } settings={ settings } />
     );
 
     /**
@@ -28,6 +34,8 @@ function GameView(props) {
     return (
         <svg className="AdyenGame" viewBox={ `0 0 ${width} ${height}` } preserveAspectRatio="xMidYMid meet">
             <Status data={ status } />
+            <Counter position={ status.checkoutPosition } />
+            { checkpoints.map(renderCheckpoint) }
             { buyers.map(renderBuyer) }
             <Overlay data={ status } />
         </svg>

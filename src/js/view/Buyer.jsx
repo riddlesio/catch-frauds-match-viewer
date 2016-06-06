@@ -7,8 +7,10 @@ import Face         from './buyerparts/Face.jsx';
 import Arms         from './buyerparts/Arms.jsx';
 import Hair         from './buyerparts/Hair.jsx';
 import Shirt        from './buyerparts/Shirt.jsx';
+import getSkinColor from './util/getSkinColor';
+import getRouteLength from './util/getRouteLength';
 
-component.debug();
+// component.debug();
 
 const Buyer = component('Buyer', function (props) {
 
@@ -27,15 +29,15 @@ const Buyer = component('Buyer', function (props) {
     } = props.buyer;
     const {
         routeSteps,
+        path
     } = props.settings;
 
-    const skinsColors = ['#ffd9c0', '#C18473', '#87594e'];
-    const skin = skinsColors[skinColor];
+    const skin = getSkinColor(skinColor);
+    const routeLength = getRouteLength();
 
-    const routeLength = (1920 - 170) + (600 - 300) + (1770 - 170) + (890 - 600) + (1770 - 1);
     const stepSize = routeLength / routeSteps;
     const currentStep = position * stepSize;
-    const transformation = calculatePositionInfo(currentStep);
+    const transformation = calculatePositionInfo(currentStep, path);
     const positionTransform = `translate(${transformation.X},${transformation.Y})`;
     const bodyDirectionScale = transformation.bodyDirection ? '' : 'scale(-1, 1)';
     const directionTransform = `${bodyDirectionScale} translate(-85,-220)`
@@ -66,16 +68,16 @@ const Buyer = component('Buyer', function (props) {
     );
 });
 
-function calculatePositionInfo(currentStep) {
+function calculatePositionInfo(currentStep, path) {
 
-    const firstCornerX = 170;
-    const firstCornerY = 300;
-    const secondCornerX = 170;
-    const secondCornerY = 600;
-    const thirdCornerX = 1770;
-    const thirdCornerY = 600;
-    const fourthCornerX = 1770;
-    const fourthCornerY = 890;
+    const firstCornerX = path[1].X;
+    const firstCornerY = path[1].Y;
+    const secondCornerX = path[2].X;
+    const secondCornerY = path[2].Y;
+    const thirdCornerX = path[3].X;
+    const thirdCornerY = path[3].Y;
+    const fourthCornerX = path[4].X;
+    const fourthCornerY = path[4].Y;
 
     let X = 1920 - currentStep;
     let Y = 300;

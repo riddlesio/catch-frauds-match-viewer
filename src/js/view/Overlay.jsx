@@ -1,29 +1,46 @@
 import React       from 'react';
-const _             = require('lodash');
-const createView    = require('omniscient');
-const classNames    = require('classnames');
+import createView  from 'omniscient';
 
 const Overlay = createView('Overlay', function (props) {
 
-    const { winner } = props;
+    const { status, isVisible, checkpoints } = props;
+    const { percentage, normal, fairlyJailed, unfairlyJailed, thefts } = status;
+    const isFinished = Math.ceil(percentage) === 100;
+    let displayClass = 'u-hidden';
+    let content;
 
-    const cx = classNames({
-        'TetrisGame-overlay': true,
-        'u-hidden': !winner,
-    });
+    if (isFinished || isVisible) {
+        displayClass = '';
+    }
 
-    let message;
+    if (isFinished) {
 
-    if (winner === 'none') {
-        message = 'The game is a draw';
+        const message = `Your score: Normal transactions passed: ${normal}. Discovered fraudulent ` +
+            `transactions: ${fairlyJailed}. Normal transactions listed as fraudulent` +
+            ` ${unfairlyJailed}. Fraudulous transactions slipped through your security: ${thefts}`;
+
+        content = <p>{ message }</p>;
     } else {
-        message = `${winner} won the game!`;
+        const text = checkpoints.map((cp) => (
+            <p key={ cp.id } ><b>{ `Checkpoint ${cp.id}:`}</b> { cp.description }</p>
+        ));
+
+        content = (
+            <div>
+                <h2>Checkpoints and their descriptions</h2>
+                { text }
+            </div>
+        );
     }
 
     return (
-        <g className={ cx }>
-            <rect x="0" y="0" width="100%" height="100%" className="TetrisGame-overlayBackground"/>
-            <text x="50%" y="50%" className="TetrisGame-overlayMessage">{ message }</text>
+        <g className={ displayClass }>
+            <rect x="10%" y="10%" className="AdyenGame-overlayBackground" />
+            <foreignObject x="10%" y="10%" className="AdyenGame-overlayMessage">
+                <div className="AdyenGame-overlayTextDiv">
+                    { content }
+                </div>
+            </foreignObject>
         </g>
     );
 });

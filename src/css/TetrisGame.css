@@ -2,8 +2,14 @@ html {
     font-size: 62.5%;
 }
 
+@font-face {
+    font-family: "Munro Small";
+    src: url('../fonts/MunroSmall.ttf') format("truetype");
+}
+
 .AdyenGame-stat {
-    font-size: 4rem;
+    font-size: 5rem;
+    font-family: "Munro Small", arial;
 }
 
 .AdyenGame-stat--green {
@@ -13,36 +19,41 @@ html {
 .AdyenGame-stat--red {
     fill: #ff5552;
 }
-
-.routePoint {
-    width: 5px;
-    height: 5px;
-    fill: red;
+.AdyenGame-legendButton {
+    fill: #B5B5B5;
+    cursor: pointer;
 }
-
-.TetrisGame {
-
+.AdyenGame-legendButtonText {
+    font-size: 4.5rem;
+    fill: #3E3E3E;
+    font-family: "Munro Small";
+    cursor: pointer;
+    user-select: none;
 }
-
-.TetrisGame-overlayBackground {
-    width: 100%;
-    height: 100%;
-
+.AdyenGame-overlayBackground,
+.AdyenGame-overlayMessage {
+    width: 80%;
+    height: 75%;
+}
+.AdyenGame-overlayBackground {
     stroke: none;
-    opacity: 0.4;
+    opacity: 0.6;
     fill: black;
 }
-
-.TetrisGame-overlayMessage,
-.TetrisGame-currentRound,
-.TetrisGame-playerInfo {
-    fill: white;
-    font-family: 'Exo', sans-serif;
-    font-weight: bold;
-    text-anchor: middle;
+.AdyenGame-overlayTextDiv {
+    padding: 50px 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 212%;
+}
+.AdyenGame-overlayMessage {
+    color: white;
+    font-size: 3.0rem;
+    padding: 15px;
+    font-family: "proxima-nova", arial;
 }
 
-.TetrisGame-overlayMessage {
+.AdyenGame-overlayMessage {
     font-size: 3.5rem;
 }
 
@@ -87,6 +98,20 @@ html {
 .TetrisGame-playerView-left .TetrisGame-playerInfo.TetrisGame-playerCombo,
 .TetrisGame-playerView-left .TetrisGame-playerInfo.TetrisGame-playerSkips {
     text-anchor: end;
+}
+
+.Tile-1 {
+    fill: #cdced5;
+}
+
+.Tile-2, .Tile-3 {
+    fill: #919191;
+}
+
+.Tile-3 {
+    font-size: 48px;
+    font-family: "Munro Small", arial;
+    letter-spacing: 4px;
 }
 
 .TetrisGame-playerMove-illegal {
@@ -195,7 +220,7 @@ html {
 
 .GuardTile-3 {
     font-size: 48px;
-    font-family: Munro Small;
+    font-family: "Munro Small", arial;
     letter-spacing: 4px;
 }
 
@@ -225,7 +250,22 @@ html {
 
 .Guard-7 {
     font-size: 48px;
-    font-family: Munro Small;
+    font-family: "Munro Small", arial;
+}
+
+.Guard-info {
+    font-size: 3.0rem;
+    fill: black;
+
+}
+
+.PopUp-1 {
+    fill: #006022;
+}
+.PopUp-text {
+    font-size: 3.0rem;
+    fill: white;
+    font-family: "Munro Small", arial;
 }
 
 .Counter-1 {

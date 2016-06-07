@@ -6,45 +6,57 @@
     },
     "checkpoints": [
       {
-        "description": "Checkpoint 01 - First check"
+        "description": "First check some text inserted here to explain what this checkpoint is filtering the buyers transactions with."
       },
       {
-        "description": "Checkpoint 02 - Second check"
+        "description": "Second check some text inserted here to explain what this checkpoint is filtering the buyers transactions with."
       },
       {
-        "description": "Checkpoint 03 - Third check"
+        "description": "Third check some text inserted here to explain what this checkpoint is filtering the buyers transactions with."
+      },
+      {
+        "description": "Third check some text inserted here to explain what this checkpoint is filtering the buyers transactions with. Some rules will have more ocontent than others. They will need more space."
+      },
+      {
+        "description": "Third check some text inserted here to explain what this checkpoint is filtering the buyers transactions with. Some rules will have more ocontent than others. They will need more space."
+      },
+      {
+        "description": "Third check some text inserted here to explain what this checkpoint is filtering the buyers transactions with."
+      },
+      {
+        "description": "Third check some text inserted here to explain what this checkpoint is filtering the buyers transactions with."
       }
     ]
   },
   "results": [
     {
       "isBusted": false,
-      "isApproved": [true, true, false],
+      "isApproved": [true, true, false, true, true, true, true],
       "isFraudulent": false
     },
     {
       "isBusted": false,
-      "isApproved": [true, true, false],
+      "isApproved": [true, true, false, true, true, true, true],
       "isFraudulent": false
     },
     {
       "isBusted": false,
-      "isApproved": [true, true, false],
+      "isApproved": [true, true, false, true, true, true, true],
       "isFraudulent": false
     },
     {
       "isBusted": true,
-      "isApproved": [true, false, false],
+      "isApproved": [true, false, false, true, true, false, true],
       "isFraudulent": true
     },
     {
       "isBusted": true,
-      "isApproved": [true, false, false],
+      "isApproved": [true, false, false, true, true, false, true],
       "isFraudulent": false
     },
     {
       "isBusted": false,
-      "isApproved": [true, true, false],
+      "isApproved": [true, true, false, true, true, true, true],
       "isFraudulent": true
     }
   ]

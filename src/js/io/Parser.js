@@ -55,20 +55,24 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
     return function parseState() {
 
         const currentState = previousStatus.currentState + 1;
-        const { checkoutPosition, spawnDelay } = settings;
+        const { checkoutPosition, spawnDelay, routeSteps, path } = settings;
         const lastBuyerIndex = buyers.length - 1;
         const latestPossibleBuyerIndex = Math.floor(currentState / spawnDelay);
         const latestBuyerIndex = latestPossibleBuyerIndex > lastBuyerIndex ? lastBuyerIndex : latestPossibleBuyerIndex;
         const currentActiveBuyerIndexes = calculateBuyerIndexes(latestBuyerIndex, spawnDelay, currentState, routeSteps);
 
+        // Slice instead of filter
         const visibleBuyers = buyers
-        // .slice(currentlyActiveBuyers.start, currentlyActiveBuyers.end)
             .filter((x, index) => _.includes(currentActiveBuyerIndexes, index))
             .map(({ look, result, id }) => {
 
                 const { isBusted, isApproved, isFraudulent } = result;
 
                 const position = calculatePosition(id, spawnDelay, currentState);
+                const stepSize = getRouteLength() / routeSteps;
+                const currentStep = position * stepSize;
+                const transformation = calculatePositionInfo(currentStep, path);
+                const bodyDirection = getBodyDirection(transformation, path);
                 const busted = isBusted ? calculateBusted(isApproved, checkpoints, position) : false;
                 const approved = calculateApproved(checkpoints, position, isApproved);
                 const shirtColor = calculateShirtColor(isApproved, approved);
@@ -79,6 +83,8 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
                 return {
                     id,
                     position,
+                    bodyDirection,
+                    transformation,
                     shirtColor,
                     isBusted: busted,
                     isApproved: approved,
@@ -127,12 +133,13 @@ function createCheckpoints(checkpoints, path) {
             id: index + 1,
             description: checkpoint.description,
             skinColor: getRandomFromArray(skinColors),
+            transformation: 'translate(200,250)',
+            bodyDirection: 0,
         };
     });
 
-    return checks;
-
-    const amountPerLane = checkpoints.length / 3;
+    // Divide into chunks with length:
+    const amountPerLane = Math.ceil(checkpoints.length / 3);
 
     let lanes = [
         { start: path[0].X, end: path[1].X },
@@ -140,43 +147,62 @@ function createCheckpoints(checkpoints, path) {
         { start: path[4].X, end: path[5].X },
     ];
 
-    lanes = lanes.map((lane) => {
+    lanes = lanes.map((lane, index) => {
+
+        let width;
+
+        if (index === 0) {
+            width = (lane.start - 85) - (lane.end + 85);
+        } else if (index === 1) {
+            width = (lane.start + 85) - lane.end;
+        } else {
+            width = (lane.start - 85) - (lane.end + 400);
+        }
+
         return {
-            width: Math.abs(lane.start - lane.end),
+            width: Math.abs(width),
             ...lane,
         };
     });
 
-    console.log(lanes);
+    let i = 0;
+    let index = 0;
+    let widthPerGuard = lanes[0].width / amountPerLane;
+    let translateX = lanes[0].start - 200;
 
-    checks.forEach((cp, index) => {
+    while (i < amountPerLane) {
+        checks[index].transformation = { X: translateX, Y: 80 };
+        checks[index].bodyDirection = getBodyDirection(checks[index].transformation, path);
+        translateX -= widthPerGuard;
+        i++;
+        index++;
+    }
 
-        let laneWidth;
-        let spacePerCheckpoint;
-        let x;
-        let y;
-        const id = cp.id;
-        const min = amountPerLane - 1;
+    widthPerGuard = lanes[1].width / amountPerLane;
+    translateX = lanes[1].start + 50;
 
-        if (index < amountPerLane) {
-            laneWidth = lanes[0].width - 100;
-            spacePerCheckpoint = laneWidth / amountPerLane;
-            x = id * spacePerCheckpoint;
-            y = 250;
-        } else if (index > amountPerLane * 2) {
-            laneWidth = lanes[2].width - 100;
-            spacePerCheckpoint = laneWidth / amountPerLane;
-            x = (id - (min * 2)) * spacePerCheckpoint;
-            y = 750;
-        } else {
-            laneWidth = lanes[1].width - 100;
-            spacePerCheckpoint = laneWidth / amountPerLane;
-            x = (id - min) * spacePerCheckpoint;
-            y = 550;
+    while (i < (amountPerLane * 2)) {
+        checks[index].transformation = { X: translateX, Y: 380 };
+        checks[index].bodyDirection = getBodyDirection(checks[index].transformation, path);
+        translateX += widthPerGuard;
+        i++;
+        index++;
+    }
+
+    widthPerGuard = lanes[2].width / amountPerLane;
+    translateX = lanes[2].start - (widthPerGuard * 1.5);
+
+    // while (i < (checks.length - 1)) {
+    while (i < (amountPerLane * 3)) {
+        if (checks[index]) {
+            checks[index].transformation = { X: translateX, Y: 660 };
+            checks[index].bodyDirection = getBodyDirection(checks[index].transformation, path);
         }
 
-        cp.transform = `translate(${x},${y})`;
-    });
+        translateX -= widthPerGuard;
+        i++;
+        index++;
+    }
 
     console.log(checks);
 
@@ -206,16 +232,6 @@ function calculateBuyerIndexes(latestBuyerIndex, spawnDelay, currentState, route
         visibleBuyerCount = (latestBuyerIndex + 1);
     }
 
-    // console.log(visibleBuyerCount);
-    //
-    // return {
-    //     start: latestBuyerIndex - visibleBuyerCount,
-    //     end: latestBuyerIndex + 1,
-    // };
-
-    // console.log('-------------------------');
-    // console.log('visibleBuyerCount:', visibleBuyerCount);
-
     let index = latestBuyerIndex;
     let indexes = [];
 
@@ -233,6 +249,69 @@ function calculatePosition(index, spawnDelay, currentState) {
     const startPosition = index * spawnDelay;
 
     return currentState - startPosition;
+}
+
+function calculatePositionInfo(currentStep, path) {
+
+    const firstCornerX = path[1].X;
+    const firstCornerY = path[1].Y;
+    const secondCornerX = path[2].X;
+    const secondCornerY = path[2].Y;
+    const thirdCornerX = path[3].X;
+    const thirdCornerY = path[3].Y;
+    const fourthCornerX = path[4].X;
+    const fourthCornerY = path[4].Y;
+
+    let X = 1920 - currentStep;
+    let Y = 300;
+    let leftOver;
+
+    if (X >= firstCornerX) {
+        return { X, Y };
+    }
+
+    leftOver = firstCornerX - X;
+    X = firstCornerX;
+    Y = firstCornerY + leftOver;
+
+    if (Y <= secondCornerY) {
+        return { X, Y };
+    }
+
+    leftOver = Y - secondCornerY;
+    X = secondCornerX + leftOver;
+    Y = secondCornerY;
+
+    if (X <= thirdCornerX) {
+        return { X, Y };
+    }
+
+    leftOver = X - thirdCornerX;
+    X = thirdCornerX;
+    Y = thirdCornerY + leftOver;
+
+    if (Y <= fourthCornerY) {
+        return { X, Y };
+    }
+
+    leftOver = Y - fourthCornerY;
+    X = fourthCornerX - leftOver;
+    Y = fourthCornerY;
+
+    return { X, Y };
+}
+
+function getBodyDirection(transformation, path) {
+
+    const transformationY = transformation.Y;
+
+    if (transformationY <= path[1].Y) {
+        return 0;
+    } else if (transformationY <= path[2].Y) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 function calculateBusted(isApproved, checkpoints, position) {
@@ -276,22 +355,15 @@ function createStatusFromStatus(oldStatus, isBusted, isFraudulent, stateCount) {
     } = oldStatus;
 
     currentState += 1;
-    percentage = 100 / stateCount * currentState; // (currentState + 1)
-
-    // console.log('isBusted', isBusted);
-    // console.log('isFraudulent', isFraudulent);
+    percentage = 100 / stateCount * currentState;
 
     if (isBusted && isFraudulent) {
-        // console.log('fairlyJailed')
         fairlyJailed += 1;
     } else if (isBusted) {
-        // console.log('unfairlyJailed')
         unfairlyJailed += 1;
     } else if (isFraudulent) {
-        // console.log('thefts')
         thefts += 1;
     } else if (typeof isBusted !== 'undefined' && typeof isFraudulent !== 'undefined') {
-        // console.log('normal')
         normal += 1;
     }
 
@@ -329,6 +401,11 @@ function isFalse(value) {
 
 function getRandomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
+}
+
+function getRouteLength() {
+
+    return (1920 - 170) + (600 - 300) + (1770 - 170) + (890 - 600) + (1770 - 1);
 }
 
 export {

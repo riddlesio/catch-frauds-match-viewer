@@ -5,7 +5,6 @@ const Legs = component('Legs', function (props) {
 
     const position = props.position;
     const even = isEven(position);
-    console.log(position);
 
     let legs;
 

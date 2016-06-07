@@ -4,7 +4,7 @@
         "height": 1080
     },
     "routeSteps": 400,
-    "spawnDelay": 15,
+    "spawnDelay": 30,
     "checkoutPosition": 350,
     "path": [
         {

@@ -4,7 +4,7 @@ import component   from 'omniscient';
 const Status = component('Status', function (props) {
 
     const { percentage, normal, fairlyJailed, unfairlyJailed, thefts } = props.data;
-    const minWidth = 10;
+    const minWidth = 5;
     const maxWidth = 135.67;
     const widthPerPercentage = (maxWidth - minWidth) / 100;
     const width = minWidth + (widthPerPercentage * percentage);
@@ -13,7 +13,7 @@ const Status = component('Status', function (props) {
     return (
         <g className="AdyenGame-status">
             <g transform="translate(120,73)">
-                <polygon className="percentageBar-1" points="140.67 6.37 135.67 6.37 135.67 0.37 85.67 0.37 85.67 40.37 135.67 40.37 135.67 36.37 140.67 36.37 140.67 6.37"/>
+                <polygon className="percentageBar-1" points="140.67 6.37 135.67 6.37 135.67 0.37 5 0.37 5 40.37 135.67 40.37 135.67 36.37 140.67 36.37 140.67 6.37"/>
                 <polygon className="percentageBar-2" points={ filled } />
             </g>
             <text x="14.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">{ `${Math.ceil(percentage)} %` }</text>

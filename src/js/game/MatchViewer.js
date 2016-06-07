@@ -81,11 +81,10 @@ const MatchViewer = createGame({
  * Register the event listeners
  * @param {AbstractGame} context
  */
-function registerEventListeners (context) {
+function registerEventListeners(context) {
 
     PlaybackEvent.on(PlaybackEvent.PLAY, context.play, context);
     PlaybackEvent.on(PlaybackEvent.PAUSE, context.pause, context);
-    PlaybackEvent.on(PlaybackEvent.FORWARD, context.moveForward, context);
     PlaybackEvent.on(PlaybackEvent.FORWARD, context.moveForward, context);
     PlaybackEvent.on(PlaybackEvent.GOTO, context.setMove, context);
     PlaybackEvent.on(PlaybackEvent.FAST_FORWARD, context.roundForward, context);
@@ -97,7 +96,7 @@ function registerEventListeners (context) {
  * Release the event listeners
  * @param {AbstractGame} context
  */
-function releaseEventListeners (context) {
+function releaseEventListeners(context) {
 
     PlaybackEvent.off(PlaybackEvent.PLAY, context.play, context);
     PlaybackEvent.off(PlaybackEvent.PAUSE, context.pause, context);

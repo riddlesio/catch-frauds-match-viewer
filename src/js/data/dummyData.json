@@ -46,12 +46,12 @@
     },
     {
       "isBusted": true,
-      "isApproved": [true, false, false, true, true, false, true],
+      "isApproved": [true, false, false, true, true, true, true],
       "isFraudulent": true
     },
     {
       "isBusted": true,
-      "isApproved": [true, false, false, true, true, false, true],
+      "isApproved": [true, false, false, true, true, true, true],
       "isFraudulent": false
     },
     {

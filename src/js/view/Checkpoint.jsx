@@ -24,8 +24,8 @@ const Checkpoint = component('Checkpoint', function (props) {
     ];
 
     return (
-        <g>
-            <g key={ id } transform={ translate } className="AdyenGame-guardPost">
+        <g transform={ translate }>
+            <g key={ id } transform="translate(-82.5,-220)" className="AdyenGame-guardPost">
                 <g className="GuardTile" transform="translate(48,150)">
                     <rect id="platofrm" className="GuardTile-1" x="15.24" y="-15.21" width="39.59" height="70" transform="translate(54.82 -15.24) rotate(90)"/>
                     <rect id="shadow" className="GuardTile-2" x="32.32" y="7.29" width="5.41" height="70" transform="translate(77.32 7.26) rotate(90)"/>

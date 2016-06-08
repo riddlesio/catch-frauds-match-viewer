@@ -23,8 +23,11 @@ function parseStates(data, settings) {
 
     const results = data.results;
     const path = settings.path;
-    const checkpoints = createCheckpoints(data.settings.checkpoints, path);
     const routeSteps = settings.routeSteps;
+    const routeMap = createRouteMap(routeSteps, path);
+    const positionsForGuards = findGuardPositions(routeMap, path);
+    const checkpoints = createCheckpoints(data.settings.checkpoints, positionsForGuards, routeMap);
+    console.log(checkpoints);
     const stateCount = (results.length - 1) * settings.spawnDelay + routeSteps + 1;
     const buyers = results.map((result, index) => ({
         result,
@@ -38,11 +41,13 @@ function parseStates(data, settings) {
         checkpoints,
         stateCount,
         routeSteps,
+        routeMap,
     }));
 }
 
-function createStateParser({ buyers, settings, checkpoints, stateCount, routeSteps }) {
+function createStateParser({ buyers, settings, checkpoints, stateCount, routeSteps, routeMap }) {
 
+    let previousState;
     let previousStatus = {
         currentState: -1,
         percentage: 0,
@@ -66,19 +71,21 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
             .filter((x, index) => _.includes(currentActiveBuyerIndexes, index))
             .map(({ look, result, id }) => {
 
+                const previousBuyerState = previousState && previousState.buyers.find(buyer => buyer.id === id);
+                const wasBusted = previousBuyerState && previousBuyerState.isBusted;
                 const { isBusted, isApproved, isFraudulent } = result;
 
                 const position = calculatePosition(id, spawnDelay, currentState);
-                const stepSize = getRouteLength() / routeSteps;
-                const currentStep = position * stepSize;
-                const transformation = calculatePositionInfo(currentStep, path);
+                const transformation = routeMap[position];
                 const bodyDirection = getBodyDirection(transformation, path);
-                const busted = isBusted ? calculateBusted(isApproved, checkpoints, position) : false;
-                const approved = calculateApproved(checkpoints, position, isApproved);
+
+                // Check this
+                const busted = wasBusted ? true : isBusted ? calculateBusted(isApproved, checkpoints, transformation) : false;
+                const approved = calculateApproved(checkpoints, isApproved, previousBuyerState, transformation);
                 const shirtColor = calculateShirtColor(isApproved, approved);
+                const emotion = position > checkoutPosition ? getBuyerEmotionBubble(isBusted, isFraudulent) : 0;
                 const faceExpression = getFaceExpression(busted);
                 const purchaseItem = busted ? 0 : look.purchaseItem;
-                const emotion = 0;
 
                 return {
                     id,
@@ -114,99 +121,140 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
 
         previousStatus = status;
 
-        return {
+        const state = {
             status,
             checkpoints: checkpointsState,
             buyers: visibleBuyers,
         };
+
+        previousState = state;
+
+        return state;
     };
 }
 
-function createCheckpoints(checkpoints, path) {
+function createRouteMap(routeSteps, path) {
+
+    const routeLength = (
+        (path[0].X - path[1].X)
+        + (path[2].Y - path[1].Y)
+        + (path[3].X - path[2].X)
+        + (path[4].Y - path[3].Y)
+        + (path[4].X - path[5].X)
+    );
+
+    const firstCornerX = path[1].X;
+    const firstCornerY = path[1].Y;
+    const secondCornerX = path[2].X;
+    const secondCornerY = path[2].Y;
+    const thirdCornerX = path[3].X;
+    const thirdCornerY = path[3].Y;
+    const fourthCornerX = path[4].X;
+    const fourthCornerY = path[4].Y;
+    const pixelsPerStep = routeLength / routeSteps;
+    let X = 1920;
+    let Y = 300;
+    let leftOver;
+
+    return Array.from({ length: routeSteps }).map(() => {
+        if (X > firstCornerX && Y === firstCornerY) {
+            const coordinates = { X, Y };
+            X -= pixelsPerStep;
+            return coordinates;
+        }
+
+        if (X < firstCornerX && Y === firstCornerY) {
+            leftOver = firstCornerX - X;
+            X = firstCornerX;
+            Y = firstCornerY + leftOver;
+        }
+
+        if (Y < secondCornerY && X === firstCornerX) {
+            const coordinates = { X, Y };
+            Y += pixelsPerStep;
+            return coordinates;
+        }
+
+        if (Y > secondCornerY && X === firstCornerX) {
+            leftOver = Y - secondCornerY;
+            X = secondCornerX + leftOver;
+            Y = secondCornerY;
+        }
+
+        if (X < thirdCornerX && Y === secondCornerY) {
+            const coordinates = { X, Y };
+            X += pixelsPerStep;
+            return coordinates;
+        }
+
+        if (X > thirdCornerX && Y === secondCornerY) {
+            leftOver = X - thirdCornerX;
+            X = thirdCornerX;
+            Y = thirdCornerY + leftOver;
+        }
+
+        if (Y < fourthCornerY && X === thirdCornerX) {
+            const coordinates = { X, Y };
+            Y += pixelsPerStep;
+            return coordinates;
+        }
+
+        if (Y > fourthCornerY && X === thirdCornerX) {
+            leftOver = Y - fourthCornerY;
+            X = fourthCornerX - leftOver;
+            Y = fourthCornerY;
+        }
+
+        const coordinates = { X, Y };
+        X -= pixelsPerStep;
+        return coordinates;
+    });
+}
+
+function findGuardPositions(routeMap, path) {
+    return routeMap.filter((pos) => {
+
+        const X = pos.X;
+        const Y = pos.Y;
+        let position = pos;
+
+        if (Y === path[0].Y && X > 1850 || X < 230) {
+            position = null;
+        } else if (Y > path[0].Y && Y < path[2].Y) {
+            position = null;
+        } else if (Y === path[2].Y && X < 230 || X > 1720) {
+            position = null;
+        } else if (Y > path[3].Y && Y < path[4].Y) {
+            position = null;
+        } else if (Y === path[4].Y && X > 1720 || X < 400) {
+            position = null;
+        }
+
+        return position !== null;
+    });
+}
+
+function createCheckpoints(checkpoints, positionsForGuards, routeMap) {
 
     // Add expressions for checkpoint guards. Expressions are related to buyer by position.
     const skinColors = [0, 1, 2];
+    const positionDistance = positionsForGuards.length / checkpoints.length;
+    const half = positionDistance / 2;
 
-    let checks = checkpoints.map((checkpoint, index) => {
+    return checkpoints.map((checkpoint, index) => {
+
+        const positionIndex = index * positionDistance + half;
+        const transformation = positionsForGuards[Math.ceil(positionIndex)];
+        const bodyDirection = transformation.Y === 300 || transformation.Y === 890 ? 1 : 0;
 
         return {
             id: index + 1,
             description: checkpoint.description,
             skinColor: getRandomFromArray(skinColors),
-            transformation: 'translate(200,250)',
-            bodyDirection: 0,
+            transformation,
+            bodyDirection,
         };
     });
-
-    // Divide into chunks with length:
-    const amountPerLane = Math.ceil(checkpoints.length / 3);
-
-    let lanes = [
-        { start: path[0].X, end: path[1].X },
-        { start: path[2].X, end: path[3].X },
-        { start: path[4].X, end: path[5].X },
-    ];
-
-    lanes = lanes.map((lane, index) => {
-
-        let width;
-
-        if (index === 0) {
-            width = (lane.start - 85) - (lane.end + 85);
-        } else if (index === 1) {
-            width = (lane.start + 85) - lane.end;
-        } else {
-            width = (lane.start - 85) - (lane.end + 400);
-        }
-
-        return {
-            width: Math.abs(width),
-            ...lane,
-        };
-    });
-
-    let i = 0;
-    let index = 0;
-    let widthPerGuard = lanes[0].width / amountPerLane;
-    let translateX = lanes[0].start - 200;
-
-    while (i < amountPerLane) {
-        checks[index].transformation = { X: translateX, Y: 80 };
-        checks[index].bodyDirection = getBodyDirection(checks[index].transformation, path);
-        translateX -= widthPerGuard;
-        i++;
-        index++;
-    }
-
-    widthPerGuard = lanes[1].width / amountPerLane;
-    translateX = lanes[1].start + 50;
-
-    while (i < (amountPerLane * 2)) {
-        checks[index].transformation = { X: translateX, Y: 380 };
-        checks[index].bodyDirection = getBodyDirection(checks[index].transformation, path);
-        translateX += widthPerGuard;
-        i++;
-        index++;
-    }
-
-    widthPerGuard = lanes[2].width / amountPerLane;
-    translateX = lanes[2].start - (widthPerGuard * 1.5);
-
-    // while (i < (checks.length - 1)) {
-    while (i < (amountPerLane * 3)) {
-        if (checks[index]) {
-            checks[index].transformation = { X: translateX, Y: 660 };
-            checks[index].bodyDirection = getBodyDirection(checks[index].transformation, path);
-        }
-
-        translateX -= widthPerGuard;
-        i++;
-        index++;
-    }
-
-    console.log(checks);
-
-    return checks;
 }
 
 function setCheckpointExpressions(checkpoint, buyers) {
@@ -244,61 +292,18 @@ function calculateBuyerIndexes(latestBuyerIndex, spawnDelay, currentState, route
     return indexes;
 }
 
+function getBuyerEmotionBubble(isBusted, isFraudulent) {
+    if (!isBusted && !isFraudulent) return 1;
+    if (isBusted && isFraudulent) return 2;
+    if (!isBusted && isFraudulent) return 3;
+    if (isBusted && !isFraudulent) return 4;
+}
+
 function calculatePosition(index, spawnDelay, currentState) {
 
     const startPosition = index * spawnDelay;
 
     return currentState - startPosition;
-}
-
-function calculatePositionInfo(currentStep, path) {
-
-    const firstCornerX = path[1].X;
-    const firstCornerY = path[1].Y;
-    const secondCornerX = path[2].X;
-    const secondCornerY = path[2].Y;
-    const thirdCornerX = path[3].X;
-    const thirdCornerY = path[3].Y;
-    const fourthCornerX = path[4].X;
-    const fourthCornerY = path[4].Y;
-
-    let X = 1920 - currentStep;
-    let Y = 300;
-    let leftOver;
-
-    if (X >= firstCornerX) {
-        return { X, Y };
-    }
-
-    leftOver = firstCornerX - X;
-    X = firstCornerX;
-    Y = firstCornerY + leftOver;
-
-    if (Y <= secondCornerY) {
-        return { X, Y };
-    }
-
-    leftOver = Y - secondCornerY;
-    X = secondCornerX + leftOver;
-    Y = secondCornerY;
-
-    if (X <= thirdCornerX) {
-        return { X, Y };
-    }
-
-    leftOver = X - thirdCornerX;
-    X = thirdCornerX;
-    Y = thirdCornerY + leftOver;
-
-    if (Y <= fourthCornerY) {
-        return { X, Y };
-    }
-
-    leftOver = Y - fourthCornerY;
-    X = fourthCornerX - leftOver;
-    Y = fourthCornerY;
-
-    return { X, Y };
 }
 
 function getBodyDirection(transformation, path) {
@@ -314,24 +319,41 @@ function getBodyDirection(transformation, path) {
     }
 }
 
-function calculateBusted(isApproved, checkpoints, position) {
+function calculateBusted(isApproved, checkpoints, transformation) {
 
-    const lastFalseIndex                = isApproved.lastIndexOf(false);
-    const lastFalseCheckpointPosition   = checkpoints[lastFalseIndex].position;
+    const lastFalseIndex    = isApproved.lastIndexOf(false);
+    const bustingGuard      = checkpoints[lastFalseIndex];
+    const bustingGuardX     = bustingGuard.transformation.X;
+    const bustingGuardY     = bustingGuard.transformation.Y;
+    const buyerX            = transformation.X;
+    const buyerY            = transformation.Y;
 
-    return lastFalseCheckpointPosition <= position;
+    if (buyerY === bustingGuardY) {
+        if (buyerY === 300) {
+            return buyerX < bustingGuardX;
+        } else if (buyerY === 600) {
+            return buyerX > bustingGuardX;
+        } else if (buyerY === 890) {
+            return buyerX < bustingGuardX;
+        }
+    }
+
 }
 
-function calculateApproved(checkpoints, position, isApproved) {
+function calculateApproved(checkpoints, isApproved, previousBuyerState = { isApproved: [] }, transformation) {
 
-    const passedCheckpoints = checkpoints.filter((checkpoint) => (
-        checkpoint.position <= position
-    ));
-    const passedCheckpointAmount = passedCheckpoints.length;
+    const currentCheckpoint = checkpoints.reduce((acc, check) => (
+        check.transformation === transformation ? check : acc
+    ), null);
 
-    return isApproved.filter((approve, index) => (
-        (index + 1) <= passedCheckpointAmount
-    ));
+    if (!currentCheckpoint) {
+        return previousBuyerState.isApproved;
+    }
+
+    const checkpointsPassed = checkpoints.indexOf(currentCheckpoint) + 1;
+
+    // Returns isApproved array with length of checkpoints that have been passed
+    return isApproved.slice(0, checkpointsPassed);
 }
 
 function calculateShirtColor(isApproved, approved) {
@@ -403,10 +425,10 @@ function getRandomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-function getRouteLength() {
-
-    return (1920 - 170) + (600 - 300) + (1770 - 170) + (890 - 600) + (1770 - 1);
-}
+// function getRouteLength() {
+//
+//     return (1920 - 170) + (600 - 300) + (1770 - 170) + (890 - 600) + (1770 - 1);
+// }
 
 export {
     parseSettings,

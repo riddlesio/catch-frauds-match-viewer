@@ -3,21 +3,24 @@ import createView  from 'omniscient';
 
 const Overlay = createView('Overlay', function (props) {
 
-    const { status, isVisible, checkpoints } = props;
+    const { status, isVisible, checkpoints, closeOverlay } = props;
     const { percentage, normal, fairlyJailed, unfairlyJailed, thefts } = status;
     const isFinished = Math.ceil(percentage) === 100;
-    let displayClass = 'u-hidden';
+    let displayClass = 'Layer u-hidden';
     let content;
 
     if (isFinished || isVisible) {
-        displayClass = '';
+        displayClass = 'Layer';
     }
 
     if (isFinished) {
 
-        const message = `Your score: Normal transactions passed: ${normal}. Discovered fraudulent ` +
-            `transactions: ${fairlyJailed}. Normal transactions listed as fraudulent` +
-            ` ${unfairlyJailed}. Fraudulous transactions slipped through your security: ${thefts}`;
+        const message = `
+            Your score:
+            Normal transactions passed: ${normal}.
+            Discovered fraudulent transactions: ${fairlyJailed}.
+            Normal transactions listed as fraudulent ${unfairlyJailed}.
+            Fraudulous transactions slipped through your security: ${thefts}`;
 
         content = <p>{ message }</p>;
     } else {
@@ -33,15 +36,21 @@ const Overlay = createView('Overlay', function (props) {
         );
     }
 
+    const closeButton = isFinished ? null : (
+        <button onClick={ closeOverlay } type="button" className="Button GamePlayer-button">
+            <span>Close </span><i className="fa fa-times" />
+        </button>
+    );
+
     return (
-        <g className={ displayClass }>
-            <rect x="10%" y="10%" className="AdyenGame-overlayBackground" />
-            <foreignObject x="10%" y="10%" className="AdyenGame-overlayMessage">
-                <div className="AdyenGame-overlayTextDiv">
+        <div className={ displayClass }>
+            <div className="Layer-content AdyenGame-overlay">
+                <div className="AdyenGame-overlayContent Overlay">
+                    { closeButton }
                     { content }
                 </div>
-            </foreignObject>
-        </g>
+            </div>
+        </div>
     );
 });
 

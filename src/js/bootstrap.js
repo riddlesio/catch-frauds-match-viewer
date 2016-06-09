@@ -1,4 +1,5 @@
-import dataProvider  from '@riddles/match-viewer/lib/dataProvider/aiGamesDataProvider';
+import dataProvider from '@riddles/match-viewer/lib/dataProvider/fixtureDataProvider';
+import data from './data/dummyData.json';
 import MatchViewer from './game/MatchViewer';
 
 let displayChrome = true;
@@ -9,7 +10,7 @@ if (window.frameElement.getAttribute('data-indexgame')) {
 
 const game = new MatchViewer({
     name: 'adyen-fraud-challenge',
-    dataProvider: dataProvider(),
+    dataProvider: dataProvider(data),
     player: {
         // Determines whether they player's chrome should be displayed
         chrome: displayChrome,
@@ -22,8 +23,8 @@ const game = new MatchViewer({
 
         // Time between each step when playing
         playbackTimeout: {
-            min: 10,
-            max: 550,
+            min: 16,
+            max: 750,
         },
     },
 });

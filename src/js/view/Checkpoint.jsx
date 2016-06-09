@@ -2,6 +2,18 @@ import React        from 'react';
 import component    from 'omniscient';
 import getSkinColor from './util/getSkinColor';
 
+const hair = [
+    <polygon id="hair_-_black_man" data-name="hair - black man" points="107.5 65 62.5 65 57.5 65 57.5 70 57.5 80 62.5 80 62.5 70 107.5 70 107.5 65"/>,
+    <polygon id="hair_-_white_man" data-name="hair - white man" className="Guard-2" points="96.5 60 96.5 55 76.5 55 76.5 60 62.5 60 62.5 65 57.5 65 57.5 70 57.5 80 62.5 80 62.5 70 107.5 70 107.5 67.33 107.5 65 107.5 60 96.5 60"/>,
+];
+
+const textBubble = (
+    <g>
+        <polygon className="Guard-textBubble" points="111.5 5 111.5 0 61.5 0 61.5 5 56.5 5 56.5 35 61.5 35 61.5 40 78.5 40 78.5 45 83.5 45 83.5 50 88.5 50 88.5 45 93.5 45 93.5 40 111.5 40 111.5 35 116.5 35 116.5 5 111.5 5"/>
+        <text className="Guard-textBubble-exclamation" transform="translate(83.83 31.25)">!</text>
+    </g>
+);
+
 const Checkpoint = component('Checkpoint', function (props) {
 
     const {
@@ -17,11 +29,6 @@ const Checkpoint = component('Checkpoint', function (props) {
     const bodyDirectionScale = bodyDirection ? '' : 'scale(-1, 1)';
     const directionTransform = bodyDirectionScale.length > 0 ? `${bodyDirectionScale} translate(-165,0)` : '';
     const tileTextX = id > 9 ? -10 : 0;
-
-    const hair = [
-        <polygon id="hair_-_black_man" data-name="hair - black man" points="107.5 65 62.5 65 57.5 65 57.5 70 57.5 80 62.5 80 62.5 70 107.5 70 107.5 65"/>,
-        <polygon id="hair_-_white_man" data-name="hair - white man" className="Guard-2" points="96.5 60 96.5 55 76.5 55 76.5 60 62.5 60 62.5 65 57.5 65 57.5 70 57.5 80 62.5 80 62.5 70 107.5 70 107.5 67.33 107.5 65 107.5 60 96.5 60"/>,
-    ];
 
     return (
         <g transform={ translate }>
@@ -44,12 +51,11 @@ const Checkpoint = component('Checkpoint', function (props) {
                     <path id="mouth" className="Guard-5" d="M101.5,95v5h-30V95h30Z"/>
                     <polygon id="hat" points="112.5 65 112.5 45 57.5 45 57.5 65 57.5 70 117.5 70 117.5 65 112.5 65"/>
                     <polygon id="hat_-_badge" data-name="hat - badge" className="Guard-3" points="96.5 55 81.5 55 81.5 60 86.5 60 86.5 65 91.5 65 91.5 60 96.5 60 96.5 55"/>
+                    { expression > 0 ? textBubble : null }
                 </g>
             </g>
         </g>
     );
 });
-
-// { expression > 0 ? textBubble : null }
 
 export default Checkpoint;

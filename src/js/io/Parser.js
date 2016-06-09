@@ -27,7 +27,6 @@ function parseStates(data, settings) {
     const routeMap = createRouteMap(routeSteps, path);
     const positionsForGuards = findGuardPositions(routeMap, path);
     const checkpoints = createCheckpoints(data.settings.checkpoints, positionsForGuards, routeMap);
-    console.log(checkpoints);
     const stateCount = (results.length - 1) * settings.spawnDelay + routeSteps + 1;
     const buyers = results.map((result, index) => ({
         result,
@@ -82,7 +81,8 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
                 // Check this
                 const busted = wasBusted ? true : isBusted ? calculateBusted(isApproved, checkpoints, transformation) : false;
                 const approved = calculateApproved(checkpoints, isApproved, previousBuyerState, transformation);
-                const shirtColor = calculateShirtColor(isApproved, approved);
+                const shirtColorPercentage = calculateShirtColor(isApproved, approved);
+                const shirtColor = shirtColorPercentage > 0 ? getColorForPercentage(shirtColorPercentage) : 0;
                 const emotion = position > checkoutPosition ? getBuyerEmotionBubble(isBusted, isFraudulent) : 0;
                 const faceExpression = getFaceExpression(busted);
                 const purchaseItem = busted ? 0 : look.purchaseItem;
@@ -108,7 +108,7 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
         let isFraudulent = undefined;
 
         // Create a state for guards
-        const checkpointsState = checkpoints.map(setCheckpointExpressions);
+        const checkpointsState = checkpoints.map(setCheckpointExpressionSetter(visibleBuyers));
 
         const checkingOut = visibleBuyers.find(buyer => buyer.position === checkoutPosition);
 
@@ -257,14 +257,31 @@ function createCheckpoints(checkpoints, positionsForGuards, routeMap) {
     });
 }
 
-function setCheckpointExpressions(checkpoint, buyers) {
+function setCheckpointExpressionSetter(visibleBuyers) {
 
-    // Add expressions for checkpoint guards. Expressions are related to buyer by position.
-    const expression = 0;
+    return function setCheckpointExpression(checkpoint) {
 
-    return {
-        expression,
-        ...checkpoint,
+        let expression = 0;
+        const buyerBeingChecked = visibleBuyers.find((buyer) => {
+            const buyerX = buyer.transformation.X;
+            const buyerY = buyer.transformation.Y;
+            const guardX = checkpoint.transformation.X;
+            const guardY = checkpoint.transformation.Y;
+
+            return buyerY === guardY && buyerX > (guardX - 50) && buyerX < (guardX + 50);
+        });
+
+        if (buyerBeingChecked) {
+            const isApproved = buyerBeingChecked.isApproved;
+            const approvedByThisCheckpoint = isApproved[isApproved.length - 1];
+
+            if (!approvedByThisCheckpoint) expression = 1;
+        }
+
+        return {
+            ...checkpoint,
+            expression,
+        };
     };
 }
 
@@ -337,7 +354,6 @@ function calculateBusted(isApproved, checkpoints, transformation) {
             return buyerX < bustingGuardX;
         }
     }
-
 }
 
 function calculateApproved(checkpoints, isApproved, previousBuyerState = { isApproved: [] }, transformation) {
@@ -363,6 +379,34 @@ function calculateShirtColor(isApproved, approved) {
     const shirtColorStepSize = 100 / amountOfFalseApproves;
 
     return shirtColorStepSize * amountOfFalseApproved;
+}
+
+function getColorForPercentage(pct) {
+
+    const percentColors = [
+        { pct: 0, color: { r: 0xff, g: 0xff, b: 0 } },
+        { pct: 100, color: { r: 0xff, g: 0x00, b: 0 } },
+    ];
+
+    for (var i = 1; i < percentColors.length - 1; i++) {
+        if (pct < percentColors[i].pct) {
+            break;
+        }
+    }
+
+    const lower = percentColors[i - 1];
+    const upper = percentColors[i];
+    const range = upper.pct - lower.pct;
+    const rangePct = (pct - lower.pct) / range;
+    const pctLower = 1 - rangePct;
+    const pctUpper = rangePct;
+    const color = {
+        r: Math.floor(lower.color.r * pctLower + upper.color.r * pctUpper),
+        g: Math.floor(lower.color.g * pctLower + upper.color.g * pctUpper),
+        b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper)
+    };
+
+    return 'rgb(' + [color.r, color.g, color.b].join(',') + ')';
 }
 
 function createStatusFromStatus(oldStatus, isBusted, isFraudulent, stateCount) {

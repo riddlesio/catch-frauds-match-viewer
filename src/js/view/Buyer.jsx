@@ -46,7 +46,7 @@ const Buyer = component('Buyer', function (props) {
                     isFraudulent={ isFraudulent }
                 />
                 <Legs position={ position } />
-                <Arms isBusted={ isBusted } skinColor={ skin } />
+                <Arms isBusted={ isBusted } fill={ skin } />
                 <Face
                     faceType={ faceType }
                     faceExpression={ faceExpression }

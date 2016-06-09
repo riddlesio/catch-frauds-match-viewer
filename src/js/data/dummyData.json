@@ -31,32 +31,32 @@
   "results": [
     {
       "isBusted": false,
-      "isApproved": [true, true, false, true, true, true, true],
+      "isApproved": [false, false, false, false, false, false, false],
       "isFraudulent": false
     },
     {
       "isBusted": false,
-      "isApproved": [true, true, false, true, true, true, true],
+      "isApproved": [false, false, false, false, false, false, false],
       "isFraudulent": false
     },
     {
       "isBusted": false,
-      "isApproved": [true, true, false, true, true, true, true],
+      "isApproved": [false, false, false, false, false, false, false],
       "isFraudulent": false
     },
     {
       "isBusted": true,
-      "isApproved": [true, false, false, true, true, true, true],
+      "isApproved": [false, false, false, false, false, false, false],
       "isFraudulent": true
     },
     {
       "isBusted": true,
-      "isApproved": [true, false, false, true, true, true, true],
+      "isApproved": [false, false, false, false, false, false, false],
       "isFraudulent": false
     },
     {
       "isBusted": false,
-      "isApproved": [true, true, false, true, true, true, true],
+      "isApproved": [false, false, false, false, false, false, false],
       "isFraudulent": true
     }
   ]

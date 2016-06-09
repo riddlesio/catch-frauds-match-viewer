@@ -3,9 +3,9 @@
         "width": 1920,
         "height": 1080
     },
-    "routeSteps": 400,
-    "spawnDelay": 30,
-    "checkoutPosition": 365,
+    "routeSteps": 200,
+    "spawnDelay": 9,
+    "checkoutPosition": 180,
     "path": [
         {
             "X": 1920,

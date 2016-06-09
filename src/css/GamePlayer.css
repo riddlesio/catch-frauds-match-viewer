@@ -8,9 +8,6 @@ body {
     overflow: hidden;
 
     font-size: 62.5%;
-
-    background: url('/img/background.png') no-repeat center;
-    background-size: cover;
 }
 
 .GamePlayer {
@@ -57,9 +54,6 @@ body {
 
     width: 100%;
     height: 100%;
-
-    background: url('/img/background.png') no-repeat center;
-    background-size: cover;
 }
 
 .GamePlayer-dropdown {

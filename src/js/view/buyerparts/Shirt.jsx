@@ -16,9 +16,16 @@ const skull = (
     />
 );
 
+const propTypes = {
+    shirtColor: React.PropTypes.node.isRequired,
+    isFraudulent: React.PropTypes.bool.isRequired,
+    isBusted: React.PropTypes.bool.isRequired,
+};
+
 const Shirt = component('Shirt', function (props) {
 
     const { shirtColor, isBusted, isFraudulent } = props;
+
     let shirt;
 
     if (!isBusted) {
@@ -43,5 +50,7 @@ const Shirt = component('Shirt', function (props) {
         </g>
     );
 });
+
+Shirt.propTypes = propTypes;
 
 export default Shirt;

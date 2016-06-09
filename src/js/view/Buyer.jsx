@@ -9,6 +9,10 @@ import Hair         from './buyerparts/Hair.jsx';
 import Shirt        from './buyerparts/Shirt.jsx';
 import getSkinColor from './util/getSkinColor';
 
+const propTypes = {
+    buyer: React.PropTypes.object.isRequired,
+};
+
 const Buyer = component('Buyer', function (props) {
 
     const {
@@ -57,5 +61,7 @@ const Buyer = component('Buyer', function (props) {
         </g>
     );
 });
+
+Buyer.propTypes = propTypes;
 
 export default Buyer;

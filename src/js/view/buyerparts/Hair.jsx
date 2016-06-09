@@ -9,9 +9,15 @@ const hairTypes = [
     <polygon className="cls-3" points="99 115 99 110 79 110 79 115 65 115 65 120 60 120 60 125 60 135 65 135 65 125 110 125 110 122.33 110 120 110 115 99 115"/>,
 ];
 
+const propTypes = {
+    faceType: React.PropTypes.number.isRequired,
+};
+
 const Hair = component('Hair', function (props) {
 
     return hairTypes[props.faceType];
 });
+
+Hair.propTypes = propTypes;
 
 export default Hair;

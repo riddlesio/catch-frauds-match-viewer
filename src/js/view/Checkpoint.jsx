@@ -15,6 +15,10 @@ const textBubble = (
     </g>
 );
 
+const propTypes = {
+    checkpoint: React.PropTypes.object.isRequired,
+};
+
 const Checkpoint = component('Checkpoint', function (props) {
 
     const { id, expression, transformation, skinColor, bodyDirection } = props.checkpoint;
@@ -60,5 +64,7 @@ const Checkpoint = component('Checkpoint', function (props) {
         </g>
     );
 });
+
+Checkpoint.propTypes = propTypes;
 
 export default Checkpoint;

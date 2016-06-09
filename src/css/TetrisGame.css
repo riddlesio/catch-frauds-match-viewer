@@ -116,6 +116,7 @@ html {
 
 .PerformanceOverlay-sider .Sider-puppet {
     max-width: 80px;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 800px) {
@@ -161,7 +162,35 @@ html {
     }
 }
 
+.InformationOverlay-heading {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    font-size: 3rem;
+}
+.InformationOverlay-checkpoints {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.Checkpoints-checkpoint {
+    margin-bottom: 15px;
+}
+.Checkpoint-number {
+    font-weight: bold;
+}
+.Checkpoint-description {
+    margin: 5px 0;
+}
+
 .Overlay-closeButton {
+    color: black;
+    float: right;
+    cursor: pointer;
+}
+.Overlay-closeButton:hover {
+    color: gray;
+    float: right;
 }
 
 .AdyenGame-overlayMessage {

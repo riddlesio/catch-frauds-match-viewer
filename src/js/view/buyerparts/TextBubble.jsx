@@ -9,6 +9,10 @@ const emotion = [
     <path className="FillWhite" d="M100,8V18H95V8h5ZM75,8H70V18h5V8ZM95,33h5V28H95v5ZM70,33h5V28H70v5Zm5-10v5H95V23H75Z"/>,
 ];
 
+const propTypes = {
+    emotion: React.PropTypes.number.isRequired,
+};
+
 const TextBubble = component('TextBubble', function (props) {
 
     const emotionNo = props.emotion;
@@ -32,5 +36,7 @@ const TextBubble = component('TextBubble', function (props) {
         </g>
     );
 });
+
+TextBubble.propTypes = propTypes;
 
 export default TextBubble;

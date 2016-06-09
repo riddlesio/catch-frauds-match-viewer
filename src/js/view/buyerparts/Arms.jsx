@@ -13,8 +13,6 @@ const Arms = createEither({
     isRight: (props) => props.isBusted,
 });
 
-Arms.propTypes = propTypes;
-
 function ArmsUp(props) {
 
     const { fill } = props;
@@ -44,5 +42,7 @@ function ArmsDown(props) {
         </g>
     );
 }
+
+Arms.propTypes = propTypes;
 
 export default component('Arms', Arms);

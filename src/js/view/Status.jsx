@@ -1,6 +1,10 @@
 import React       from 'react';
 import component   from 'omniscient';
 
+const propTypes = {
+    data: React.PropTypes.object.isRequired,
+};
+
 const Status = component('Status', function (props) {
 
     const { percentage, normal, fairlyJailed, unfairlyJailed, thefts } = props.data;
@@ -68,5 +72,7 @@ const Status = component('Status', function (props) {
         </g>
     );
 });
+
+Status.propTypes = propTypes;
 
 export default Status;

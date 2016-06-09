@@ -1,6 +1,14 @@
 import React        from 'react';
 import component    from 'omniscient';
 
+const propTypes = {
+    faceExpression: React.PropTypes.number.isRequired,
+    skinColor: React.PropTypes.string.isRequired,
+    shirtColor: React.PropTypes.node.isRequired,
+    isFraudulent: React.PropTypes.bool.isRequired,
+    isBusted: React.PropTypes.bool.isRequired,
+};
+
 // 0: Mouth Smile // 1: Mouth Frown
 const expressions = [
     <polygon
@@ -50,5 +58,7 @@ const Face = component('Face', function (props) {
         </g>
     );
 });
+
+Face.propTypes = propTypes;
 
 export default Face;

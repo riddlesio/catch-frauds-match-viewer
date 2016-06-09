@@ -4,7 +4,7 @@ import createView  from 'omniscient';
 const propTypes = {
     status: React.PropTypes.object.isRequired,
     isVisible: React.PropTypes.bool.isRequired,
-    checkpoints: React.PropTypes.object,
+    checkpoints: React.PropTypes.array,
     closeOverlay: React.PropTypes.func,
 };
 
@@ -68,7 +68,7 @@ function PerformanceOverlay(props) {
                     <li>
                         <img className="Score-scoreIcon" src="../img/icon-star.png" />
                         <span className="Score-scoreText">
-                            { `${unfairlyJailed} People falsely accused` }
+                            { `${unfairlyJailed} Falsely accused` }
                         </span>
                     </li>
                     <li>
@@ -85,25 +85,27 @@ function PerformanceOverlay(props) {
 
 function InformationOverlay(props) {
 
-    const text = props.checkpoints.map((cp) => (
-        <p key={ cp.id }>
-            <b>{ `Checkpoint ${cp.id}:`}</b>
-            { cp.description }
-        </p>
+    const list = props.checkpoints.map((cp) => (
+        <li className="Checkpoints-checkpoint" key={ cp.id }>
+            <p className="Checkpoint-number">{ `Check ${cp.id}:`}</p>
+            <p className="Checkpoint-description">{ cp.description }</p>
+        </li>
     ));
 
     return (
-        <div>
+        <div className="InformationOverlay">
             <button
                 onClick={ props.closeOverlay }
                 type="button"
-                className="Button GamePlayer-button"
+                className="Button GamePlayer-button Overlay-closeButton"
             >
                 <i className="fa fa-times"/>
                 <span> Close</span>
             </button>
-            <h2>Checkpoints and their descriptions</h2>
-            { text }
+            <h2 className="InformationOverlay-heading">Checkpoints with notes</h2>
+            <ul className="InformationOverlay-checkpoints">
+                { list }
+            </ul>
         </div>
     );
 }

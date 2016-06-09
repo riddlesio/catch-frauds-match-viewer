@@ -38,6 +38,10 @@ const items = [
     <path className="PurchaseItemBoots-color" d="M70,80V95H65v5H60v10H75V100h5V80H70Zm10,0H75v25h5V80Zm-5,25H60v5H75v-5Zm30-5V95h-5V80H90v20h5v10h15V100h-5Zm-15,5h5V80H90v25Zm20,0H95v5h15v-5Z"/>,
 ];
 
+const propTypes = {
+    item: React.PropTypes.number.isRequired,
+};
+
 const PurchaseItem = component('PurchaseItem', function (props) {
 
     const itemNo = props.item;
@@ -49,5 +53,7 @@ const PurchaseItem = component('PurchaseItem', function (props) {
         </g>
     );
 });
+
+PurchaseItem.propTypes = propTypes;
 
 export default PurchaseItem;

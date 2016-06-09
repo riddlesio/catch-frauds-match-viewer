@@ -374,9 +374,9 @@ function calculateApproved(checkpoints, isApproved, previousBuyerState = { isApp
 
 function calculateShirtColor(isApproved, approved) {
 
-    const amountOfFalseApproves = isApproved.filter(isFalse).length;
+    const guardAmount = isApproved.length;
     const amountOfFalseApproved = approved.filter(isFalse).length;
-    const shirtColorStepSize = 100 / amountOfFalseApproves;
+    const shirtColorStepSize = 100 / guardAmount;
 
     return shirtColorStepSize * amountOfFalseApproved;
 }

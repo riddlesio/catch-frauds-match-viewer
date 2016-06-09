@@ -78,43 +78,43 @@ html {
     display: inline-block;
     vertical-align: top;
 }
-.PerformanceOverlay-main {
+.PerformanceOverlay-results {
     max-width: 400px;display: inline-block;
     vertical-align: top;
     margin-left: 30px;
     font-family: "Munro Small", arial;
 }
-.PerformanceOverlay-main ul {
+.PerformanceOverlay-results ul {
     list-style-type: none;
     font-size: 2.5rem;
     padding: 0;
 }
 
-.PerformanceOverlay-title {
+.PerformanceOverlay .Results-title {
     font-size: 2.5rem;
     color: green;
     margin: 0;
     font-weight: normal;
 }
-.PerformanceOverlay-score {
+.PerformanceOverlay .Results-score {
     font-size: 14rem;
     line-height: 8rem;
     color: green;
     margin: 0;
 }
-.PerformanceOverlay-scoreIcon {
+.PerformanceOverlay .Score-scoreIcon {
     width: 27px;
     display: inline-block;
     vertical-align: middle;
 }
-.PerformanceOverlay-scoreText {
+.PerformanceOverlay .Score-scoreText {
     margin-left: 5px;
     display: inline-block;
     vertical-align: middle;
     margin-top: 5px;
 }
 
-.PerformanceOverlay-puppet {
+.PerformanceOverlay-sider .Sider-puppet {
     max-width: 80px;
 }
 
@@ -125,20 +125,20 @@ html {
     .PerformanceOverlay-sider {
         display: none;
     }
-    .PerformanceOverlay-main {
+    .PerformanceOverlay-results {
         margin: 0 auto;
         width: 100%;
     }
-    .PerformanceOverlay-score {
+    .PerformanceOverlay .Results-title {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .PerformanceOverlay .Results-score {
         font-size: 4rem;
         line-height: 3rem;
         display: inline-block;
         vertical-align: top;
         float: right;
-    }
-    .PerformanceOverlay-title {
-        display: inline-block;
-        vertical-align: top;
     }
     .AdyenGame-overlayLightbox {
         max-width: 390px;
@@ -273,11 +273,12 @@ html {
     fill: transparent;
 }
 
-.cls-2 {
+.Hair-gold,
+.Buckle-gold {
     fill: #e2c137;
 }
 
-.cls-2-2 {
+.Hair-blond {
     fill: #4d1b0a;
 }
 
@@ -285,35 +286,33 @@ html {
     fill: #4d1b0a;
 }
 
-.cls-4 {
-    fill: #8836e8;
-}
-
-.cls-5 {
+.FillWhite {
     fill: #fff;
 }
-
-.cls-6 {
-    fill: #0057e2;
+.FillGreen {
+    fill: #00953a;
 }
 
 .cls-7 {
     fill: #ffd9c0;
 }
 
-.cls-8 {
+.Pants-blue {
+    fill: #0057e2;
+}
+.PurchaseItem-shadow {
     opacity: 0.3;
 }
-
-.cls-9 {
+.PurchaseItem-platform {
     fill: #cdced5;
 }
-
-.cls-10 {
+.PurchaseItemTv-gray {
     fill: #606060;
 }
-
-.cls-11 {
+.PurchaseItemShirt-color {
+    fill: #8836e8;
+}
+.PurchaseItemBoots-color {
     fill: #ff5552;
 }
 

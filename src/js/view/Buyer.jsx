@@ -8,9 +8,6 @@ import Arms         from './buyerparts/Arms.jsx';
 import Hair         from './buyerparts/Hair.jsx';
 import Shirt        from './buyerparts/Shirt.jsx';
 import getSkinColor from './util/getSkinColor';
-import getRouteLength from './util/getRouteLength';
-
-// component.debug();
 
 const Buyer = component('Buyer', function (props) {
 
@@ -27,7 +24,6 @@ const Buyer = component('Buyer', function (props) {
         purchaseItem,
         isFraudulent,
         faceType,
-        isApproved,
     } = props.buyer;
 
     const skin = getSkinColor(skinColor);
@@ -51,6 +47,7 @@ const Buyer = component('Buyer', function (props) {
                     faceType={ faceType }
                     faceExpression={ faceExpression }
                     skinColor={ skin }
+                    shirtColor={ shirtColor }
                     isFraudulent={ isFraudulent }
                     isBusted={ isBusted }
                 />

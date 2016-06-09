@@ -1,6 +1,7 @@
 const commander   = require('commander');
 const gulp        = require('gulp');
 const plumber     = require('gulp-plumber');
+const copy        = require('@riddles/gulp-copy');
 const webpack     = require('@riddles/gulp-js');
 const css         = require('@riddles/gulp-css');
 const images      = require('@riddles/gulp-images');
@@ -48,8 +49,10 @@ function buildConfig(taskName) {
     );
 }
 
+gulp.task('copyFonts', copy(streamFactory, gulp.dest, buildConfig('copyFonts')));
+gulp.task('copyHtml', copy(streamFactory, gulp.dest, buildConfig('copyHtml')));
 gulp.task('images', images(streamFactory, gulp.dest, buildConfig('images')));
 gulp.task('css',    css(streamFactory, gulp.dest, buildConfig('css')));
 gulp.task('js',     webpack(streamFactory, gulp.dest, buildConfig('webpack')));
 
-gulp.task('build', ['js', 'css', 'images']);
+gulp.task('build', ['js', 'css', 'images', 'copyHtml', 'copyFonts']);

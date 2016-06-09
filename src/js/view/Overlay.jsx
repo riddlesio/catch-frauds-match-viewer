@@ -47,34 +47,28 @@ function PerformanceOverlay(props) {
     return (
         <div className="PerformanceOverlay">
             <div className="PerformanceOverlay-sider Sider">
-                <img className="Sider-puppet" src="../img/puppet_big.png" />
+                <img className="Sider-puppet" src="img/puppet_big.png" />
             </div>
             <div className="PerformanceOverlay-results">
                 <h2 className="Results-title">Your score</h2>
                 <p className="Results-score">80%</p>
                 <ul>
                     <li>
-                        <img className="Score-scoreIcon" src="../img/icon-star.png" />
+                        <img className="Score-scoreIcon" src="img/icon-star.png" />
                         <span className="Score-scoreText">
                             { `${fairlyJailed} Fraud detected` }
                         </span>
                     </li>
                     <li>
-                        <img className="Score-scoreIcon" src="../img/icon-star.png" />
+                        <img className="Score-scoreIcon" src="img/icon-star.png" />
                         <span className="Score-scoreText">
                             { `${thefts} Fraud undetected` }
                         </span>
                     </li>
                     <li>
-                        <img className="Score-scoreIcon" src="../img/icon-star.png" />
+                        <img className="Score-scoreIcon" src="img/icon-star.png" />
                         <span className="Score-scoreText">
                             { `${unfairlyJailed} Falsely accused` }
-                        </span>
-                    </li>
-                    <li>
-                        <img className="Score-scoreIcon" src="../img/icon-star.png" />
-                        <span className="Score-scoreText">
-                            { `5th on the leaderboard` }
                         </span>
                     </li>
                 </ul>

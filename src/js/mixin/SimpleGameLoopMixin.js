@@ -14,14 +14,12 @@ const SimpleGameLoopMixin = {
              */
             moveForward: function () {
 
-                var self = this,
-                    { currentState } = self.getState();
+                const { currentState } = this.getState();
 
-                if (currentState !== self.states.length - 1) {
-                    self.triggerStateChange(currentState + 1);
-                }
-                else {
-                    self.pause();
+                if (currentState !== this.states.length - 1) {
+                    this.triggerStateChange(currentState + 1);
+                } else {
+                    this.pause();
                 }
             },
 

@@ -4,7 +4,7 @@ import { createGame, event }            from '@riddles/match-viewer';
 import StateMixin                       from '../mixin/StateMixin';
 import GameLoopMixin                    from '../mixin/SimpleGameLoopMixin';
 import { parseSettings, parseStates }   from '../io/Parser';
-import GameView                         from '../view/GameView';
+import GameView                         from '../view/GameView.jsx';
 import defaults                         from '../data/gameDefaults.json';
 
 const { PlaybackEvent } = event;
@@ -72,7 +72,7 @@ const MatchViewer = createGame({
         };
 
         ReactDOM.render(<GameView { ...props }/>, this.getDOMNode());
-    }
+    },
 }, [StateMixin, GameLoopMixin]);
 
 // Private functions

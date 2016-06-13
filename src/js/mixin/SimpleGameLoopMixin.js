@@ -103,20 +103,18 @@ const SimpleGameLoopMixin = {
 
             setMove: function ({ state }) {
 
-                var self = this;
+                if (-1 < state && state < this.states.length) {
 
-                if (-1 < state && state < self.states.length) {
-
-                    self.setState({ currentState: state });
+                    this.setState({ currentState: state });
                     return;
                 }
 
                 throw new Error(`State ${state} is out of bounds`);
-            }
+            },
         };
 
         _.extend(context, mixin);
-    }
+    },
 };
 
 export default SimpleGameLoopMixin;

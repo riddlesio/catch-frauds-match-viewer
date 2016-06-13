@@ -7,7 +7,7 @@ const propTypes = {
 
 const Status = component('Status', function (props) {
 
-    const { percentage, normal, fairlyJailed, unfairlyJailed, thefts } = props.data;
+    const { percentage, normal, fairlyJailed, unfairlyJailed, thefts, errors } = props.data;
     const percentageOfTotal = Math.ceil(140 / 100 * percentage);
 
     return (
@@ -69,6 +69,17 @@ const Status = component('Status', function (props) {
                 />
             </g>
             <text x="64%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">{ thefts }</text>
+            <g transform="translate(1350,73)">
+                <polygon
+                    className="theft-1"
+                    points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"
+                />
+                <polygon
+                    className="theft-2"
+                    points="42 10 42 5 17 5 17 10 11 10 11 25 17 25 17 15 27 15 27 20 17 20 17 29.89 17 35 23 35 23 30 27 30 27 35 32 35 32 30 36 30 36 35 42 35 42 29.89 42 20 32 20 32 15 42 15 42 25 48 25 48 10 42 10"
+                />
+            </g>
+            <text x="75.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">{ errors }</text>
         </g>
     );
 });

@@ -28,12 +28,15 @@ const Buyer = component('Buyer', function (props) {
         purchaseItem,
         isFraudulent,
         faceType,
+        exception,
     } = props.buyer;
+
+    if (exception) return null;
 
     const skin = getSkinColor(skinColor);
     const positionTransform = `translate(${transformation.X},${transformation.Y})`;
     const bodyDirectionScale = bodyDirection ? '' : 'scale(-1, 1)';
-    const directionTransform = `${bodyDirectionScale} translate(-85,-220)`
+    const directionTransform = `${bodyDirectionScale} translate(-85,-220)`;
 
     return (
         <g transform={ positionTransform } svgOrigin="50% 0" id={ id } className="Buyer">

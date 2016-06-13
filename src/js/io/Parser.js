@@ -21,7 +21,7 @@ function parseSettings(data, defaults = {}) {
  */
 function parseStates(data, settings) {
 
-    const results = data.results;
+    const results = data.states;
     const path = settings.path;
     const routeSteps = settings.routeSteps;
     const routeMap = createRouteMap(routeSteps, path);
@@ -54,7 +54,9 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
         fairlyJailed: 0,
         unfairlyJailed: 0,
         thefts: 0,
+        errors: 0,
     };
+    let error = null;
 
     return function parseState() {
 
@@ -72,7 +74,14 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
 
                 const previousBuyerState = previousState && previousState.buyers.find(buyer => buyer.id === id);
                 const wasBusted = previousBuyerState && previousBuyerState.isBusted;
-                const { isBusted, isApproved, isFraudulent } = result;
+                const { isFraudulent, exception } = result;
+
+                if (exception !== null) {
+                    error = exception;
+                }
+
+                const isBusted = result.isRefused;
+                const isApproved = result.isCheckpointApproved;
 
                 const position = calculatePosition(id, spawnDelay, currentState);
                 const transformation = routeMap[position];
@@ -93,6 +102,7 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
                     bodyDirection,
                     transformation,
                     shirtColor,
+                    exception,
                     isBusted: busted,
                     isApproved: approved,
                     emotion,
@@ -106,6 +116,7 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
 
         let isBusted = undefined;
         let isFraudulent = undefined;
+        let isException = undefined;
 
         // Create a state for guards
         const checkpointsState = checkpoints.map(setCheckpointExpressionSetter(visibleBuyers));
@@ -115,14 +126,16 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeSte
         if (checkingOut) {
             isBusted = checkingOut.isBusted;
             isFraudulent = checkingOut.isFraudulent;
+            isException = checkingOut.exception !== null;
         }
 
-        const status = createStatusFromStatus(previousStatus, isBusted, isFraudulent, stateCount);
+        const status = createStatusFromStatus(previousStatus, isBusted, isFraudulent, isException, stateCount);
 
         previousStatus = status;
 
         const state = {
             status,
+            error,
             checkpoints: checkpointsState,
             buyers: visibleBuyers,
         };
@@ -409,7 +422,7 @@ function getColorForPercentage(pct) {
     return 'rgb(' + [color.r, color.g, color.b].join(',') + ')';
 }
 
-function createStatusFromStatus(oldStatus, isBusted, isFraudulent, stateCount) {
+function createStatusFromStatus(oldStatus, isBusted, isFraudulent, isException, stateCount) {
 
     let {
         currentState,
@@ -418,12 +431,15 @@ function createStatusFromStatus(oldStatus, isBusted, isFraudulent, stateCount) {
         fairlyJailed,
         unfairlyJailed,
         thefts,
+        errors,
     } = oldStatus;
 
     currentState += 1;
     percentage = 100 / stateCount * currentState;
 
-    if (isBusted && isFraudulent) {
+    if (isException) {
+        errors += 1;
+    } else if (isBusted && isFraudulent) {
         fairlyJailed += 1;
     } else if (isBusted) {
         unfairlyJailed += 1;
@@ -440,6 +456,7 @@ function createStatusFromStatus(oldStatus, isBusted, isFraudulent, stateCount) {
         fairlyJailed,
         unfairlyJailed,
         thefts,
+        errors,
     };
 }
 

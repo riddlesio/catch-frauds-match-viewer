@@ -1,10 +1,11 @@
 import React        from 'react';
+import component    from 'omniscient';
 import Overlay      from './Overlay.jsx';
 import Status       from './Status.jsx';
 import Buyer        from './Buyer.jsx';
 import Checkpoint   from './Checkpoint.jsx';
 import Counter      from './Counter.jsx';
-import component    from 'omniscient';
+import ErrorLog     from './ErrorLog.jsx';
 
 const lifeCycle = {
     getInitialState() {
@@ -20,7 +21,7 @@ const GameView = component('GameView', lifeCycle, function (props) {
 
     const { state, settings } = props;
     const { isVisible } = this.state;
-    const { status, checkpoints, buyers } = state;
+    const { status, checkpoints, buyers, error } = state;
     const { width, height } = settings.canvas;
 
     const renderCheckpoint = (checkpoint) => (
@@ -66,6 +67,7 @@ const GameView = component('GameView', lifeCycle, function (props) {
                 { checkpoints.map(renderCheckpoint) }
                 { buyers.map(renderBuyer) }
                 { maybeLegendButton }
+                <ErrorLog error={ error } />
             </svg>
             <Overlay
                 closeOverlay={ this.toggleInfo }

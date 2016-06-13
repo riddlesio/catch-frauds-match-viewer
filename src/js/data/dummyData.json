@@ -31,215 +31,54 @@
         }
       ]
     },
-    "results": [
+    "states": [
       {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true, true, true, true ],
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+        "round": 1,
         "isFraudulent": false
       },
       {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true,true, true, true ],
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ false, false, false, true,true, true, true ],
+        "round": 2,
         "isFraudulent": false
       },
       {
-        "isBusted": false,
-        "isApproved": [ false, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, true, true, true ],
+        "isRefused": false,
+        "exception": "Invalid move: Move does not contain authorized or refused",
+        "isCheckpointApproved": [],
+        "round": 3,
         "isFraudulent": true
       },
       {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, false, true, true ],
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ false, false, false, false, true, true, true ],
+        "round": 3,
         "isFraudulent": false
       },
       {
-        "isBusted": false,
-        "isApproved": [ true, true, true, true, true, false, false ],
+        "isRefused": true,
+        "exception": null,
+        "isCheckpointApproved": [ true, false, false, false, true, true, true ],
+        "round": 4,
         "isFraudulent": true
       },
       {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true, true, true, true ],
+        "isRefused": true,
+        "exception": null,
+        "isCheckpointApproved": [ true, false, false, false, false, true, true ],
+        "round": 5,
         "isFraudulent": false
       },
       {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true,true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, true, true, true ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, true, false, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ true, true, true, true, true, false, false ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true,true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ false, true, true, true, true, true, true ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, true, false, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ true, true, true, true, true, false, false ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true,true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, false, false, true ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ false, true, true, true, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ true, true, true, true, true, false, false ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true,true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, false, true, true ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ false, true, true, true, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ true, true, true, true, true, false, false ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true,true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, false, true, true ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, false, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ true, true, true, true, true, false, false ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, true,true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ false, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, true, true, true, true ],
-        "isFraudulent": true
-      },
-      {
-        "isBusted": true,
-        "isApproved": [ true, false, false, false, true, true, true ],
-        "isFraudulent": false
-      },
-      {
-        "isBusted": false,
-        "isApproved": [ true, true, true, true, true, false, false ],
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ true, true, true, true, true, false, false ],
+        "round": 6,
         "isFraudulent": true
       }
     ]

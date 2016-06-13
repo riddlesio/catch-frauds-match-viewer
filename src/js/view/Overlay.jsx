@@ -42,7 +42,7 @@ Overlay.propTypes = propTypes;
 
 function PerformanceOverlay(props) {
 
-    const { fairlyJailed, unfairlyJailed, thefts } = props.status;
+    const { fairlyJailed, unfairlyJailed, thefts, errors } = props.status;
 
     return (
         <div className="PerformanceOverlay">
@@ -69,6 +69,12 @@ function PerformanceOverlay(props) {
                         <img className="Score-scoreIcon" src="img/icon-star.png" />
                         <span className="Score-scoreText">
                             { `${unfairlyJailed} Falsely accused` }
+                        </span>
+                    </li>
+                    <li>
+                        <img className="Score-scoreIcon" src="img/icon-star.png" />
+                        <span className="Score-scoreText">
+                            { `${errors} Parse errors` }
                         </span>
                     </li>
                 </ul>

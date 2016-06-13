@@ -1,8 +1,8 @@
 require('babel-polyfill');
 const expect = require('chai').expect;
-const parser = require('../src/js/io/Parser');
-const data = require('../src/js/data/dummyData.json');
-const settings = require('../src/js/data/gameDefaults.json');
+const parser = require('../../src/js/io/Parser');
+const data = require('../../src/js/data/dummyData.json');
+const settings = require('../../src/js/data/gameDefaults.json');
 
 describe('Parser', function () {
 

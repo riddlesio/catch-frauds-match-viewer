@@ -27,6 +27,7 @@ const Buyer = component('Buyer', function (props) {
         skinColor,
         purchaseItem,
         isFraudulent,
+        isApproved,
         faceType,
         exception,
     } = props.buyer;
@@ -36,11 +37,12 @@ const Buyer = component('Buyer', function (props) {
     const skin = getSkinColor(skinColor);
     const positionTransform = `translate(${transformation.X},${transformation.Y})`;
     const bodyDirectionScale = bodyDirection ? '' : 'scale(-1, 1)';
-    const directionTransform = `${bodyDirectionScale} translate(-85,-220)`;
+    const directionTransform = `${bodyDirectionScale} translate(-5,-220)`;
+    const onClick = props.onClick.bind(null, { id, isApproved });
 
     return (
         <g transform={ positionTransform } svgOrigin="50% 0" id={ id } className="Buyer">
-            <g transform={ directionTransform }>
+            <g transform={ directionTransform } onClick={ onClick }>
                 <rect id="hitbox" className="cls-1" y="50" width="170" height="170"/>
                 <Hair faceType={ faceType } />
                 <Shirt

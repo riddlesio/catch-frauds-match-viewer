@@ -1,58 +1,47 @@
 import React        from 'react';
 import component    from 'omniscient';
-import Overlay      from './Overlay.jsx';
+import MatchResults from './MatchResults.jsx';
 import Status       from './Status.jsx';
 import Buyer        from './Buyer.jsx';
 import Checkpoint   from './Checkpoint.jsx';
 import Counter      from './Counter.jsx';
 import ErrorLog     from './ErrorLog.jsx';
-import Notes        from './Notes.jsx';
+import CheckpointDescription from './CheckpointDescription.jsx';
 
 const lifeCycle = {
 
     getInitialState() {
         return {
-            isVisible: false,
-            notesVisible: false,
+            descriptionVisible: false,
+            buyerDetailsVisible: false,
             guardId: null,
             buyerId: null,
         };
     },
 
-    toggleOverlay() {
-        this.setState({ isVisible: !this.state.isVisible });
+    deFocusBuyer() {
+        this.setState({ buyerDetailsVisible: false });
     },
 
-    toggleBuyerNotes(buyerId) {
-        this.resetNoteIds();
-        this.setState({ buyerId });
-        this.showNotes();
+    toggleBuyerDetails(buyerId) {
+        this.setState({ buyerDetailsVisible: !this.buyerDetailsVisible, buyerId });
     },
 
-    toggleGuardNotes(guardId) {
-        console.log(guardId);
-        this.resetNoteIds();
+    showGuardNotes(guardId) {
         this.setState({ guardId });
-        this.showNotes();
+        this.setState({ descriptionVisible: true });
     },
 
-    showNotes() {
-        this.setState({ notesVisible: true });
+    hideGuardNotes() {
+        this.setState({ descriptionVisible: false });
     },
 
-    hideNotes() {
-        this.setState({ notesVisible: false });
-    },
-
-    resetNoteIds() {
-        this.setState({ guardId: null, buyerId: null });
-    },
 };
 
 const GameView = component('GameView', lifeCycle, function (props) {
 
     const { state, settings } = props;
-    const { isVisible, notesVisible, guardId } = this.state;
+    const { descriptionVisible, guardId, buyerId } = this.state;
     const { status, checkpoints, buyers, error } = state;
     const { width, height } = settings.canvas;
 
@@ -78,25 +67,6 @@ const GameView = component('GameView', lifeCycle, function (props) {
         };
     }
 
-    // const legendButton = (
-    //     <g transform="translate(1650,70)">
-    //         <rect
-    //             width="180"
-    //             height="42"
-    //             className="AdyenGame-legendButton"
-    //             onClick={ this.toggleOverlay }
-    //         />
-    //         <text
-    //             transform="translate(37,32)"
-    //             className="AdyenGame-legendButtonText"
-    //             onClick={ this.toggleOverlay }>Legend</text>
-    //     </g>
-    // );
-
-    // const maybeLegendButton = Math.ceil(status.percentage) === 100 ? null : legendButton;
-
-    const maybeLegendButton = null;
-
     return (
         <div>
             <svg
@@ -115,22 +85,16 @@ const GameView = component('GameView', lifeCycle, function (props) {
                 </defs>
                 <Status data={ status } />
                 <Counter />
-                { checkpoints.map(getCheckpointRenderer(this.toggleGuardNotes)) }
-                { buyers.map(getBuyerRenderer(this.toggleBuyerNotes)) }
-                { maybeLegendButton }
+                { checkpoints.map(getCheckpointRenderer(this.showGuardNotes)) }
+                { buyers.map(getBuyerRenderer(this.toggleBuyerDetails)) }
                 <ErrorLog error={ error } />
             </svg>
-            <Notes
-                notesVisible={ notesVisible }
-                hideNotes={ this.hideNotes }
+            <CheckpointDescription
+                descriptionVisible={ descriptionVisible }
+                hideNotes={ this.hideGuardNotes }
                 checkpoint={ checkpoints[guardId - 1] }
             />
-            <Overlay
-                closeOverlay={ this.toggleOverlay }
-                status={ status }
-                checkpoints={ checkpoints }
-                isVisible={ isVisible }
-            />
+            <MatchResults status={ status }/>
         </div>
     );
 });

@@ -40,7 +40,7 @@ const Checkpoint = component('Checkpoint', function (props) {
                     <rect className="GuardTile-2" x="32.32" y="7.29" width="5.41" height="70" transform="translate(77.32 7.26) rotate(90)"/>
                     <text className="GuardTile-3" transform="translate(25.61 30.42)" x={ tileTextX }>{ id }</text>
                 </g>
-                <g className="Guard" transform={ directionTransform } onClick={ onClick.bind(this, id) }>
+                <g className="Guard" transform={ directionTransform } onClick={ onClick.bind(null, id) }>
                     { /* Hitbox */ }
                     <rect className="Guard-1" width="165" height="165"/>
                     { hair[skinColor === 1 ? 0 : 1] }

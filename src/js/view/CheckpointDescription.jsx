@@ -1,11 +1,11 @@
 import React        from 'react';
 import createView   from 'omniscient';
 
-const Notes = createView('Notes', function (props) {
+const CheckpointDescription = createView('CheckpointDescription', function (props) {
 
-    const { notesVisible, hideNotes, checkpoint } = props;
+    const { descriptionVisible, hideNotes, checkpoint } = props;
 
-    const displayClass = notesVisible ? 'visible' : 'hidden';
+    const displayClass = descriptionVisible ? 'visible' : 'hidden';
 
     function getContent(checkpoint) {
         return (
@@ -28,4 +28,4 @@ const Notes = createView('Notes', function (props) {
     );
 });
 
-export default Notes;
+export default CheckpointDescription;

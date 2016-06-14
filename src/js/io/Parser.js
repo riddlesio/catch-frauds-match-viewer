@@ -39,12 +39,11 @@ function parseStates(data, settings) {
         settings,
         checkpoints,
         stateCount,
-        routeSteps,
         routeMap,
     }));
 }
 
-function createStateParser({ buyers, settings, checkpoints, stateCount, routeSteps, routeMap }) {
+function createStateParser({ buyers, settings, checkpoints, stateCount, routeMap }) {
 
     let previousState;
     let previousStatus = {
@@ -289,6 +288,7 @@ function setCheckpointExpressionSetter(visibleBuyers) {
             const approvedByThisCheckpoint = isApproved[isApproved.length - 1];
 
             if (!approvedByThisCheckpoint) expression = 1;
+            if (buyerBeingChecked.exception !== null) expression = 0;
         }
 
         return {
@@ -485,11 +485,6 @@ function isFalse(value) {
 function getRandomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
-
-// function getRouteLength() {
-//
-//     return (1920 - 170) + (600 - 300) + (1770 - 170) + (890 - 600) + (1770 - 1);
-// }
 
 export {
     parseSettings,

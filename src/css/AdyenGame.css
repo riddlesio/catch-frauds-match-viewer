@@ -56,6 +56,30 @@ html {
     padding: 30px 15px;
 }
 
+.AdyenGame-notesOverlay {
+    background-color: rgba(0,0,0,0.6);
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 40px;
+    overflow: hidden;
+    transition: height 0.16s ease-out;
+}
+
+.AdyenGame-notesOverlay--visible {
+    height: 50%;
+}
+
+.AdyenGame-notesOverlay--hidden {
+    height: 0;
+}
+
+.AdyenGame-notesOverlayContent {
+    padding: 50px;
+    font-size: 2.0rem;
+    color: white;
+}
+
 .AdyenGame-overlayLightbox {
     max-width: 600px;
     height: 100%;
@@ -103,12 +127,13 @@ html {
     margin: 0;
 }
 .PerformanceOverlay .Score-scoreIcon {
-    width: 27px;
+    width: 37px;
+    margin-top: 4px;
     display: inline-block;
     vertical-align: middle;
 }
 .PerformanceOverlay .Score-scoreText {
-    margin-left: 5px;
+    margin-left: 10px;
     display: inline-block;
     vertical-align: middle;
     margin-top: 5px;

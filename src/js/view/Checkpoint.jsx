@@ -22,6 +22,7 @@ const propTypes = {
 const Checkpoint = component('Checkpoint', function (props) {
 
     const { id, expression, transformation, skinColor, bodyDirection } = props.checkpoint;
+    const onClick = props.onClick;
     const translate = `translate(${transformation.X},${transformation.Y})`;
     const skinHex = getSkinColor(skinColor);
     const skinStyle = { fill: skinHex };
@@ -39,11 +40,12 @@ const Checkpoint = component('Checkpoint', function (props) {
                     <rect className="GuardTile-2" x="32.32" y="7.29" width="5.41" height="70" transform="translate(77.32 7.26) rotate(90)"/>
                     <text className="GuardTile-3" transform="translate(25.61 30.42)" x={ tileTextX }>{ id }</text>
                 </g>
-                <g className="Guard" transform={ directionTransform }>
+                <g className="Guard" transform={ directionTransform } onClick={ onClick.bind(this, id) }>
                     { /* Hitbox */ }
                     <rect className="Guard-1" width="165" height="165"/>
                     { hair[skinColor === 1 ? 0 : 1] }
                     { /* Shirt */ }
+                    <path d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z"/>
                     <path d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z"/>
                     { /* Pants */ }
                     <polygon points="57.5 142 57.5 147.74 57.5 165 63.5 165 63.5 148 102.5 148 102.5 165 107.5 165 107.5 147.74 107.5 142 57.5 142"/>

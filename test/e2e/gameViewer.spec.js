@@ -18,6 +18,7 @@ describe('GamePlayer index', function () {
     this.timeout(60000);
 
     let lastStateButton;
+    let nextStateButton;
 
     before(function () {
 
@@ -27,6 +28,7 @@ describe('GamePlayer index', function () {
 
         const gameplayerButtons = $$('.GamePlayer-button');
 
+        nextStateButton = gameplayerButtons.get(3);
         lastStateButton = gameplayerButtons.get(4);
     });
 
@@ -73,6 +75,17 @@ describe('GamePlayer index', function () {
         browser.sleep(2000);
 
         expect($('.Buyer').isPresent()).to.eventually.equal(true);
+    });
+
+    it('should show a mid-game state', () => {
+
+        browser.sleep(2000);
+
+        Array.from({ length: 25 }).forEach(nextStateButton.click);
+
+        browser.sleep(2000);
+
+        expect(true).to.be.true;
     });
 
     it('should show the score in the end', () => {

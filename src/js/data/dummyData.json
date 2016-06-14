@@ -1,4 +1,14 @@
 {
+  "playerData": [
+    {
+      "emailHash": "dsd",
+      "name": "Joostotron"
+    },
+    {
+      "emailHash": "sd",
+      "name": "Morgan"
+    }
+  ],
   "matchData": {
     "settings": {
       "players": {

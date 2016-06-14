@@ -54,25 +54,25 @@ function PerformanceOverlay(props) {
                 <p className="Results-score">80%</p>
                 <ul>
                     <li>
-                        <img className="Score-scoreIcon" src="img/icon-star.png" />
+                        <img className="Score-scoreIcon" src="img/icon_jail.png" />
                         <span className="Score-scoreText">
                             { `${fairlyJailed} Fraud detected` }
                         </span>
                     </li>
                     <li>
-                        <img className="Score-scoreIcon" src="img/icon-star.png" />
+                        <img className="Score-scoreIcon" src="img/icon_skull.png" />
                         <span className="Score-scoreText">
                             { `${thefts} Fraud undetected` }
                         </span>
                     </li>
                     <li>
-                        <img className="Score-scoreIcon" src="img/icon-star.png" />
+                        <img className="Score-scoreIcon" src="img/icon_sad.png" />
                         <span className="Score-scoreText">
                             { `${unfairlyJailed} Falsely accused` }
                         </span>
                     </li>
                     <li>
-                        <img className="Score-scoreIcon" src="img/icon-star.png" />
+                        <img className="Score-scoreIcon" src="img/icon_error.png" />
                         <span className="Score-scoreText">
                             { `${errors} Parse errors` }
                         </span>

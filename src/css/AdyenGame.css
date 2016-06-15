@@ -67,7 +67,7 @@ html {
 }
 
 .AdyenGame-notesOverlay--visible {
-    height: 50%;
+    height: 190px;
 }
 
 .AdyenGame-notesOverlay--hidden {
@@ -75,9 +75,40 @@ html {
 }
 
 .AdyenGame-notesOverlayContent {
-    padding: 50px;
+    padding: 45px;
     font-size: 2.0rem;
     color: white;
+}
+
+@media screen and (max-width: 650px) {
+    .AdyenGame-notesOverlayContent {
+        padding: 30px;
+    }
+}
+
+.Notes-closeButton {
+    float: right;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 3rem;
+    color: white;
+    width: 50px;
+    display: block;
+    height: 50px;
+    opacity: 0.8;
+}
+.Notes-closeButton:hover {
+    opacity: 1;
+}
+
+.Notes-description h2,
+.Notes-description p {
+    margin: 0;
+}
+
+.Notes-description p {
+    margin-top: 10px;
 }
 
 .AdyenGame-overlayLightbox {
@@ -325,6 +356,14 @@ html {
 
 .cls-1 {
     fill: transparent;
+}
+
+.buyerHitBox {
+    fill: transparent;
+}
+.buyerHitBox--highlighted {
+    fill: #4B3A0B;
+    opacity: 0.5;
 }
 
 .Hair-gold,

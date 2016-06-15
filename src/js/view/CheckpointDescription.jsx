@@ -9,19 +9,24 @@ const CheckpointDescription = createView('CheckpointDescription', function (prop
 
     function getContent(checkpoint) {
         return (
-            <div>
-                <h2 className="Notes-description">{ `Checkpoint ${checkpoint.id}` }</h2>
-                <p className="Notes-description">{ checkpoint.description }</p>
+            <div className="Notes-description">
+                <h2>{ `Checkpoint ${checkpoint.id}` }</h2>
+                <p>{ checkpoint.description }</p>
             </div>
         );
     }
 
-    const maybeContent = notesVisible ? getContent(checkpoint) : null;
+    const maybeContent = descriptionVisible ? getContent(checkpoint) : null;
 
     return (
         <div className={ `AdyenGame-notesOverlay AdyenGame-notesOverlay--${displayClass}` }>
             <div className="Layer-content AdyenGame-notesOverlayContent Notes">
-                <button onClick={ hideNotes }>close</button>
+                <button
+                    type="button"
+                    className="Notes-closeButton"
+                    onClick={ hideNotes }>
+                    <i className="fa fa-times"></i>
+                </button>
                 { maybeContent }
             </div>
         </div>

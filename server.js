@@ -25,7 +25,6 @@ router.get('/data', function *(next) {
     //     states: getStates(10)
     // });
 
-
     yield next;
 });
 

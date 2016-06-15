@@ -11,29 +11,59 @@ import CheckpointDescription from './CheckpointDescription.jsx';
 const lifeCycle = {
 
     getInitialState() {
+
         return {
             descriptionVisible: false,
-            buyerDetailsVisible: false,
             guardId: null,
+            buyerDetailsVisible: false,
             buyerId: null,
+            buyerApproved: [],
         };
     },
 
-    deFocusBuyer() {
-        this.setState({ buyerDetailsVisible: false });
+    showBuyerDetails(buyerStats) {
+
+        this.setState({
+            buyerDetailsVisible: true,
+            buyerId: buyerStats.id,
+            buyerApproved: buyerStats.isApproved,
+        });
     },
 
-    toggleBuyerDetails(buyerId) {
-        this.setState({ buyerDetailsVisible: !this.buyerDetailsVisible, buyerId });
+    hideBuyerDetails() {
+
+        this.setState({
+            buyerDetailsVisible: false,
+            buyerId: null,
+            buyerApproved: [],
+        });
+    },
+
+    toggleBuyerDetails(buyerStats) {
+
+        const { buyerDetailsVisible, buyerId } = this.state;
+        const isDifferentBuyer = buyerStats.id !== buyerId;
+
+        if (isDifferentBuyer || !buyerDetailsVisible) {
+            this.showBuyerDetails(buyerStats);
+        } else {
+            this.hideBuyerDetails();
+        }
     },
 
     showGuardNotes(guardId) {
-        this.setState({ guardId });
-        this.setState({ descriptionVisible: true });
+
+        this.setState({
+            descriptionVisible: true,
+            guardId,
+        });
     },
 
     hideGuardNotes() {
-        this.setState({ descriptionVisible: false });
+
+        this.setState({
+            descriptionVisible: false,
+        });
     },
 
 };
@@ -41,16 +71,21 @@ const lifeCycle = {
 const GameView = component('GameView', lifeCycle, function (props) {
 
     const { state, settings } = props;
-    const { descriptionVisible, guardId, buyerId } = this.state;
+    const { descriptionVisible, guardId, buyerId, buyerApproved, buyerDetailsVisible } = this.state;
+    const { showBuyerDetails } = this;
     const { status, checkpoints, buyers, error } = state;
     const { width, height } = settings.canvas;
 
     function getCheckpointRenderer(toggleGuardNotes) {
 
-        return function renderCheckpoint(checkpoint) {
+        return function renderCheckpoint(checkpoint, index) {
+
+            const hasApproved = buyerApproved[index];
+
             return <Checkpoint
                 checkpoint={ checkpoint }
-                onClick={toggleGuardNotes}
+                onClick={ toggleGuardNotes }
+                hasApproved={ hasApproved }
             />;
         };
     }
@@ -58,11 +93,16 @@ const GameView = component('GameView', lifeCycle, function (props) {
     function getBuyerRenderer(toggleBuyerNotes) {
 
         return function renderBuyer(buyer) {
+
+            const highlighted = buyerDetailsVisible && buyer.id === buyerId;
+
             return <Buyer
                 buyer={ buyer }
-                key={ buyer.id }
+                key={ `Buyer--${buyer.id}` }
+                highlighted={ highlighted }
                 settings={ settings }
                 onClick={ toggleBuyerNotes }
+                showDetails={ showBuyerDetails }
             />;
         };
     }

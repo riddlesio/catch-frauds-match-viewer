@@ -13,7 +13,19 @@ const propTypes = {
     buyer: React.PropTypes.object.isRequired,
 };
 
-const Buyer = component('Buyer', function (props) {
+const lifeCycle = {
+
+    componentWillReceiveProps(nextProps) {
+        const { buyer, highlighted, showDetails } = nextProps;
+        const { id, isApproved } = buyer;
+
+        if (highlighted) {
+            showDetails({ id, isApproved });
+        }
+    },
+};
+
+const Buyer = component('Buyer', lifeCycle, function (props) {
 
     const {
         id,
@@ -35,15 +47,16 @@ const Buyer = component('Buyer', function (props) {
     if (exception) return null;
 
     const skin = getSkinColor(skinColor);
-    const positionTransform = `translate(${transformation.X},${transformation.Y})`;
+    const positionTransform = `translate(${transformation.X},${transformation.Y}) scale(0.9,0.9) `;
     const bodyDirectionScale = bodyDirection ? '' : 'scale(-1, 1)';
-    const directionTransform = `${bodyDirectionScale} translate(-5,-220)`;
+    const directionTransform = `${bodyDirectionScale} translate(-85,-220)`;
     const onClick = props.onClick.bind(null, { id, isApproved });
+    const highlightClass = props.highlighted ? 'buyerHitBox--highlighted ' : 'buyerHitBox';
 
     return (
         <g transform={ positionTransform } svgOrigin="50% 0" id={ id } className="Buyer">
             <g transform={ directionTransform } onClick={ onClick }>
-                <rect id="hitbox" className="cls-1" y="50" width="170" height="170"/>
+                <rect id="hitbox" className={ highlightClass } y="50" width="170" height="170"/>
                 <Hair faceType={ faceType } />
                 <Shirt
                     shirtColor={ shirtColor }

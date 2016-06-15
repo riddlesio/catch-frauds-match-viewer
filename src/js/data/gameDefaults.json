@@ -5,7 +5,7 @@
     },
     "routeSteps": 200,
     "spawnDelay": 15,
-    "checkoutPosition": 180,
+    "checkoutPosition": 185,
     "path": [
         {
             "X": 1920,

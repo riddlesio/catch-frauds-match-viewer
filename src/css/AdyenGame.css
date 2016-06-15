@@ -503,3 +503,8 @@ html {
 .Counter-6 {
     fill: #4d1b0a;
 }
+
+.ErrorLog-error {
+    font-size: 4rem;
+    fill: black;
+}

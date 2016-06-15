@@ -72,7 +72,6 @@ const GameView = component('GameView', lifeCycle, function (props) {
 
     const { state, settings } = props;
     const { descriptionVisible, guardId, buyerId, buyerApproved, buyerDetailsVisible } = this.state;
-    const { showBuyerDetails } = this;
     const { status, checkpoints, buyers, error } = state;
     const { width, height } = settings.canvas;
 
@@ -90,18 +89,19 @@ const GameView = component('GameView', lifeCycle, function (props) {
         };
     }
 
-    function getBuyerRenderer(toggleBuyerNotes) {
+    function getBuyerRenderer(toggleBuyerDetails, showBuyerDetails) {
 
         return function renderBuyer(buyer) {
 
             const highlighted = buyerDetailsVisible && buyer.id === buyerId;
+            const key = `Buyer--${buyer.id}`;
 
             return <Buyer
                 buyer={ buyer }
-                key={ `Buyer--${buyer.id}` }
+                key={ key }
                 highlighted={ highlighted }
                 settings={ settings }
-                onClick={ toggleBuyerNotes }
+                onClick={ toggleBuyerDetails }
                 showDetails={ showBuyerDetails }
             />;
         };
@@ -126,8 +126,8 @@ const GameView = component('GameView', lifeCycle, function (props) {
                 <Status data={ status } />
                 <Counter />
                 { checkpoints.map(getCheckpointRenderer(this.showGuardNotes)) }
-                { buyers.map(getBuyerRenderer(this.toggleBuyerDetails)) }
-                <ErrorLog error={ error } />
+                { buyers.map(getBuyerRenderer(this.toggleBuyerDetails, this.showBuyerDetails)) }
+                <ErrorLog error={ error } currentState={ status.currentState } />
             </svg>
             <CheckpointDescription
                 descriptionVisible={ descriptionVisible }

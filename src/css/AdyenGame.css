@@ -102,6 +102,9 @@ html {
     opacity: 1;
 }
 
+.Notes-description {
+    font-family: "proxima-nova", arial;
+}
 .Notes-description h2,
 .Notes-description p {
     margin: 0;
@@ -507,4 +510,10 @@ html {
 .ErrorLog-error {
     font-size: 4rem;
     fill: black;
+    font-family: "proxima-nova", arial;
+}
+
+.ErrorBuyer {
+    fill: #ff5552;
+    stroke: #ff5552;
 }

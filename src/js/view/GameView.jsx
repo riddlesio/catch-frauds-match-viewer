@@ -49,7 +49,9 @@ const lifeCycle = {
         });
     },
 
-    toggleBuyerDetails(buyerStats) {
+    toggleBuyerDetails(buyerStats, event) {
+
+        event.stopPropagation();
 
         const { buyerDetailsVisible, buyerId } = this.state;
         const isDifferentBuyer = buyerStats.id !== buyerId;
@@ -62,7 +64,9 @@ const lifeCycle = {
         }
     },
 
-    showGuardNotes(guardId) {
+    showGuardNotes(guardId, event) {
+
+        event.stopPropagation();
 
         this.setState({
             descriptionVisible: true,
@@ -77,6 +81,18 @@ const lifeCycle = {
         });
     },
 
+    disableSelection() {
+
+        if (this.state.descriptionVisible) {
+            this.hideGuardNotes();
+        }
+
+        if (this.state.buyerDetailsVisible) {
+
+            this.props.controls.play();
+            this.hideBuyerDetails();
+        }
+    },
 };
 
 const GameView = component('GameView', lifeCycle, function (props) {
@@ -86,44 +102,13 @@ const GameView = component('GameView', lifeCycle, function (props) {
     const { status, checkpoints, buyers, error } = state;
     const { width, height } = settings.canvas;
 
-    function getCheckpointRenderer(toggleGuardNotes) {
-
-        return function renderCheckpoint(checkpoint, index) {
-
-            const hasApproved = buyerApproved[index];
-
-            return <Checkpoint
-                checkpoint={ checkpoint }
-                onClick={ toggleGuardNotes }
-                hasApproved={ hasApproved }
-            />;
-        };
-    }
-
-    function getBuyerRenderer(toggleBuyerDetails, showBuyerDetails) {
-
-        return function renderBuyer(buyer) {
-
-            const highlighted = buyerDetailsVisible && buyer.id === buyerId;
-            const key = `Buyer--${buyer.id}`;
-
-            return <Buyer
-                buyer={ buyer }
-                key={ key }
-                highlighted={ highlighted }
-                settings={ settings }
-                onClick={ toggleBuyerDetails }
-                showDetails={ showBuyerDetails }
-            />;
-        };
-    }
-
     return (
         <div style={{ height: '100%' }}>
             <svg
                 className="AdyenGame"
                 viewBox={ `0 0 ${width} ${height}` }
                 preserveAspectRatio="xMidYMid meet"
+                onClick={ this.disableSelection }
             >
                 <defs>
                     <clipPath id="percentageBar">
@@ -136,8 +121,18 @@ const GameView = component('GameView', lifeCycle, function (props) {
                 </defs>
                 <Status data={ status } />
                 <Counter />
-                { checkpoints.map(getCheckpointRenderer(this.showGuardNotes)) }
-                { buyers.map(getBuyerRenderer(this.toggleBuyerDetails, this.showBuyerDetails)) }
+                { checkpoints.map(getCheckpointRenderer(this.showGuardNotes, buyerApproved)) }
+                {
+                    buyers.map(
+                        getBuyerRenderer(
+                            this.toggleBuyerDetails,
+                            this.showBuyerDetails,
+                            buyerDetailsVisible,
+                            buyerId,
+                            settings
+                        )
+                    )
+                }
                 <ErrorLog error={ error } currentState={ status.currentState } />
             </svg>
             <CheckpointDescription
@@ -149,5 +144,37 @@ const GameView = component('GameView', lifeCycle, function (props) {
         </div>
     );
 });
+
+function getCheckpointRenderer(toggleGuardNotes, buyerApproved) {
+
+    return function renderCheckpoint(checkpoint, index) {
+
+        const hasApproved = buyerApproved[index];
+
+        return <Checkpoint
+            checkpoint={ checkpoint }
+            onClick={ toggleGuardNotes }
+            hasApproved={ hasApproved }
+        />;
+    };
+}
+
+function getBuyerRenderer(toggleBuyerDetails, showBuyerDetails, buyerDetailsVisible, buyerId, settings) {
+
+    return function renderBuyer(buyer) {
+
+        const highlighted = buyerDetailsVisible && buyer.id === buyerId;
+        const key = `Buyer--${buyer.id}`;
+
+        return <Buyer
+            buyer={ buyer }
+            key={ key }
+            highlighted={ highlighted }
+            settings={ settings }
+            onClick={ toggleBuyerDetails }
+            showDetails={ showBuyerDetails }
+        />;
+    };
+}
 
 export default GameView;

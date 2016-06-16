@@ -6,6 +6,7 @@ import Buyer        from './Buyer.jsx';
 import Checkpoint   from './Checkpoint.jsx';
 import Counter      from './Counter.jsx';
 import ErrorLog     from './ErrorMessage.jsx';
+import { event }    from '@riddles/match-viewer';
 import CheckpointDescription from './CheckpointDescription.jsx';
 
 const { PlaybackEvent } = event;
@@ -41,8 +42,6 @@ const lifeCycle = {
 
     hideBuyerDetails() {
 
-        this.props.controls.play();
-
         this.setState({
             buyerDetailsVisible: false,
             buyerId: null,
@@ -58,6 +57,7 @@ const lifeCycle = {
         if (isDifferentBuyer || !buyerDetailsVisible) {
             this.showBuyerDetails(buyerStats);
         } else {
+            this.props.controls.play();
             this.hideBuyerDetails();
         }
     },

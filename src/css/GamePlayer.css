@@ -17,6 +17,8 @@ body {
     background: gray;
     position: relative;
     overflow: hidden;
+
+    vertical-align: top;
 }
 
 .GamePlayer-button {
@@ -30,6 +32,7 @@ body {
 
 .GamePlayer-range {
     height: inherit;
+    padding: 0;
 }
 
 .Button:hover {
@@ -42,6 +45,7 @@ body {
 
 .GamePlayer-chrome {
     min-height: 4rem;
+    height: 4rem;
     width: 100%;
 
     position: absolute;
@@ -111,3 +115,18 @@ body {
 .u-hidden {
     display: none;
 }
+
+/*::-ms-fill-lower {*/
+    /*background: coral;*/
+/*}*/
+/*::-ms-fill-upper {*/
+    /*background: peru;*/
+/*}*/
+
+/*::-ms-thumb {*/
+    /*background: steelblue;*/
+/*}*/
+
+/*::-ms-track {*/
+    /*color: red;*/
+/*}*/

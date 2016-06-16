@@ -108,7 +108,7 @@ const GameView = component('GameView', lifeCycle, function (props) {
     }
 
     return (
-        <div>
+        <div style={{ height: '100%' }}>
             <svg
                 className="AdyenGame"
                 viewBox={ `0 0 ${width} ${height}` }

@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import dataProvider from '@riddles/match-viewer/lib/dataProvider/fixtureDataProvider';
 import data from './data/dummyData.json';
 import MatchViewer from './game/MatchViewer';

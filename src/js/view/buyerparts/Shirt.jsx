@@ -24,21 +24,29 @@ const propTypes = {
 
 const Shirt = component('Shirt', function (props) {
 
-    const { shirtColor, isBusted, isFraudulent } = props;
+    const { shirtColor, isBusted, isFraudulent, armsDown } = props;
 
     let shirt;
 
     if (!isBusted) {
 
-        const shirtColorStyle = shirtColor <= 0 ? '#8836e8' : shirtColor;
-        const style = { fill: shirtColorStyle };
+        const style = { fill: shirtColor };
 
-        shirt = (
-            <path
-                style={ style }
-                d="M120,165v5h-5v-5h5Zm-70,0v5h5v-5H50Zm9.67,5H55v5h5v22h50V175h5v-5H59.67Z"
-            />
-        );
+        if (armsDown) {
+            shirt = (
+                <path
+                    style={{ fill: '#FF5552' }}
+                    d="M120,175v5h-5v-5h5Zm-70,0v5h5v-5H50Zm10-5H55v5h5v22h50V175h5v-5H60Z"
+                />
+            );
+        } else {
+            shirt = (
+                <path
+                    style={ style }
+                    d="M120,165v5h-5v-5h5Zm-70,0v5h5v-5H50Zm9.67,5H55v5h5v22h50V175h5v-5H59.67Z"
+                />
+            );
+        }
     } else {
         shirt = prisonShirt;
     }

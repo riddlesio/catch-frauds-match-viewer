@@ -23,12 +23,11 @@ const expressions = [
 
 const Face = component('Face', function (props) {
 
-    const { faceExpression, skinColor, shirtColor, isFraudulent, isBusted } = props;
+    const { faceExpression, skinColor, shirtColor, isFraudulent, isBusted, sadFace } = props;
     const skinStyle = { fill: skinColor };
-    const expressionNo = faceExpression;
+    const expressionNo = sadFace ? 1 : faceExpression;
     const eyesNo = isFraudulent ? 1 : 0;
-    const shirtColorHex = shirtColor <= 0 ? '#8836e8' : shirtColor;
-    const bandanaColor = isBusted ? '#000000' : shirtColorHex;
+    const bandanaColor = isBusted ? '#000000' : shirtColor;
     const bandanaStyle = { fill: bandanaColor };
 
     // 1: Normal eyes // 2: Bandana

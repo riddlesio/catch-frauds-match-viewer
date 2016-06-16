@@ -103,12 +103,15 @@ body {
 }
 
 .u-row {
+    display: -webkit-flex;
     display: flex;
     flex-direction: row;
 }
 
 .u-grow {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-grow: 1;
     flex-grow: 1;
 }
 

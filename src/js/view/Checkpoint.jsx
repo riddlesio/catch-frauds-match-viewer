@@ -31,13 +31,10 @@ const Checkpoint = component('Checkpoint', function (props) {
     const directionTransform = bodyDirectionScale.length > 0 ? `${bodyDirectionScale} translate(-165,0)` : '';
     const tileTextX = id > 9 ? -10 : 0;
 
-    let shirtStyle;
-    if (hasApproved === true) {
-        shirtStyle = { fill: '#00953a' };
-    } else if (hasApproved === false) {
-        shirtStyle = { fill: '#ff5552' };
-    } else if (hasApproved === undefined) {
-        shirtStyle = { fill: 'black' };
+    let maybeTextBubble = expression > 0 ? textBubble : null;
+
+    if (hasApproved !== undefined) {
+        maybeTextBubble = !hasApproved ? textBubble : null;
     }
 
     return (
@@ -55,8 +52,8 @@ const Checkpoint = component('Checkpoint', function (props) {
                     <rect className="Guard-1" width="165" height="165"/>
                     { hair[skinColor === 1 ? 0 : 1] }
                     { /* Shirt */ }
-                    <path style={ shirtStyle } d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z"/>
-                    <path style={ shirtStyle } d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z"/>
+                    <path d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z"/>
+                    <path d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z"/>
                     { /* Pants */ }
                     <polygon points="57.5 142 57.5 147.74 57.5 165 63.5 165 63.5 148 102.5 148 102.5 165 107.5 165 107.5 147.74 107.5 142 57.5 142"/>
                     <rect className="Guard-3" x="84.78" y="142" width="6" height="6" transform="translate(175.56 290) rotate(-180)"/>
@@ -70,7 +67,7 @@ const Checkpoint = component('Checkpoint', function (props) {
                     { /* Hat */ }
                     <polygon points="112.5 65 112.5 45 57.5 45 57.5 65 57.5 70 117.5 70 117.5 65 112.5 65"/>
                     <polygon className="Guard-3" points="96.5 55 81.5 55 81.5 60 86.5 60 86.5 65 91.5 65 91.5 60 96.5 60 96.5 55"/>
-                    { expression > 0 ? textBubble : null }
+                    { maybeTextBubble }
                 </g>
             </g>
         </g>

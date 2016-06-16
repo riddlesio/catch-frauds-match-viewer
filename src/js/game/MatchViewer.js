@@ -5,7 +5,7 @@ import StateMixin                       from '../mixin/StateMixin';
 import GameLoopMixin                    from '../mixin/SimpleGameLoopMixin';
 import { parseSettings, parseStates }   from '../io/Parser';
 import GameView                         from '../view/GameView.jsx';
-import _defaults                         from '../data/gameDefaults.json';
+import defaults                         from '../data/gameDefaults.json';
 
 const { PlaybackEvent } = event;
 
@@ -36,7 +36,7 @@ const MatchViewer = createGame({
     },
 
     getDefaults: function () {
-        return _defaults;
+        return defaults;
     },
 
     /**
@@ -46,7 +46,7 @@ const MatchViewer = createGame({
     handleData: function (data) {
 
         const currentState  = 0;
-        const settings      = parseSettings(data.matchData, _defaults);
+        const settings      = parseSettings(data.matchData, defaults);
         const states        = parseStates(data.matchData, settings);
 
         this.settings = settings;
@@ -69,6 +69,7 @@ const MatchViewer = createGame({
         const props = {
             settings,
             state: states[currentState],
+            controls: { play: this.play, pause: this.pause }
         };
 
         ReactDOM.render(<GameView { ...props }/>, this.getDOMNode());

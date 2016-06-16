@@ -41,7 +41,7 @@ const ErrorLog = component('ErrorLog', lifeCycle, function () {
 
     const error = (
         <g>
-            <rect width="1700" height="80" transform="translate(-840,-53)" style={{ opacity: 0.2 }}/>
+            <rect width="1700" height="80" transform="translate(-840,-53)" style={{ fill: '#FF5552', opacity: 0.2 }}/>
             <text textAnchor="middle" className="ErrorLog-error">
                 { errorMessage }
             </text>

@@ -3,14 +3,14 @@ import component    from 'omniscient';
 import createEither from '@riddles/match-viewer/lib/view/logic/createEither';
 
 const propTypes = {
-    isBusted: React.PropTypes.bool.isRequired,
+    armsDown: React.PropTypes.bool.isRequired,
     style: React.PropTypes.object,
 };
 
 const Arms = createEither({
     Left: ArmsUp,
     Right: ArmsDown,
-    isRight: (props) => props.isBusted,
+    isRight: (props) => props.armsDown,
 });
 
 function ArmsUp(props) {

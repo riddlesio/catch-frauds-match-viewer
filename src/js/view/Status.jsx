@@ -79,7 +79,7 @@ const Status = component('Status', function (props) {
                     d="M22.5,32.5h-5v-5h5v5Zm5-10h-5v5h5v-5Zm5-5.14h-5v5h5v-5Zm5-4.86h-5v5h5v-5Zm5-5h-5v5h5v-5Zm-5,15h-5v5h5v-5Zm5,5h-5v5h5v-5Zm-15-15h-5v5h5v-5Zm-5-5h-5v5h5v-5Z"
                 />
             </g>
-            <text x="75.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">{ errors }</text>
+            <text x="74.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">{ errors }</text>
         </g>
     );
 });

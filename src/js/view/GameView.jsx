@@ -5,7 +5,7 @@ import Status       from './Status.jsx';
 import Buyer        from './Buyer.jsx';
 import Checkpoint   from './Checkpoint.jsx';
 import Counter      from './Counter.jsx';
-import ErrorLog     from './ErrorLog.jsx';
+import ErrorLog     from './ErrorMessage.jsx';
 import CheckpointDescription from './CheckpointDescription.jsx';
 
 const lifeCycle = {
@@ -23,6 +23,8 @@ const lifeCycle = {
 
     showBuyerDetails(buyerStats) {
 
+        this.props.controls.pause();
+
         this.setState({
             buyerDetailsVisible: true,
             buyerId: buyerStats.id,
@@ -31,6 +33,8 @@ const lifeCycle = {
     },
 
     hideBuyerDetails() {
+
+        this.props.controls.play();
 
         this.setState({
             buyerDetailsVisible: false,

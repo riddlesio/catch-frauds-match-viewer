@@ -7,7 +7,7 @@ const SimpleGameLoopMixin = {
 
     applyTo: function (context) {
 
-        var mixin = {
+        const mixin = {
 
             /**
              * Moves the game forward by one step

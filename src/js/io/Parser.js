@@ -90,8 +90,8 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeMap
                 const busted = wasBusted ? true : isBusted ? calculateBusted(isApproved, checkpoints, transformation) : false;
                 const approved = calculateApproved(checkpoints, isApproved, previousBuyerState, transformation);
                 const shirtColorPercentage = calculateShirtColor(isApproved, approved);
-                const shirtColor = shirtColorPercentage > 0 ? getColorForPercentage(shirtColorPercentage) : 0;
-                const emotion = position > checkoutPosition ? getBuyerEmotionBubble(isBusted, isFraudulent) : 0;
+                const shirtColor = getColorForPercentage(shirtColorPercentage);
+                const emotion = position > checkoutPosition ? getBuyerEmotionBubble(isBusted, isFraudulent, exception) : 0;
                 const faceExpression = getFaceExpression(busted);
                 const purchaseItem = busted ? 0 : look.purchaseItem;
 
@@ -322,7 +322,8 @@ function calculateBuyerIndexes(latestBuyerIndex, spawnDelay, currentState, route
     return indexes;
 }
 
-function getBuyerEmotionBubble(isBusted, isFraudulent) {
+function getBuyerEmotionBubble(isBusted, isFraudulent, exception) {
+    if (exception !== null) return 5;
     if (!isBusted && !isFraudulent) return 1;
     if (isBusted && isFraudulent) return 2;
     if (!isBusted && isFraudulent) return 3;
@@ -397,7 +398,7 @@ function calculateShirtColor(isApproved, approved) {
 function getColorForPercentage(pct) {
 
     const percentColors = [
-        { pct: 0, color: { r: 0xff, g: 0xff, b: 0 } },
+        { pct: 0, color: { r: 0xff, g: 0xde, b: 0 } },
         { pct: 100, color: { r: 0xff, g: 0x00, b: 0 } },
     ];
 
@@ -416,7 +417,7 @@ function getColorForPercentage(pct) {
     const color = {
         r: Math.floor(lower.color.r * pctLower + upper.color.r * pctUpper),
         g: Math.floor(lower.color.g * pctLower + upper.color.g * pctUpper),
-        b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper)
+        b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper),
     };
 
     return 'rgb(' + [color.r, color.g, color.b].join(',') + ')';

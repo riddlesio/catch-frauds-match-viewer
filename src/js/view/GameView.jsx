@@ -8,6 +8,8 @@ import Counter      from './Counter.jsx';
 import ErrorLog     from './ErrorMessage.jsx';
 import CheckpointDescription from './CheckpointDescription.jsx';
 
+const { PlaybackEvent } = event;
+
 const lifeCycle = {
 
     getInitialState() {
@@ -19,6 +21,11 @@ const lifeCycle = {
             buyerId: null,
             buyerApproved: [],
         };
+    },
+
+    componentWillMount() {
+
+        PlaybackEvent.on(PlaybackEvent.PLAY, this.hideBuyerDetails);
     },
 
     showBuyerDetails(buyerStats) {

@@ -97,7 +97,7 @@ const lifeCycle = {
 
 const GameView = component('GameView', lifeCycle, function (props) {
 
-    const { state, settings } = props;
+    const { state, settings, score } = props;
     const { descriptionVisible, guardId, buyerId, buyerApproved, buyerDetailsVisible } = this.state;
     const { status, checkpoints, buyers, error } = state;
     const { width, height } = settings.canvas;
@@ -140,7 +140,7 @@ const GameView = component('GameView', lifeCycle, function (props) {
                 hideNotes={ this.hideGuardNotes }
                 checkpoint={ checkpoints[guardId - 1] }
             />
-            <MatchResults status={ status }/>
+            <MatchResults status={ status } score={ score }/>
         </div>
     );
 });
@@ -152,6 +152,7 @@ function getCheckpointRenderer(toggleGuardNotes, buyerApproved) {
         const hasApproved = buyerApproved[index];
 
         return <Checkpoint
+            key={ `Checkpoint${index}` }
             checkpoint={ checkpoint }
             onClick={ toggleGuardNotes }
             hasApproved={ hasApproved }

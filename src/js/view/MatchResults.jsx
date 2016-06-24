@@ -7,7 +7,7 @@ const propTypes = {
 
 const MatchResults = createView('MatchResults', function (props) {
 
-    const { status } = props;
+    const { status, score } = props;
     const isFinished = Math.ceil(status.percentage) === 100;
     const displayClass = isFinished ? '' : 'u-hidden';
     const { fairlyJailed, unfairlyJailed, thefts, errors } = status;
@@ -23,7 +23,7 @@ const MatchResults = createView('MatchResults', function (props) {
                             </div>
                             <div className="PerformanceOverlay-results">
                                 <h2 className="Results-title">Your score</h2>
-                                <p className="Results-score">80%</p>
+                                <p className="Results-score">{ score }%</p>
                                 <ul>
                                     <li>
                                         <img className="Score-scoreIcon" src="img/icon_jail.png" />

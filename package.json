@@ -31,7 +31,6 @@
     "chai-as-promised": "^5.3.0",
     "commander": "^2.9.0",
     "gulp": "^3.8.10",
-    "gulp-autoprefixer": "^2.1.0",
     "gulp-plumber": "^0.6.6",
     "gulp-rename": "^1.2.2",
     "json-loader": "^0.5.4",
@@ -48,16 +47,10 @@
   },
   "dependencies": {
     "@riddles/match-viewer": "^2.0.0",
-    "aigames": "git+ssh://git@bitbucket.org:nikovanmeurs/aigames.git#tetrisjim",
     "classnames": "^2.1.0",
-    "eventemitter3": "^1.1.0",
-    "gulp-if": "^2.0.0",
-    "inflect": "^0.3.0",
-    "jquery": "^2.1.4",
     "lodash": "^3.0.1",
     "omniscient": "^3.3.0",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-image": "^0.1.0"
+    "react-dom": "^0.14.7"
   }
 }

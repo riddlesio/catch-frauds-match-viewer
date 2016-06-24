@@ -362,12 +362,24 @@ function calculateBusted(isApproved, checkpoints, transformation) {
     if (buyerY === bustingGuardY) {
         if (buyerY === 300) {
             return buyerX < bustingGuardX;
-        } else if (buyerY === 600) {
+        }
+
+        if (buyerY === 600) {
             return buyerX > bustingGuardX;
-        } else if (buyerY === 890) {
+        }
+
+        if (buyerY === 890) {
             return buyerX < bustingGuardX;
         }
+
+        return false;
     }
+
+    if (buyerY <= bustingGuardY) {
+        return false;
+    }
+
+    return true;
 }
 
 function calculateApproved(checkpoints, isApproved, previousBuyerState = { isApproved: [] }, transformation) {

@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = function (config) {
 
     const environment   = config.environment;
-    const variables     = '?' + environment.target + (environment.debug ? '&DEBUG' : '');
+    const variables     = '?' + environment.target + '&' + environment.platform + (environment.debug ? '&DEBUG' : '');
 
     var webpackConfig = {
         resolve: {

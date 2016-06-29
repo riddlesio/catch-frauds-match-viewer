@@ -30,8 +30,8 @@ function buildEnvironment(argv) {
 
     const debug    = !!argv.debug;
     const target   = argv.prod ? 'PROD' : 'DEV';
-    const platform = argv.prod && argv.riddles ? 'RIDDLES'
-        : argv.prod && argv.aigames ? 'AI_GAMES'
+    const platform = argv.riddles ? 'RIDDLES'
+        : argv.aigames ? 'AI_GAMES'
         : 'LOCAL';
     return {
         debug:  debug,

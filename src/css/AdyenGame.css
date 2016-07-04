@@ -143,6 +143,7 @@ html {
 .PerformanceOverlay-sider {
     display: inline-block;
     vertical-align: top;
+    max-width: 80px;
 }
 
 .PerformanceOverlay-results {
@@ -201,14 +202,12 @@ html {
 }
 
 .PerformanceOverlay-sider .Sider-puppet {
-    max-width: 80px;
-    margin-top: 10px;
+    width: 158px;
+    transform: translate(-35px,-41px) scale(0.5,0.5);
+    height: 193px;
 }
 
 @media screen and (max-width: 800px) {
-    .PerformanceOverlay {
-        /*max-width: 300px;*/
-    }
 
     .PerformanceOverlay-sider {
         display: none;

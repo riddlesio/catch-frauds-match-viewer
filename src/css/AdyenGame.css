@@ -162,7 +162,7 @@ html {
 }
 
 .PerformanceOverlay .Score-result {
-    height: 40px;
+    height: 35px;
     margin-left: -12px;
 }
 
@@ -195,7 +195,6 @@ html {
 }
 
 .PerformanceOverlay .Score-scoreText {
-    margin-left: 10px;
     display: inline-block;
     vertical-align: middle;
     margin-top: -28px;
@@ -232,7 +231,7 @@ html {
     }
 
     .AdyenGame-overlayLightbox {
-        max-width: 420px;
+        max-width: 440px;
     }
 
     .AdyenGame-overlayContent {
@@ -251,11 +250,7 @@ html {
 
     .PerformanceOverlay {
         margin: auto;
-        max-width: 340px;
-    }
-
-    .PerformanceOverlay .Score-scoreText {
-        margin-left: 0;
+        max-width: 440px;
     }
 }
 

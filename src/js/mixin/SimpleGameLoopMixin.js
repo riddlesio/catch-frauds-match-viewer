@@ -7,21 +7,19 @@ const SimpleGameLoopMixin = {
 
     applyTo: function (context) {
 
-        var mixin = {
+        const mixin = {
 
             /**
              * Moves the game forward by one step
              */
             moveForward: function () {
 
-                var self = this,
-                    { currentState } = self.getState();
+                const { currentState } = this.getState();
 
-                if (currentState !== self.states.length - 1) {
-                    self.triggerStateChange(currentState + 1);
-                }
-                else {
-                    self.pause();
+                if (currentState !== this.states.length - 1) {
+                    this.triggerStateChange(currentState + 1);
+                } else {
+                    this.pause();
                 }
             },
 
@@ -105,20 +103,18 @@ const SimpleGameLoopMixin = {
 
             setMove: function ({ state }) {
 
-                var self = this;
+                if (-1 < state && state < this.states.length) {
 
-                if (-1 < state && state < self.states.length) {
-
-                    self.setState({ currentState: state });
+                    this.setState({ currentState: state });
                     return;
                 }
 
                 throw new Error(`State ${state} is out of bounds`);
-            }
+            },
         };
 
         _.extend(context, mixin);
-    }
+    },
 };
 
 export default SimpleGameLoopMixin;

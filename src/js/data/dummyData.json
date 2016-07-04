@@ -1,51 +1,85 @@
 {
-  "settings": {
-    "players": {
-      "names": ["player1"],
-      "count": 1
+    "score": 82.25,
+    "settings": {
+      "players": {
+        "names": [
+          "player1"
+        ],
+        "count": 1
+      },
+      "checkpoints": [
+        {
+          "description": "This guard checks for very high amounts."
+        },
+        {
+          "description": "This guard checks if the country is suspicious."
+        },
+        {
+          "description": "This guard checks for identity."
+        },
+        {
+          "description": "This guard checks the customer purchase history."
+        },
+        {
+          "description": "This guard checks something else."
+        },
+        {
+          "description": "This guard checks the reliability of the one who receives money."
+        },
+        {
+          "description": "This guard checks if the purchased item fits the buyer."
+        }
+      ]
     },
-    "checkpoints": [
+    "states": [
       {
-        "description": "Checkpoint 01 - First check"
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+        "round": 1,
+        "isFraudulent": false
       },
       {
-        "description": "Checkpoint 02 - Second check"
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ false, false, false, true,true, true, true ],
+        "round": 2,
+        "isFraudulent": false
       },
       {
-        "description": "Checkpoint 03 - Third check"
+        "isRefused": false,
+        "exception": "Invalid move: Move does not contain authorized or refused",
+        "isCheckpointApproved": [],
+        "round": 3,
+        "isFraudulent": true
+      },
+      {
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ false, false, false, false, true, true, true ],
+        "round": 3,
+        "isFraudulent": false
+      },
+      {
+        "isRefused": true,
+        "exception": null,
+        "isCheckpointApproved": [ true, false, false, false, true, true, true ],
+        "round": 4,
+        "isFraudulent": true
+      },
+      {
+        "isRefused": true,
+        "exception": null,
+        "isCheckpointApproved": [ true, false, false, false, false, true, true ],
+        "round": 5,
+        "isFraudulent": false
+      },
+      {
+        "isRefused": false,
+        "exception": null,
+        "isCheckpointApproved": [ true, true, true, true, true, false, false ],
+        "round": 6,
+        "isFraudulent": true
       }
     ]
-  },
-  "results": [
-    {
-      "isBusted": false,
-      "isApproved": [true, true, false],
-      "isFraudulent": false
-    },
-    {
-      "isBusted": false,
-      "isApproved": [true, true, false],
-      "isFraudulent": false
-    },
-    {
-      "isBusted": false,
-      "isApproved": [true, true, false],
-      "isFraudulent": false
-    },
-    {
-      "isBusted": true,
-      "isApproved": [true, false, false],
-      "isFraudulent": true
-    },
-    {
-      "isBusted": true,
-      "isApproved": [true, false, false],
-      "isFraudulent": false
-    },
-    {
-      "isBusted": false,
-      "isApproved": [true, true, false],
-      "isFraudulent": true
-    }
-  ]
 }

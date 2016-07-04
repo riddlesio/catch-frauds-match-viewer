@@ -8,9 +8,6 @@ body {
     overflow: hidden;
 
     font-size: 62.5%;
-
-    background: url('/img/background.png') no-repeat center;
-    background-size: cover;
 }
 
 .GamePlayer {
@@ -20,6 +17,8 @@ body {
     background: gray;
     position: relative;
     overflow: hidden;
+
+    vertical-align: top;
 }
 
 .GamePlayer-button {
@@ -33,6 +32,7 @@ body {
 
 .GamePlayer-range {
     height: inherit;
+    padding: 0;
 }
 
 .Button:hover {
@@ -45,6 +45,7 @@ body {
 
 .GamePlayer-chrome {
     min-height: 4rem;
+    height: 4rem;
     width: 100%;
 
     position: absolute;
@@ -57,9 +58,6 @@ body {
 
     width: 100%;
     height: 100%;
-
-    background: url('/img/background.png') no-repeat center;
-    background-size: cover;
 }
 
 .GamePlayer-dropdown {
@@ -105,15 +103,33 @@ body {
 }
 
 .u-row {
+    display: -webkit-flex;
     display: flex;
     flex-direction: row;
 }
 
 .u-grow {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-grow: 1;
     flex-grow: 1;
 }
 
 .u-hidden {
     display: none;
 }
+
+/*::-ms-fill-lower {*/
+    /*background: coral;*/
+/*}*/
+/*::-ms-fill-upper {*/
+    /*background: peru;*/
+/*}*/
+
+/*::-ms-thumb {*/
+    /*background: steelblue;*/
+/*}*/
+
+/*::-ms-track {*/
+    /*color: red;*/
+/*}*/

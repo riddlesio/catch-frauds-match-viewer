@@ -3,7 +3,33 @@
         "width": 1920,
         "height": 1080
     },
-    "routeSteps": 400,
+    "routeSteps": 200,
     "spawnDelay": 15,
-    "checkoutPosition": 350
+    "checkoutPosition": 185,
+    "path": [
+        {
+            "X": 1920,
+            "Y": 300
+        },
+        {
+            "X": 170,
+            "Y": 300
+        },
+        {
+            "X": 170,
+            "Y": 600
+        },
+        {
+            "X": 1770,
+            "Y": 600
+        },
+        {
+            "X": 1770,
+            "Y": 890
+        },
+        {
+            "X": 0,
+            "Y": 890
+        }
+    ]
 }

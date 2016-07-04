@@ -1,10 +1,5 @@
-src/js/config.json
-assets/dev
-assets/prod
-assets/vendor
-web/css
-web/js
-web/img
+web
+test/results
 
 ### Linux template
 *~

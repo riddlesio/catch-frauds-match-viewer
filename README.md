@@ -1,7 +1,6 @@
-# Match Viewer Boilerplate
+# Adyen Assessment Match Viewer
 
-This repository contains a starting point to create Match Viewers for the
-Riddles.io platform and TheAIGames.com.
+This repository contains the match viewer for the Adyen Credit Card Fraud Assessment.
 
 ## Setting up
 
@@ -12,16 +11,14 @@ accessible:
 - Node.js >= 4.x
 - NPM 2.x/3.x
 
-Execute the following commands:
+To start developing, execute the following commands:
 
 ```
-git clone git@bitbucket.org:riddlesio/match-viewer-boilerplate.git my-match-viewer
-cd my-match-viewer
-rm -Rf .git
+git clone git@bitbucket.org:riddlesio/adyen-assessment-match-viewer.git
+cd adyen-assessment-match-viewer
 npm install
+npm run dev-build
 ```
-
-**Important:** Don't forget to change the package name in `package.json`
 
 ### Building assets
 

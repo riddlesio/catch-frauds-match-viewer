@@ -4,7 +4,7 @@ import { createGame, event }            from '@riddles/match-viewer';
 import StateMixin                       from '../mixin/StateMixin';
 import GameLoopMixin                    from '../mixin/SimpleGameLoopMixin';
 import { parseSettings, parseStates }   from '../io/Parser';
-import GameView                         from '../view/GameView';
+import GameView                         from '../view/GameView.jsx';
 import defaults                         from '../data/gameDefaults.json';
 
 const { PlaybackEvent } = event;
@@ -45,10 +45,12 @@ const MatchViewer = createGame({
      */
     handleData: function (data) {
 
+        const matchData = data.matchData;
         const currentState  = 0;
-        const settings      = parseSettings(data, defaults);
-        const states        = parseStates(data, settings);
+        const settings      = parseSettings(matchData, defaults);
+        const states        = parseStates(matchData, settings);
 
+        this.score = matchData.score;
         this.settings = settings;
         this.states = states;
 
@@ -64,15 +66,17 @@ const MatchViewer = createGame({
     render: function (state, prevState) {
 
         const { currentState } = state;
-        const { settings, states } = this;
+        const { settings, states, score } = this;
 
         const props = {
             settings,
+            score,
             state: states[currentState],
+            controls: { play: this.play, pause: this.pause },
         };
 
         ReactDOM.render(<GameView { ...props }/>, this.getDOMNode());
-    }
+    },
 }, [StateMixin, GameLoopMixin]);
 
 // Private functions
@@ -81,11 +85,10 @@ const MatchViewer = createGame({
  * Register the event listeners
  * @param {AbstractGame} context
  */
-function registerEventListeners (context) {
+function registerEventListeners(context) {
 
     PlaybackEvent.on(PlaybackEvent.PLAY, context.play, context);
     PlaybackEvent.on(PlaybackEvent.PAUSE, context.pause, context);
-    PlaybackEvent.on(PlaybackEvent.FORWARD, context.moveForward, context);
     PlaybackEvent.on(PlaybackEvent.FORWARD, context.moveForward, context);
     PlaybackEvent.on(PlaybackEvent.GOTO, context.setMove, context);
     PlaybackEvent.on(PlaybackEvent.FAST_FORWARD, context.roundForward, context);
@@ -97,7 +100,7 @@ function registerEventListeners (context) {
  * Release the event listeners
  * @param {AbstractGame} context
  */
-function releaseEventListeners (context) {
+function releaseEventListeners(context) {
 
     PlaybackEvent.off(PlaybackEvent.PLAY, context.play, context);
     PlaybackEvent.off(PlaybackEvent.PAUSE, context.pause, context);

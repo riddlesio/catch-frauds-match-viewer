@@ -1,0 +1,595 @@
+html {
+    font-size: 62.5%;
+}
+
+@font-face {
+    font-family: "munro-small";
+    src: url('../fonts/MunroSmall.woff2') format('woff2');
+    src: url('../fonts/MunroSmall.woff') format('woff');
+    src: url('../fonts/MunroSmall.ttf') format("truetype");
+}
+
+.AdyenGame {
+    background: url('../img/background.png') no-repeat center;
+    background-size: cover;
+}
+
+.AdyenGame-stat {
+    font-size: 5rem;
+    font-family: "munro-small", "proxima-nova", arial;
+}
+
+.AdyenGame-stat--green {
+    fill: #00953a;
+}
+
+.AdyenGame-stat--red {
+    fill: #ff5552;
+}
+
+.AdyenGame-legendButton {
+    fill: #B5B5B5;
+    cursor: pointer;
+}
+
+.AdyenGame-legendButtonText {
+    font-size: 4.5rem;
+    fill: #3E3E3E;
+    font-family: "munro-small";
+    cursor: pointer;
+    user-select: none;
+}
+
+.Layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    overflow: hidden;
+}
+
+.Layer-content {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.AdyenGame-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    padding: 30px 15px;
+}
+
+.AdyenGame-notesOverlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 40px;
+    overflow: hidden;
+    transition: height 0.16s ease-out;
+}
+
+.AdyenGame-notesOverlay--visible {
+    height: 190px;
+}
+
+.AdyenGame-notesOverlay--hidden {
+    height: 0;
+}
+
+.AdyenGame-notesOverlayContent {
+    padding: 45px;
+    font-size: 2.0rem;
+    overflow: hidden;
+    color: white;
+}
+
+@media screen and (max-width: 650px) {
+    .AdyenGame-notesOverlayContent {
+        padding: 30px;
+    }
+}
+
+.Notes-closeButton {
+    float: right;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 3rem;
+    color: white;
+    width: 50px;
+    display: block;
+    height: 50px;
+    opacity: 0.8;
+}
+
+.Notes-closeButton:hover {
+    opacity: 1;
+}
+
+.Notes-description {
+    font-family: "proxima-nova", arial;
+}
+
+.Notes-description h2,
+.Notes-description p {
+    margin: 0;
+}
+
+.Notes-description p {
+    margin-top: 10px;
+}
+
+.AdyenGame-overlayLightbox {
+    max-width: 600px;
+    height: 100%;
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+}
+
+.AdyenGame-overlayContent {
+    font-size: 1.6rem;
+    font-family: "proxima-nova", arial;
+    padding: 15px 15px 0 15px;
+}
+
+.PerformanceOverlay {
+    max-width: 420px;
+    margin: 30px auto 0;
+}
+
+.PerformanceOverlay-sider {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 80px;
+}
+
+.PerformanceOverlay-results {
+    max-width: 400px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 30px;
+    font-family: "munro-small", "proxima-nova", arial;
+}
+
+.PerformanceOverlay-results ul {
+    list-style-type: none;
+    font-size: 2.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.PerformanceOverlay .Score-result {
+    height: 40px;
+    margin-left: -12px;
+}
+
+.PerformanceOverlay .Results-title {
+    font-size: 2.5rem;
+    color: green;
+    margin: 0;
+    font-weight: normal;
+}
+
+.PerformanceOverlay .Results-score {
+    font-size: 10rem;
+    line-height: 8rem;
+    color: green;
+    margin: 0;
+}
+
+.PerformanceOverlay .Score-svgIcon {
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    transform: scale(0.6, 0.6);
+}
+
+.PerformanceOverley .Score-scoreIcon {
+    width: 37px;
+    margin-top: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.PerformanceOverlay .Score-scoreText {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -28px;
+}
+
+.PerformanceOverlay-sider .Sider-puppet {
+    width: 158px;
+    transform: translate(-35px,-41px) scale(0.5,0.5);
+    height: 193px;
+}
+
+@media screen and (max-width: 800px) {
+
+    .PerformanceOverlay-sider {
+        display: none;
+    }
+
+    .PerformanceOverlay-results {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .PerformanceOverlay .Results-title {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .PerformanceOverlay .Results-score {
+        font-size: 4rem;
+        line-height: 3rem;
+        display: inline-block;
+        vertical-align: top;
+        float: right;
+    }
+
+    .AdyenGame-overlayLightbox {
+        max-width: 420px;
+    }
+
+    .AdyenGame-overlayContent {
+        padding: 15px 30px 0;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .AdyenGame-overlay {
+        padding: 5px 5px 0;
+    }
+
+    .AdyenGame-overlayLightbox {
+        max-width: 100%;
+    }
+
+    .PerformanceOverlay {
+        margin: auto;
+        max-width: 340px;
+    }
+
+    .PerformanceOverlay .Score-scoreText {
+        margin-left: 0;
+    }
+}
+
+.InformationOverlay-heading {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px;
+    font-size: 3rem;
+}
+
+.InformationOverlay-checkpoints {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Checkpoints-checkpoint {
+    margin-bottom: 15px;
+}
+
+.Checkpoint-number {
+    font-weight: bold;
+}
+
+.Checkpoint-description {
+    margin: 5px 0;
+}
+
+.Overlay-closeButton {
+    color: black;
+    float: right;
+    cursor: pointer;
+}
+
+.Overlay-closeButton:hover {
+    color: gray;
+    float: right;
+}
+
+.AdyenGame-overlayMessage {
+    font-size: 3.5rem;
+}
+
+.TetrisGame-currentRound {
+    font-size: 3.5rem;
+}
+
+.TetrisGame-playerInfo {
+    text-anchor: left;
+    font-size: 2.5rem;
+}
+
+.TetrisGame-playerInfo.TetrisGame-playerName {
+    font-size: 2.1rem;
+    text-anchor: start;
+}
+
+.TetrisGame-playerInfo.TetrisGame-playerPoints {
+    font-size: 2.0rem;
+}
+
+.TetrisGame-playerInfo.TetrisGame-playerCombo-text,
+.TetrisGame-playerInfo.TetrisGame-playerSkips-text {
+    font-size: 1.7rem;
+}
+
+.TetrisGame-playerInfo.TetrisGame-playerCombo-combo,
+.TetrisGame-playerInfo.TetrisGame-playerSkips-skips {
+    font-size: 2.4rem;
+}
+
+.TetrisGame-playerInfo.TetrisGame-playerMove {
+    font-size: 2rem;
+}
+
+.TetrisGame-playerView-right .TetrisGame-playerInfo.TetrisGame-playerCombo,
+.TetrisGame-playerView-right .TetrisGame-playerInfo.TetrisGame-playerSkips {
+    text-anchor: start;
+}
+
+.TetrisGame-playerView-right .TetrisGame-playerInfo.TetrisGame-playerName,
+.TetrisGame-playerView-left .TetrisGame-playerInfo.TetrisGame-playerCombo,
+.TetrisGame-playerView-left .TetrisGame-playerInfo.TetrisGame-playerSkips {
+    text-anchor: end;
+}
+
+.Tile-1 {
+    fill: #cdced5;
+}
+
+.Tile-2, .Tile-3 {
+    fill: #919191;
+}
+
+.Tile-3 {
+    font-size: 48px;
+    font-family: "munro-small", "proxima-nova", arial;
+    letter-spacing: 4px;
+}
+
+.TetrisGame-playerMove-illegal {
+    fill: rgb(250, 167, 25);
+}
+
+.normal-1 {
+    fill: #00953a;
+}
+
+.normal-2 {
+    fill: #e8d5bc;
+}
+
+.theft-1 {
+    fill: #ff5552;
+}
+
+.theft-2 {
+    fill: #e8d5bc;
+}
+
+.fairlyJailed-1 {
+    fill: #00953a;
+}
+
+.fairlyJailed-2 {
+    fill: #e8d5bc;
+}
+
+.unfairlyJailed-1 {
+    fill: #ff5552;
+}
+
+.unfairlyJailed-2 {
+    fill: #e8d5bc;
+}
+
+.percentageBar-1 {
+    fill: #b5b5b5;
+}
+
+.percentageBar-2 {
+    fill: #00953a;
+}
+
+.cls-1 {
+    fill: transparent;
+}
+
+.Buyer,
+.Guard {
+    cursor: pointer;
+}
+
+.buyerHitBox {
+    fill: transparent;
+}
+
+.buyerHitBox--highlighted {
+    fill: #4B3A0B;
+    opacity: 0.5;
+}
+
+.Hair-gold,
+.Buckle-gold {
+    fill: #e2c137;
+}
+
+.Hair-blond {
+    fill: #4d1b0a;
+}
+
+.cls-3 {
+    fill: #4d1b0a;
+}
+
+.FillWhite {
+    fill: #fff;
+}
+
+.FillGreen {
+    fill: #00953a;
+}
+
+.cls-7 {
+    fill: #ffd9c0;
+}
+
+.Pants-blue {
+    fill: #0057e2;
+}
+
+.PurchaseItem-shadow {
+    opacity: 0.3;
+}
+
+.PurchaseItem-platform {
+    fill: #cdced5;
+}
+
+.PurchaseItemTv-gray {
+    fill: #606060;
+}
+
+.PurchaseItemShirt-color {
+    fill: #8836e8;
+}
+
+.PurchaseItemBoots-color {
+    fill: #ff5552;
+}
+
+.cls-12 {
+    fill: #00953a;
+}
+
+.TextBubble-background--red {
+    fill: #ff5552;
+}
+
+.TextBubble-background--green {
+    fill: #00953a;
+}
+
+.GuardTile-1 {
+    fill: #cdced5;
+}
+
+.GuardTile-2, .GuardTile-3 {
+    fill: #919191;
+}
+
+.GuardTile-3 {
+    font-size: 48px;
+    font-family: "munro-small", "proxima-nova", arial;
+    letter-spacing: 4px;
+}
+
+.Guard-1 {
+    fill: transparent;
+}
+
+.Guard-2 {
+    fill: #4d1b0a;
+}
+
+.Guard-3 {
+    fill: #e2c137;
+}
+
+.Guard-4 {
+    fill: #ffd9c0;
+}
+
+.Guard-5 {
+    fill: #fff;
+}
+
+.Guard-textBubble {
+    fill: #ff5552;
+}
+
+.Guard-textBubble-exclamation {
+    font-size: 48px;
+    font-family: "munro-small", "proxima-nova", arial;
+    fill: #fff;
+}
+
+.Guard-info {
+    font-size: 3.0rem;
+    fill: black;
+
+}
+
+.PopUp-1 {
+    fill: #006022;
+}
+
+.PopUp-text {
+    font-size: 3.0rem;
+    fill: white;
+    font-family: "munro-small", "proxima-nova", arial;
+}
+
+.Counter-1 {
+    fill: #006022;
+}
+
+.Counter-2 {
+    fill: #fff;
+}
+
+.Counter-3 {
+    fill: #00953a;
+}
+
+.Counter-4 {
+    fill: #5cc65c;
+}
+
+.Counter-5 {
+    fill: #ffd9c0;
+}
+
+.Counter-6 {
+    fill: #4d1b0a;
+}
+
+.ErrorLog-error {
+    font-size: 4rem;
+    fill: black;
+    font-family: "proxima-nova", arial;
+}
+
+.ErrorBuyer {
+    fill: #ff5552;
+    stroke: #ff5552;
+}
+
+.LargePuppet-1 {
+    fill: #ffd9c0;
+}
+
+.LargePuppet-2 {
+    fill: #5cc65c;
+}
+
+.LargePuppet-3 {
+    fill: #a2c6f2;
+}
+
+.LargePuppet-4 {
+    fill: #e2c137;
+}
+
+.LargePuppet-5 {
+    fill: #fff;
+}

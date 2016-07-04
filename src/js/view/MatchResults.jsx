@@ -10,7 +10,13 @@ const MatchResults = createView('MatchResults', function (props) {
     const { status, score } = props;
     const isFinished = Math.ceil(status.percentage) === 100;
     const displayClass = isFinished ? '' : 'u-hidden';
-    const { fairlyJailed, unfairlyJailed, thefts, errors } = status;
+    const { normal, fairlyJailed, unfairlyJailed, thefts, errors } = status;
+
+    const normalResult = renderResult('normal', normal, 'normal transactions');
+    const fairlyJailedResult = renderResult('fairlyJailed', fairlyJailed, 'detected fraud');
+    const theftResult = renderResult('theft', thefts, 'undetected fraud');
+    const unfairlyJailedResult = renderResult('unfairlyJailed', unfairlyJailed, 'false positive');
+    const errorResult = renderResult('error', errors, 'error');
 
     return (
         <div className={ `Layer ${displayClass}` }>
@@ -20,55 +26,18 @@ const MatchResults = createView('MatchResults', function (props) {
                         <div className="PerformanceOverlay">
                             <div className="PerformanceOverlay-sider Sider">
                                 <svg className="Sider-puppet">
-                                    <g dangerouslySetInnerHTML={{
-                                        __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#large-puppet"></use>'
-                                    }} />
+                                    <use xlinkHref="#large-puppet" />
                                 </svg>
                             </div>
                             <div className="PerformanceOverlay-results">
                                 <h2 className="Results-title">Your score</h2>
                                 <p className="Results-score">{ score }%</p>
                                 <ul>
-                                    <li className="Score-result">
-                                        <svg className="Score-svgIcon">
-                                            <g dangerouslySetInnerHTML={{
-                                                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-fairlyJailed"></use>'
-                                            }} />
-                                        </svg>
-                                        <span className="Score-scoreText">
-                                            { `${fairlyJailed} Fraud detected` }
-                                        </span>
-                                    </li>
-                                    <li className="Score-result">
-                                        <svg className="Score-svgIcon">
-                                            <g dangerouslySetInnerHTML={{
-                                                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-theft"></use>'
-                                            }} />
-                                        </svg>
-                                        <span className="Score-scoreText">
-                                            { `${thefts} Fraud undetected` }
-                                        </span>
-                                    </li>
-                                    <li className="Score-result">
-                                        <svg className="Score-svgIcon">
-                                            <g dangerouslySetInnerHTML={{
-                                                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-unfairlyJailed"></use>'
-                                            }} />
-                                        </svg>
-                                        <span className="Score-scoreText">
-                                            { `${unfairlyJailed} Falsely accused` }
-                                        </span>
-                                    </li>
-                                    <li className="Score-result">
-                                        <svg className="Score-svgIcon">
-                                            <g dangerouslySetInnerHTML={{
-                                                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-error"></use>'
-                                            }} />
-                                        </svg>
-                                        <span className="Score-scoreText">
-                                            { `${errors} Parse errors` }
-                                        </span>
-                                    </li>
+                                    { normalResult }
+                                    { fairlyJailedResult }
+                                    { theftResult }
+                                    { unfairlyJailedResult }
+                                    { errorResult }
                                 </ul>
                             </div>
                         </div>
@@ -78,6 +47,30 @@ const MatchResults = createView('MatchResults', function (props) {
         </div>
     );
 });
+
+function renderResult(type, value, name) {
+
+    const label = maybeMultiple(type, `${value} ${name}`);
+
+    return (
+        <li className="Score-result">
+            <svg className="Score-svgIcon">
+                <use xlinkHref={ `#icon-${type}` } />
+            </svg>
+                <span className="Score-scoreText">
+                    { label }
+                </span>
+        </li>
+    );
+}
+
+function maybeMultiple(value, label) {
+    if (value > 1) {
+        return label + 's';
+    }
+
+    return label;
+}
 
 MatchResults.propTypes = propTypes;
 

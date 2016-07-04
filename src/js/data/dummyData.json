@@ -1,11 +1,4 @@
 {
-  "playerData": [
-    {
-      "emailHash": "dsd",
-      "name": "Joostotron"
-    }
-  ],
-  "matchData": {
     "score": 82.25,
     "settings": {
       "players": {
@@ -89,5 +82,4 @@
         "isFraudulent": true
       }
     ]
-  }
 }

@@ -45,7 +45,7 @@ const MatchViewer = createGame({
      */
     handleData: function (data) {
 
-        const { matchData } = data;
+        const matchData = data.matchData;
         const currentState  = 0;
         const settings      = parseSettings(matchData, defaults);
         const states        = parseStates(matchData, settings);

@@ -21,90 +21,25 @@ const MatchResults = createView('MatchResults', function (props) {
                             <div className="PerformanceOverlay-sider Sider">
                                 <svg className="Sider-puppet">
                                     <g transform="scale(0.5,0.5)">
-                                        <rect className="LargePuppet-1" x="46.33" y="100.12"
-                                              width="83.18" height="45.02"/>
-                                        <rect className="LargePuppet-2" x="46.33" y="154.42"
-                                              width="9.45" height="19.22"
-                                              transform="translate(102.11 328.06) rotate(-180)"/>
-                                        <rect className="LargePuppet-2" x="120.06" y="154.42"
-                                              width="9.45" height="19.22"/>
-                                        <rect className="LargePuppet-2" x="46.33" y="173.64"
-                                              width="18.9" height="9.28"
-                                              transform="translate(111.55 356.56) rotate(-180)"/>
-                                        <rect className="LargePuppet-2" x="120.06" y="173.64"
-                                              width="18.9" height="9.28"/>
-                                        <rect className="LargePuppet-1" x="129.51" y="100.29"
-                                              width="9.45" height="9.28"/>
-                                        <rect className="LargePuppet-1" x="138.95" y="109.56"
-                                              width="9.45" height="9.28"/>
-                                        <rect className="LargePuppet-3" x="148.4" y="118.84"
-                                              width="9.45" height="9.28"/>
-                                        <rect className="LargePuppet-3" x="148.4" y="128.12"
-                                              width="9.45" height="9.28"/>
-                                        <rect className="LargePuppet-3" x="148.4" y="137.39"
-                                              width="9.45" height="9.28"/>
-                                        <rect className="LargePuppet-3" x="0.08" y="63.81"
-                                              width="9.1" height="9.27"
-                                              transform="translate(73.08 63.81) rotate(90)"/>
-                                        <rect className="LargePuppet-3" x="9.35" y="72.91"
-                                              width="9.1" height="9.27"
-                                              transform="translate(91.44 63.64) rotate(90)"/>
-                                        <rect className="LargePuppet-3" x="18.62" y="82.1"
-                                              width="9.1" height="9.27"
-                                              transform="translate(109.9 63.57) rotate(90)"/>
-                                        <rect className="LargePuppet-1" x="27.88" y="91.2"
-                                              width="9.1" height="9.27"
-                                              transform="translate(128.26 63.4) rotate(90)"/>
-                                        <rect className="LargePuppet-1" x="37.15" y="100.3"
-                                              width="9.1" height="9.27"
-                                              transform="translate(146.63 63.23) rotate(90)"/>
-                                        <rect className="LargePuppet-2" x="83.28" y="108.19"
-                                              width="9.28" height="83.18"
-                                              transform="translate(237.7 61.86) rotate(90)"/>
-                                        <rect className="LargePuppet-4" x="37.86" y="72.6"
-                                              width="92.62" height="27.62"/>
-                                        <rect className="LargePuppet-4" x="37.86" y="18.72"
-                                              width="100.86" height="45.02"/>
-                                        <rect className="LargePuppet-4" x="28.41" y="63.73"
-                                              width="119.53" height="27.62"/>
-                                        <rect className="LargePuppet-3" x="61.81" y="22.68"
-                                              width="63.61" height="73.73"
-                                              transform="translate(153.16 -34.07) rotate(90)"/>
+                                        <polygon className="LargePuppet-1"
+                                                 points="148 119 148 128.12 148 137.39 148 147 158 147 158 137.39 158 128.12 158 119 148 119"/>
+                                        <rect className="LargePuppet-1" y="64" width="9" height="9"/>
+                                        <rect className="LargePuppet-1" x="9" y="73" width="10" height="9"/>
+                                        <rect className="LargePuppet-1" x="19" y="82" width="9" height="9"/>
+                                        <polygon className="LargePuppet-2"
+                                                 points="130 100 46 100 37 100 37 91 28 91 28 100 37 100 37 109 46 109 46 145 130 145 130 110 139 110 139 100 130 100"/>
+                                        <rect className="LargePuppet-2" x="139" y="110" width="9" height="9"/>
+                                        <polygon className="LargePuppet-3"
+                                                 points="130 174 130 154.42 130 145 46 145 46 154.42 46 173.64 46 183 65 183 65 174 56 174 56 154 120 154 120 173.64 120 183 139 183 139 174 130 174"/>
+                                        <polygon className="LargePuppet-4"
+                                                 points="139 64 139 64 148 64 148 55 139 55 139 19 130 19 130 9 112 9 112 0 75 0 75 9 48 9 48 19 38 19 38 64 28 64 28 91 37 91 37 100 130 100 130 91 148 91 148 64 139 64"/>
+                                        <polygon className="LargePuppet-1" points="57 28 57 91.35 57 100 112 100 112 91 130 91 130 28 57 28"/>
+                                        <rect className="LargePuppet-1" x="47" y="45" width="10" height="19"/>
                                         <rect x="68.33" y="45.44" width="9.45" height="9.28"/>
                                         <rect x="111.59" y="45.44" width="9.45" height="9.28"/>
-                                        <rect className="LargePuppet-5" x="89.92" y="42.15"
-                                              width="9.53" height="52.7"
-                                              transform="translate(163.18 -26.18) rotate(90)"/>
-                                        <rect className="LargePuppet-5" x="89.92" y="58.76"
-                                              width="9.53" height="37.21"
-                                              transform="translate(172.05 -17.32) rotate(90)"/>
-                                        <rect className="LargePuppet-4" x="84.39" y="-27.38"
-                                              width="9.28" height="82.92"
-                                              transform="translate(103.1 -74.94) rotate(90)"/>
-                                        <rect className="LargePuppet-4" x="88.21" y="-12.75"
-                                              width="10.63" height="36.13"
-                                              transform="translate(98.84 -88.21) rotate(90)"/>
-                                        <rect className="LargePuppet-3" x="47.12" y="45.44"
-                                              width="9.45" height="18.3"/>
-                                        <rect className="LargePuppet-3" x="56.75" y="91.35"
-                                              width="54.83" height="8.77"/>
-                                        <rect className="LargePuppet-4" x="138.71" y="54.63"
-                                              width="9.23" height="9.11"/>
-                                        <rect className="LargePuppet-5" x="86.74" y="98.94"
-                                              width="4.56" height="24.12"
-                                              transform="translate(200.02 21.98) rotate(90)"/>
-                                        <rect className="LargePuppet-5" x="96.52" y="113.28"
-                                              width="4.56" height="19.56"
-                                              transform="translate(197.61 246.13) rotate(180)"/>
-                                        <rect className="LargePuppet-5" x="89.02" y="125.35"
-                                              width="4.56" height="19.56"
-                                              transform="translate(226.43 43.82) rotate(90)"/>
-                                        <rect className="LargePuppet-5" x="76.96" y="117.85"
-                                              width="4.56" height="19.56"
-                                              transform="translate(158.49 255.25) rotate(180)"/>
-                                        <rect className="LargePuppet-5" x="83.06" y="111.98"
-                                              width="4.56" height="16.3"
-                                              transform="translate(-34.79 205.47) rotate(-90)"/>
+                                        <polygon className="LargePuppet-5" points="121 64 68 64 68 73 76 73 76 82 113 82 113 73 121 73 121 64"/>
+                                        <polygon className="LargePuppet-5"
+                                                 points="77 109 77 113 97 113 97 133 82 133 82 122 93 122 93 118 81.53 118 77.19 118 77 118 77 137 81.53 137 101 137 101 132.84 101 113.28 101 109 77 109"/>
                                     </g>
                                 </svg>
                             </div>

@@ -2,21 +2,14 @@ html {
     font-size: 62.5%;
 }
 
-@font-face {
-    font-family: "munro-small";
-    src: url('/fonts/MunroSmall.woff2') format('woff2');
-    src: url('/fonts/MunroSmall.woff') format('woff');
-    src: url('/fonts/MunroSmall.ttf') format("truetype");
-}
-
 .AdyenGame {
     background: url('/img/background.png') no-repeat center;
     background-size: cover;
 }
 
 .AdyenGame-stat {
-    font-size: 5rem;
-    font-family: "munro-small", "proxima-nova", arial;
+    font-size: 2.5rem;
+    font-family: "Press Start 2P", "proxima-nova", arial, sans-serif;
 }
 
 .AdyenGame-stat--green {
@@ -25,19 +18,6 @@ html {
 
 .AdyenGame-stat--red {
     fill: #ff5552;
-}
-
-.AdyenGame-legendButton {
-    fill: #B5B5B5;
-    cursor: pointer;
-}
-
-.AdyenGame-legendButtonText {
-    font-size: 4.5rem;
-    fill: #3E3E3E;
-    font-family: "munro-small";
-    cursor: pointer;
-    user-select: none;
 }
 
 .Layer {
@@ -109,7 +89,7 @@ html {
 }
 
 .Notes-description {
-    font-family: "proxima-nova", arial;
+    font-family: "proxima-nova", arial, sans-serif;
 }
 
 .Notes-description h2,
@@ -131,7 +111,7 @@ html {
 
 .AdyenGame-overlayContent {
     font-size: 1.6rem;
-    font-family: "proxima-nova", arial;
+    font-family: "proxima-nova", arial, sans-serif;
     padding: 15px 15px 0 15px;
 }
 
@@ -151,12 +131,13 @@ html {
     display: inline-block;
     vertical-align: top;
     margin-left: 30px;
-    font-family: "munro-small", "proxima-nova", arial;
+    font-family: "Press Start 2P", "proxima-nova", arial, sans-serif;
 }
 
 .PerformanceOverlay-results ul {
     list-style-type: none;
-    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
     padding: 0;
     margin: 0;
 }
@@ -167,14 +148,14 @@ html {
 }
 
 .PerformanceOverlay .Results-title {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: green;
     margin: 0;
     font-weight: normal;
 }
 
 .PerformanceOverlay .Results-score {
-    font-size: 10rem;
+    font-size: 5rem;
     line-height: 8rem;
     color: green;
     margin: 0;
@@ -208,6 +189,11 @@ html {
 
 @media screen and (max-width: 800px) {
 
+    .PerformanceOverlay {
+        max-width: 420px;
+        margin: 15px auto 0;
+    }
+
     .PerformanceOverlay-sider {
         display: none;
     }
@@ -218,16 +204,13 @@ html {
     }
 
     .PerformanceOverlay .Results-title {
-        display: inline-block;
-        vertical-align: top;
+        display: block;
     }
 
     .PerformanceOverlay .Results-score {
-        font-size: 4rem;
-        line-height: 3rem;
-        display: inline-block;
-        vertical-align: top;
-        float: right;
+        font-size: 3rem;
+        line-height: 4rem;
+        display: block;
     }
 
     .AdyenGame-overlayLightbox {
@@ -347,7 +330,7 @@ html {
 
 .Tile-3 {
     font-size: 48px;
-    font-family: "munro-small", "proxima-nova", arial;
+    font-family: "Press Start 2P", "proxima-nova", arial, sans-serif;
     letter-spacing: 4px;
 }
 
@@ -484,7 +467,7 @@ html {
 
 .GuardTile-3 {
     font-size: 48px;
-    font-family: "munro-small", "proxima-nova", arial;
+    font-family: "Press Start 2P", "proxima-nova", arial, sans-serif;
     letter-spacing: 4px;
 }
 
@@ -513,8 +496,9 @@ html {
 }
 
 .Guard-textBubble-exclamation {
-    font-size: 48px;
-    font-family: "munro-small", "proxima-nova", arial;
+    font-size: 33px;
+    font-family: arial, sans-serif;
+    font-weight: bold;
     fill: #fff;
 }
 
@@ -531,7 +515,7 @@ html {
 .PopUp-text {
     font-size: 3.0rem;
     fill: white;
-    font-family: "munro-small", "proxima-nova", arial;
+    font-family: "Press Start 2P", "proxima-nova", arial, sans-serif;
 }
 
 .Counter-1 {
@@ -561,7 +545,7 @@ html {
 .ErrorLog-error {
     font-size: 4rem;
     fill: black;
-    font-family: "proxima-nova", arial;
+    font-family: "proxima-nova", arial, sans-serif;
 }
 
 .ErrorBuyer {

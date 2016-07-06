@@ -55,7 +55,6 @@ function buildConfig(taskName) {
     );
 }
 
-gulp.task('copyFonts', copy(streamFactory, gulp.dest, buildConfig('copyFonts')));
 gulp.task('copyHtml', copy(streamFactory, gulp.dest, buildConfig('copyHtml')));
 gulp.task('images', images(streamFactory, gulp.dest, buildConfig('images')));
 gulp.task('css',    css(streamFactory, gulp.dest, buildConfig('css')));

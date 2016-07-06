@@ -15,11 +15,6 @@
         "dest": "./web/"
     },
 
-    "copyFonts": {
-        "src": "./src/fonts/**/*",
-        "dest": "./web/fonts/"
-    },
-
     "images": {
         "src": "./src/img/*",
         "dest": "./web/img/"

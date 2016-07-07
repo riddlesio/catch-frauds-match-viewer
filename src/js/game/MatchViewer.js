@@ -79,8 +79,6 @@ const MatchViewer = createGame({
     },
 }, [StateMixin, GameLoopMixin]);
 
-// Private functions
-
 /**
  * Register the event listeners
  * @param {AbstractGame} context

@@ -80,7 +80,7 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeMap
                 }
 
                 const isBusted = result.isRefused;
-                const isApproved = result.isCheckpointApproved;
+                const isApproved = result.isCheckpointApproved ? result.isCheckpointApproved : [];
 
                 const position = calculatePosition(id, spawnDelay, currentState);
                 const transformation = routeMap[position];

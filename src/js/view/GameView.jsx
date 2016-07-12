@@ -100,7 +100,10 @@ const GameView = component('GameView', lifeCycle, function (props) {
     const { state, settings, score } = props;
     const { descriptionVisible, guardId, buyerId, buyerApproved, buyerDetailsVisible } = this.state;
     const { status, checkpoints, buyers, error } = state;
-    const { width, height } = settings.canvas;
+    const { canvas, players } = settings;
+    const { width, height } = canvas;
+    const { names } = players;
+    const name = names[0];
 
     return (
         <div style={{ height: '100%' }}>
@@ -219,7 +222,7 @@ const GameView = component('GameView', lifeCycle, function (props) {
                 hideNotes={ this.hideGuardNotes }
                 checkpoint={ checkpoints[guardId - 1] }
             />
-            <MatchResults status={ status } score={ score }/>
+            <MatchResults status={ status } name={ name } score={ score }/>
         </div>
     );
 });

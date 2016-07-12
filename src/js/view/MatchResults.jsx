@@ -7,7 +7,7 @@ const propTypes = {
 
 const MatchResults = createView('MatchResults', function (props) {
 
-    const { status, score } = props;
+    const { status, score, name } = props;
     const isFinished = Math.ceil(status.percentage) === 100;
     const displayClass = isFinished ? '' : 'u-hidden';
     const { normal, fairlyJailed, unfairlyJailed, thefts, errors } = status;
@@ -30,7 +30,7 @@ const MatchResults = createView('MatchResults', function (props) {
                                 </svg>
                             </div>
                             <div className="PerformanceOverlay-results">
-                                <h2 className="Results-title">Your score</h2>
+                                <h2 className="Results-title">{ name }'s Score</h2>
                                 <p className="Results-score">{ score }%</p>
                                 <ul>
                                     { normalResult }

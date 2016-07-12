@@ -22,19 +22,19 @@ const Status = component('Status', function (props) {
             <g transform="translate(450,73)" dangerouslySetInnerHTML={{
                 __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-normal"></use>'
             }} />
-            <text x="27.4%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">
+            <text x="27.6%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">
                 { normal }
             </text>
             <g transform="translate(650,73)" dangerouslySetInnerHTML={{
                 __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-fairlyJailed"></use>'
             }} />
-            <text x="37.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">
+            <text x="38%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">
                 { fairlyJailed }
             </text>
             <g transform="translate(950,73)" dangerouslySetInnerHTML={{
                 __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-unfairlyJailed"></use>'
             }} />
-            <text x="53.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">
+            <text x="53.6%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">
                 { unfairlyJailed }
             </text>
             <g transform="translate(1150,73)" dangerouslySetInnerHTML={{

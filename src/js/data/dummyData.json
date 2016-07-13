@@ -57,49 +57,49 @@
         "isRefused": false,
         "exception": null,
         "isCheckpointApproved": [ false, false, false, false, true, true, true ],
-        "round": 3,
+        "round": 4,
         "isFraudulent": false
       },
       {
         "isRefused": true,
         "exception": null,
         "isCheckpointApproved": [ true, false, false, false, true, true, true ],
-        "round": 4,
+        "round": 5,
         "isFraudulent": true
       },
       {
         "isRefused": false,
         "exception": "Err11111",
         "isCheckpointApproved": [],
-        "round": 3,
+        "round": 6,
         "isFraudulent": true
       },
       {
         "isRefused": true,
         "exception": null,
         "isCheckpointApproved": [ true, false, false, false, false, true, true ],
-        "round": 5,
+        "round": 7,
         "isFraudulent": false
       },
       {
         "isRefused": false,
         "exception": "Err33333333",
         "isCheckpointApproved": [],
-        "round": 3,
+        "round": 8,
         "isFraudulent": true
       },
       {
         "isRefused": false,
         "exception": null,
         "isCheckpointApproved": [ true, true, true, true, true, false, false ],
-        "round": 6,
+        "round": 9,
         "isFraudulent": true
       },
       {
         "isRefused": false,
         "exception": "Err44444444",
         "isCheckpointApproved": [],
-        "round": 3,
+        "round": 10,
         "isFraudulent": true
       }
     ]

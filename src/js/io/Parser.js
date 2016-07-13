@@ -33,9 +33,17 @@ function parseStates(data, settings) {
         look: createRandomBuyerLook(),
         id: index,
     }));
+    const errorBuyers = buyers.filter(buyer => buyer.result.exception !== null);
+    const errors = errorBuyers.map((buyer) => {
+        return {
+            id: buyer.id,
+            message: buyer.result.exception,
+        };
+    });
 
     return Array.from({ length: stateCount }, createStateParser({
         buyers,
+        errors,
         settings,
         checkpoints,
         stateCount,
@@ -43,7 +51,7 @@ function parseStates(data, settings) {
     }));
 }
 
-function createStateParser({ buyers, settings, checkpoints, stateCount, routeMap }) {
+function createStateParser({ buyers, errors, settings, checkpoints, stateCount, routeMap }) {
 
     let previousState;
     let previousStatus = {
@@ -55,7 +63,6 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeMap
         thefts: 0,
         errors: 0,
     };
-    let error = null;
 
     return function parseState() {
 
@@ -74,10 +81,6 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeMap
                 const previousBuyerState = previousState && previousState.buyers.find(buyer => buyer.id === id);
                 const wasBusted = previousBuyerState && previousBuyerState.isBusted;
                 const { isFraudulent, exception } = result;
-
-                if (exception !== null) {
-                    error = exception;
-                }
 
                 const isBusted = result.isRefused;
                 const isApproved = result.isCheckpointApproved ? result.isCheckpointApproved : [];
@@ -130,11 +133,18 @@ function createStateParser({ buyers, settings, checkpoints, stateCount, routeMap
 
         const status = createStatusFromStatus(previousStatus, isBusted, isFraudulent, isException, stateCount);
 
+        const error = errors.find((err) => {
+            const errStart = (err.id + 1) * spawnDelay;
+
+            return errStart >= currentState && errStart < currentState + spawnDelay;
+        });
+
         previousStatus = status;
 
         const state = {
             status,
-            error,
+            error: error && error.message,
+            errors,
             checkpoints: checkpointsState,
             buyers: visibleBuyers,
         };

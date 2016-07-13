@@ -5,7 +5,7 @@ import Status       from './Status.jsx';
 import Buyer        from './Buyer.jsx';
 import Checkpoint   from './Checkpoint.jsx';
 import Counter      from './Counter.jsx';
-import ErrorLog     from './ErrorMessage.jsx';
+import ErrorMessage from './ErrorMessage.jsx';
 import { event }    from '@riddles/match-viewer';
 import CheckpointDescription from './CheckpointDescription.jsx';
 
@@ -99,7 +99,7 @@ const GameView = component('GameView', lifeCycle, function (props) {
 
     const { state, settings, score } = props;
     const { descriptionVisible, guardId, buyerId, buyerApproved, buyerDetailsVisible } = this.state;
-    const { status, checkpoints, buyers, error } = state;
+    const { status, checkpoints, buyers, error, errors } = state;
     const { canvas, players } = settings;
     const { width, height } = canvas;
     const { names } = players;
@@ -215,7 +215,7 @@ const GameView = component('GameView', lifeCycle, function (props) {
                         )
                     )
                 }
-                <ErrorLog error={ error } currentState={ status.currentState } />
+                <ErrorMessage error={ error } />
             </svg>
             <CheckpointDescription
                 descriptionVisible={ descriptionVisible }

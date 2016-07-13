@@ -48,7 +48,7 @@
       },
       {
         "isRefused": false,
-        "exception": "Invalid move: Move does not contain authorized or refused",
+        "exception": "Err11111",
         "isCheckpointApproved": [],
         "round": 3,
         "isFraudulent": true
@@ -68,6 +68,13 @@
         "isFraudulent": true
       },
       {
+        "isRefused": false,
+        "exception": "Err11111",
+        "isCheckpointApproved": [],
+        "round": 3,
+        "isFraudulent": true
+      },
+      {
         "isRefused": true,
         "exception": null,
         "isCheckpointApproved": [ true, false, false, false, false, true, true ],
@@ -76,9 +83,23 @@
       },
       {
         "isRefused": false,
+        "exception": "Err33333333",
+        "isCheckpointApproved": [],
+        "round": 3,
+        "isFraudulent": true
+      },
+      {
+        "isRefused": false,
         "exception": null,
         "isCheckpointApproved": [ true, true, true, true, true, false, false ],
         "round": 6,
+        "isFraudulent": true
+      },
+      {
+        "isRefused": false,
+        "exception": "Err44444444",
+        "isCheckpointApproved": [],
+        "round": 3,
         "isFraudulent": true
       }
     ]

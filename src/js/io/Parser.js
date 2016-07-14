@@ -297,13 +297,14 @@ function setCheckpointExpressionSetter(visibleBuyers) {
             const isApproved = buyerBeingChecked.isApproved;
             const approvedByThisCheckpoint = isApproved[isApproved.length - 1];
 
-            if (!approvedByThisCheckpoint) expression = 1;
+            if (approvedByThisCheckpoint === false) expression = 1;
             if (buyerBeingChecked.exception !== null) expression = 0;
         }
 
         return {
             ...checkpoint,
             expression,
+            buyerBeingChecked,
         };
     };
 }

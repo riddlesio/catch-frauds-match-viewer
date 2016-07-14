@@ -30,7 +30,7 @@ const MatchResults = createView('MatchResults', function (props) {
                                 </svg>
                             </div>
                             <div className="PerformanceOverlay-results">
-                                <h2 className="Results-title">{ name }'s Score</h2>
+                                <h2 className="Results-title">{ name }'s score</h2>
                                 <p className="Results-score">{ score }%</p>
                                 <ul>
                                     { normalResult }
@@ -57,9 +57,9 @@ function renderResult(type, value, name) {
             <svg className="Score-svgIcon">
                 <use xlinkHref={ `#icon-${type}` } />
             </svg>
-                <span className="Score-scoreText">
-                    { label }
-                </span>
+            <span className="Score-scoreText">
+                { label }
+            </span>
         </li>
     );
 }

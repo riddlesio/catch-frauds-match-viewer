@@ -6,10 +6,10 @@ import _ from 'lodash';
  * @param   {Object} [defaults] The default settings as passed from the gameViewer
  * @returns {Object}            The settings object
  */
-function parseSettings(data, defaults = {}) {
+function parseSettings(defaults = {}, playerData) {
     return {
         ...defaults,
-        ...data.settings,
+        ...playerData[0],
     };
 }
 

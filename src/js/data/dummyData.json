@@ -1,106 +1,114 @@
 {
-    "score": 82.25,
-    "settings": {
-      "players": {
-        "names": [
-          "Joostotron"
-        ],
-        "count": 1
+  "playerData": [
+      {
+          "emailHash": "a2811d3d58497b8f53fa443a3fccde32",
+          "name": "jim"
+      }
+  ],
+  "matchData": {
+      "score": 82.25,
+      "settings": {
+        "players": {
+          "names": [
+            "Player 1"
+          ],
+          "count": 1
+        },
+        "checkpoints": [
+          {
+            "description": "This guard checks for very high amounts."
+          },
+          {
+            "description": "This guard checks if the country is suspicious."
+          },
+          {
+            "description": "This guard checks for identity."
+          },
+          {
+            "description": "This guard checks the customer purchase history."
+          },
+          {
+            "description": "This guard checks something else."
+          },
+          {
+            "description": "This guard checks the reliability of the one who receives money."
+          },
+          {
+            "description": "This guard checks if the purchased item fits the buyer."
+          }
+        ]
       },
-      "checkpoints": [
+      "states": [
         {
-          "description": "This guard checks for very high amounts."
+          "isRefused": false,
+          "exception": null,
+          "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+          "round": 1,
+          "isFraudulent": false
         },
         {
-          "description": "This guard checks if the country is suspicious."
+          "isRefused": false,
+          "exception": null,
+          "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+          "round": 2,
+          "isFraudulent": false
         },
         {
-          "description": "This guard checks for identity."
+          "isRefused": false,
+          "exception": "Err11111",
+          "isCheckpointApproved": [],
+          "round": 3,
+          "isFraudulent": true
         },
         {
-          "description": "This guard checks the customer purchase history."
+          "isRefused": false,
+          "exception": null,
+          "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+          "round": 4,
+          "isFraudulent": false
         },
         {
-          "description": "This guard checks something else."
+          "isRefused": true,
+          "exception": null,
+          "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+          "round": 5,
+          "isFraudulent": true
         },
         {
-          "description": "This guard checks the reliability of the one who receives money."
+          "isRefused": false,
+          "exception": "Err11111",
+          "isCheckpointApproved": [],
+          "round": 6,
+          "isFraudulent": true
         },
         {
-          "description": "This guard checks if the purchased item fits the buyer."
+          "isRefused": true,
+          "exception": null,
+          "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+          "round": 7,
+          "isFraudulent": false
+        },
+        {
+          "isRefused": false,
+          "exception": "Err33333333",
+          "isCheckpointApproved": [],
+          "round": 8,
+          "isFraudulent": true
+        },
+        {
+          "isRefused": false,
+          "exception": null,
+          "isCheckpointApproved": [ false, false, false, true, true, true, true ],
+          "round": 9,
+          "isFraudulent": true
+        },
+        {
+          "isRefused": false,
+          "exception": "Err44444444",
+          "isCheckpointApproved": [],
+          "round": 10,
+          "isFraudulent": true
         }
       ]
-    },
-    "states": [
-      {
-        "isRefused": false,
-        "exception": null,
-        "isCheckpointApproved": [ false, false, false, true, true, true, true ],
-        "round": 1,
-        "isFraudulent": false
-      },
-      {
-        "isRefused": false,
-        "exception": null,
-        "isCheckpointApproved": [ false, false, false, true,true, true, true ],
-        "round": 2,
-        "isFraudulent": false
-      },
-      {
-        "isRefused": false,
-        "exception": "Err11111",
-        "isCheckpointApproved": [],
-        "round": 3,
-        "isFraudulent": true
-      },
-      {
-        "isRefused": false,
-        "exception": null,
-        "isCheckpointApproved": [ false, false, false, false, true, true, true ],
-        "round": 4,
-        "isFraudulent": false
-      },
-      {
-        "isRefused": true,
-        "exception": null,
-        "isCheckpointApproved": [ true, false, false, false, true, true, true ],
-        "round": 5,
-        "isFraudulent": true
-      },
-      {
-        "isRefused": false,
-        "exception": "Err11111",
-        "isCheckpointApproved": [],
-        "round": 6,
-        "isFraudulent": true
-      },
-      {
-        "isRefused": true,
-        "exception": null,
-        "isCheckpointApproved": [ true, false, false, false, false, true, true ],
-        "round": 7,
-        "isFraudulent": false
-      },
-      {
-        "isRefused": false,
-        "exception": "Err33333333",
-        "isCheckpointApproved": [],
-        "round": 8,
-        "isFraudulent": true
-      },
-      {
-        "isRefused": false,
-        "exception": null,
-        "isCheckpointApproved": [ true, true, true, true, true, false, false ],
-        "round": 9,
-        "isFraudulent": true
-      },
-      {
-        "isRefused": false,
-        "exception": "Err44444444",
-        "isCheckpointApproved": [],
-        "round": 10,
-        "isFraudulent": true
-      }
-    ]
+  }
 }

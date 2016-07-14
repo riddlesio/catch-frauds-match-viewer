@@ -152,11 +152,12 @@ html {
     color: #00953A;
     margin: 0;
     font-weight: normal;
+    line-height: 2rem;
 }
 
 .PerformanceOverlay .Results-score {
     font-size: 5rem;
-    line-height: 8rem;
+    line-height: 7rem;
     color: #00953A;
     margin: 0;
 }

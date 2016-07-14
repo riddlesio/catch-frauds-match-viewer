@@ -100,10 +100,10 @@ const GameView = component('GameView', lifeCycle, function (props) {
     const { state, settings, score } = props;
     const { descriptionVisible, guardId, buyerId, buyerApproved, buyerDetailsVisible } = this.state;
     const { status, checkpoints, buyers, error, errors } = state;
-    const { canvas, players } = settings;
+    const { canvas, name } = settings;
     const { width, height } = canvas;
-    const { names } = players;
-    const name = names[0];
+
+    console.log(settings);
 
     return (
         <div style={{ height: '100%' }}>

@@ -19,31 +19,21 @@ const Status = component('Status', function (props) {
             <text x="14.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">
                 { `${Math.ceil(percentage)} %` }
             </text>
-            <g transform="translate(450,73)" dangerouslySetInnerHTML={{
-                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-normal"></use>'
-            }} />
+            <use transform="translate(450,73)" xlinkHref="#icon-normal" />
             <text x="27.6%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">
                 { normal }
             </text>
-            <g transform="translate(650,73)" dangerouslySetInnerHTML={{
-                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-fairlyJailed"></use>'
-            }} />
+            <use transform="translate(650,73)" xlinkHref="#icon-fairlyJailed" />
             <text x="38%" y="10%" className="AdyenGame-stat AdyenGame-stat--green">
                 { fairlyJailed }
             </text>
-            <g transform="translate(950,73)" dangerouslySetInnerHTML={{
-                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-unfairlyJailed"></use>'
-            }} />
+            <use transform="translate(950,73)" xlinkHref="#icon-unfairlyJailed" />
             <text x="53.6%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">
                 { unfairlyJailed }
             </text>
-            <g transform="translate(1150,73)" dangerouslySetInnerHTML={{
-                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-theft"></use>'
-            }} />
+            <use transform="translate(1150,73)" xlinkHref="#icon-theft" />
             <text x="64%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">{ thefts }</text>
-            <g transform="translate(1350,73)" dangerouslySetInnerHTML={{
-                __html: '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-error"></use>'
-            }} />
+            <use transform="translate(1350,73)" xlinkHref="#icon-error" />
             <text x="74.5%" y="10%" className="AdyenGame-stat AdyenGame-stat--red">{ errors }</text>
         </g>
     );

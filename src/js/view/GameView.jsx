@@ -109,64 +109,45 @@ const GameView = component('GameView', lifeCycle, function (props) {
         <div style={{ height: '100%' }}>
             <svg className="u-hidden">
                 <symbol id="icon-normal">
-                    <g>
-                        <polygon
-                            className="normal-1"
-                            points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"
-                        />
-                        <path
-                            className="normal-2"
-                            d="M45,7V17H40V7h5ZM20,7H15V17h5V7ZM15,22v5h5v5H40V27h5V22H15Z"
-                        />
-                    </g>
+                    <path
+                        className="normal-1"
+                        d="M55,5V0H5V5H0V35H5v5H55V35h5V5H55ZM15,7h5V17H15V7ZM45,27H40v5H20V27H15V22H45v5Zm0-10H40V7h5V17Z"
+                    />
                 </symbol>
                 <symbol id="icon-theft">
                     <g>
-                        <polygon
+                        <rect className="theft-1" x="32" y="15" width="10" height="5"/>
+                        <path
                             className="theft-1"
-                            points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"
-                        />
-                        <polygon
-                            className="theft-2"
-                            points="42 10 42 5 17 5 17 10 11 10 11 25 17 25 17 15 27 15 27 20 17 20 17 29.89 17 35 23 35 23 30 27 30 27 35 32 35 32 30 36 30 36 35 42 35 42 29.89 42 20 32 20 32 15 42 15 42 25 48 25 48 10 42 10"
-                        />
+                            d="M55,5V0H5V5H0V35H5v5H55V35h5V5H55ZM48,25H42V35H36V30H32v5H27V30H23v5H17V25H11V10h6V5H42v5h6V25Z"/>
+                        <rect className="theft-1" x="17" y="15" width="10" height="5"/>
                     </g>
                 </symbol>
                 <symbol id="icon-fairlyJailed">
                     <g>
                         <polygon
                             className="fairlyJailed-1"
-                            points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"
+                            points="43 31 43 10 38 10 38 31 42.51 31 43 31"
                         />
+                        <rect className="fairlyJailed-1" x="27" y="10" width="6" height="21"/>
+                        <rect className="fairlyJailed-1" x="17" y="10" width="5" height="21"/>
                         <path
-                            className="fairlyJailed-2"
-                            d="M12,5V36H48V5H12Zm5,26V10h5V31H17Zm10,0V10h6V31H27Zm16,0H38V10h5V31Z"
+                            className="fairlyJailed-1"
+                            d="M55,5V0H5V5H0V35H5v5H55V35h5V5H55ZM48,9.5V36H12V5H48V9.5Z"
                         />
                     </g>
                 </symbol>
                 <symbol id="icon-unfairlyJailed">
-                    <g>
-                        <polygon
-                            className="unfairlyJailed-1"
-                            points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"
-                        />
-                        <path
-                            className="unfairlyJailed-2"
-                            d="M45,8V18H40V8h5ZM20,8H15V18h5V8ZM40,33h5V28H40v5ZM15,33h5V28H15v5Zm5-10v5H40V23H20Z"
-                        />
-                    </g>
+                    <path
+                        className="unfairlyJailed-1"
+                        d="M55,5V0H5V5H0V35H5v5H55V35h5V5H55ZM15,8h5V18H15V8ZM45,33H40V28H20v5H15V28h5V23H40v5h5v5Zm0-15H40V8h5V18Z"
+                    />
                 </symbol>
                 <symbol id="icon-error">
-                    <g>
-                        <polygon
-                            className="theft-1"
-                            points="55 5 55 0 5 0 5 5 0 5 0 35 5 35 5 40 55 40 55 35 60 35 60 5 55 5"
-                        />
-                        <path
-                            className="theft-2"
-                            d="M22.5,32.5h-5v-5h5v5Zm5-10h-5v5h5v-5Zm5-5.14h-5v5h5v-5Zm5-4.86h-5v5h5v-5Zm5-5h-5v5h5v-5Zm-5,15h-5v5h5v-5Zm5,5h-5v5h5v-5Zm-15-15h-5v5h5v-5Zm-5-5h-5v5h5v-5Z"
-                        />
-                    </g>
+                    <path
+                        className="theft-1"
+                        d="M55,5V0H5V5H0V35H5v5H55V35h5V5H55ZM27,28H22v5H17V28h5V23h5v5Zm15,5H37V28H32V23h5v5h5v5Zm0-20H37v5H32v5H27V18H22V13H17V8h5v5h5v5h5V13h5V8h5v5Z"
+                    />
                 </symbol>
                 <symbol id="large-puppet">
                     <polygon className="LargePuppet-1"

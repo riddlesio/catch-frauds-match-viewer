@@ -1,9 +1,16 @@
-html {
-    font-size: 62.5%;
+@font-face {
+    font-family: 'Press Start 2P';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Press Start 2P'),
+    local('PressStart2P-Regular'),
+    url(https://fonts.gstatic.com/s/pressstart2p/v4/8Lg6LX8-ntOHUQnvQ0E7o69WAFmVxfVhVkWhl-QDeAk.woff2) format('woff2'),
+    url(https://fonts.gstatic.com/s/pressstart2p/v4/8Lg6LX8-ntOHUQnvQ0E7o3dD2UuwsmbX3BOp4SL_VwM.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 .AdyenGame {
-    background: url('/img/background.png') no-repeat center;
+    background: url('../img/background.png') no-repeat center;
     background-size: cover;
 }
 
@@ -572,4 +579,12 @@ html {
 
 .LargePuppet-5 {
     fill: #fff;
+}
+
+.Score-svgIcon .error-2,
+.Score-svgIcon .normal-2,
+.Score-svgIcon .theft-2,
+.Score-svgIcon .fairlyJailed-2,
+.Score-svgIcon .unfairlyJailed-2 {
+    fill: #FFF;
 }

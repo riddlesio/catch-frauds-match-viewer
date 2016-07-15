@@ -12,7 +12,6 @@ const MatchResults = createView('MatchResults', function (props) {
     const displayClass = isFinished ? '' : 'u-hidden';
     const { normal, fairlyJailed, unfairlyJailed, thefts, errors } = status;
 
-    const normalResult = renderResult('normal', normal, 'normal transactions');
     const fairlyJailedResult = renderResult('fairlyJailed', fairlyJailed, 'detected fraud');
     const theftResult = renderResult('theft', thefts, 'undetected fraud');
     const unfairlyJailedResult = renderResult('unfairlyJailed', unfairlyJailed, 'false positive');
@@ -33,7 +32,12 @@ const MatchResults = createView('MatchResults', function (props) {
                                 <h2 className="Results-title">{ name }'s score</h2>
                                 <p className="Results-score">{ score }%</p>
                                 <ul>
-                                    { normalResult }
+                                    <li className="Score-result">
+                                        <svg className="Score-svgIcon">
+                                            <use xlinkHref="#icon-normal" />
+                                        </svg>
+                                        <span className="Score-scoreText">{ `${normal} correctly approved` }</span>
+                                    </li>
                                     { fairlyJailedResult }
                                     { theftResult }
                                     { unfairlyJailedResult }

@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body {
     height: 100vh;
     margin: 0;
@@ -118,18 +122,3 @@ body {
 .u-hidden {
     display: none;
 }
-
-/*::-ms-fill-lower {*/
-    /*background: coral;*/
-/*}*/
-/*::-ms-fill-upper {*/
-    /*background: peru;*/
-/*}*/
-
-/*::-ms-thumb {*/
-    /*background: steelblue;*/
-/*}*/
-
-/*::-ms-track {*/
-    /*color: red;*/
-/*}*/

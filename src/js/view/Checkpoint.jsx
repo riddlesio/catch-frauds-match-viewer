@@ -19,16 +19,17 @@ const propTypes = {
     checkpoint: React.PropTypes.object.isRequired,
 };
 
-const Checkpoint = component('Checkpoint', function (props) {
+const Checkpoint = component('Checkpoint', function ({ checkpoint, hasApproved, onClick }) {
 
-    const { id, expression, transformation, skinColor, bodyDirection } = props.checkpoint;
-    const hasApproved = props.hasApproved;
-    const onClick = props.onClick;
+    const { id, expression, transformation, skinColor, bodyDirection } = checkpoint;
+
     const translate = `translate(${transformation.X},${transformation.Y})`;
     const skinHex = getSkinColor(skinColor);
     const skinStyle = { fill: skinHex };
     const bodyDirectionScale = bodyDirection ? '' : 'scale(-1, 1)';
-    const directionTransform = bodyDirectionScale.length > 0 ? `${bodyDirectionScale} translate(-165,0)` : '';
+    const directionTransform = bodyDirectionScale.length > 0
+        ? `${bodyDirectionScale} translate(-165,0)`
+        : '';
     const tileTextX = id > 9 ? -10 : 0;
 
     let maybeTextBubble = expression > 0 ? textBubble : null;

@@ -52,6 +52,7 @@ const MatchViewer = createGame({
         const states        = parseStates(matchData, settings);
 
         this.score = matchData.score;
+        this.checkpointScores = matchData.checkpoints;
         this.settings = settings;
         this.states = states;
 
@@ -67,11 +68,12 @@ const MatchViewer = createGame({
     render: function (state, prevState) {
 
         const { currentState } = state;
-        const { settings, states, score } = this;
+        const { settings, states, score, checkpointScores } = this;
 
         const props = {
             settings,
             score,
+            checkpointScores,
             state: states[currentState],
             controls: { play: this.play, pause: this.pause },
         };

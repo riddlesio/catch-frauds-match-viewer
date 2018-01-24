@@ -2,8 +2,8 @@ import _ from 'lodash';
 
 /**
  * Parses the passed data object into settings which are usable by the viewer
- * @param   {Object} data       The JSON data received from the server
  * @param   {Object} [defaults] The default settings as passed from the gameViewer
+ * @param   {Object} playerData The player data
  * @returns {Object}            The settings object
  */
 function parseSettings(defaults = {}, playerData) {
@@ -26,7 +26,7 @@ function parseStates(data, settings) {
     const routeSteps = settings.routeSteps;
     const routeMap = createRouteMap(routeSteps, path);
     const positionsForGuards = findGuardPositions(routeMap, path);
-    const checkpoints = createCheckpoints(data.settings.checkpoints, positionsForGuards, routeMap);
+    const checkpoints = createCheckpoints(data.checkpoints, positionsForGuards);
     const stateCount = (results.length - 1) * settings.spawnDelay + routeSteps + 1;
     const buyers = results.map((result, index) => ({
         result,
@@ -34,12 +34,10 @@ function parseStates(data, settings) {
         id: index,
     }));
     const errorBuyers = buyers.filter(buyer => buyer.result.exception !== null);
-    const errors = errorBuyers.map((buyer) => {
-        return {
-            id: buyer.id,
-            message: buyer.result.exception,
-        };
-    });
+    const errors = errorBuyers.map((buyer) => ({
+        id: buyer.id,
+        message: buyer.result.exception,
+    }));
 
     return Array.from({ length: stateCount }, createStateParser({
         buyers,
@@ -70,31 +68,36 @@ function createStateParser({ buyers, errors, settings, checkpoints, stateCount, 
         const { checkoutPosition, spawnDelay, routeSteps, path } = settings;
         const lastBuyerIndex = buyers.length - 1;
         const latestPossibleBuyerIndex = Math.floor(currentState / spawnDelay);
-        const latestBuyerIndex = latestPossibleBuyerIndex > lastBuyerIndex ? lastBuyerIndex : latestPossibleBuyerIndex;
-        const currentActiveBuyerIndexes = calculateBuyerIndexes(latestBuyerIndex, spawnDelay, currentState, routeSteps);
+        const latestBuyerIndex = latestPossibleBuyerIndex > lastBuyerIndex
+            ? lastBuyerIndex
+            : latestPossibleBuyerIndex;
+        const currentActiveBuyerIndexes = calculateBuyerIndexes(
+            latestBuyerIndex, spawnDelay, currentState, routeSteps);
 
-        // Slice instead of filter
         const visibleBuyers = buyers
             .filter((x, index) => _.includes(currentActiveBuyerIndexes, index))
             .map(({ look, result, id }) => {
 
-                const previousBuyerState = previousState && previousState.buyers.find(buyer => buyer.id === id);
+                const previousBuyerState = previousState && previousState.buyers.find(
+                    buyer => buyer.id === id);
                 const wasBusted = previousBuyerState && previousBuyerState.isBusted;
-                const { isFraudulent, exception } = result;
+                const { blockingCheckPointId, isFraudulent, exception } = result;
 
                 const isBusted = result.isRefused;
-                const isApproved = result.isCheckpointApproved ? result.isCheckpointApproved : [];
 
                 const position = calculatePosition(id, spawnDelay, currentState);
                 const transformation = routeMap[position];
                 const bodyDirection = getBodyDirection(transformation, path);
 
-                // Check this
-                const busted = wasBusted ? true : isBusted ? calculateBusted(isApproved, checkpoints, transformation) : false;
-                const approved = calculateApproved(checkpoints, isApproved, previousBuyerState, transformation);
-                const shirtColorPercentage = calculateShirtColor(isApproved, approved);
+                const busted = calculateBusted(
+                    wasBusted, isBusted, blockingCheckPointId, checkpoints, transformation);
+                const approved = calculateApproved(
+                    checkpoints, blockingCheckPointId, previousBuyerState, transformation);
+                const shirtColorPercentage = calculateShirtColor(checkpoints.length, approved);
                 const shirtColor = getColorForPercentage(shirtColorPercentage);
-                const emotion = position > checkoutPosition ? getBuyerEmotionBubble(isBusted, isFraudulent, exception) : 0;
+                const emotion = position > checkoutPosition
+                    ? getBuyerEmotionBubble(isBusted, isFraudulent, exception)
+                    : 0;
                 const faceExpression = getFaceExpression(busted);
                 const purchaseItem = busted ? 0 : look.purchaseItem;
 
@@ -131,7 +134,8 @@ function createStateParser({ buyers, errors, settings, checkpoints, stateCount, 
             isException = checkingOut.exception !== null;
         }
 
-        const status = createStatusFromStatus(previousStatus, isBusted, isFraudulent, isException, stateCount);
+        const status = createStatusFromStatus(
+            previousStatus, isBusted, isFraudulent, isException, stateCount);
 
         const error = errors.find((err) => {
             const errStart = (err.id + 1) * spawnDelay;
@@ -143,8 +147,8 @@ function createStateParser({ buyers, errors, settings, checkpoints, stateCount, 
 
         const state = {
             status,
-            error: error && error.message,
             errors,
+            error: error && error.message,
             checkpoints: checkpointsState,
             buyers: visibleBuyers,
         };
@@ -256,7 +260,7 @@ function findGuardPositions(routeMap, path) {
     });
 }
 
-function createCheckpoints(checkpoints, positionsForGuards, routeMap) {
+function createCheckpoints(checkpoints, positionsForGuards) {
 
     // Add expressions for checkpoint guards. Expressions are related to buyer by position.
     const skinColors = [0, 1, 2];
@@ -270,7 +274,7 @@ function createCheckpoints(checkpoints, positionsForGuards, routeMap) {
         const bodyDirection = transformation.Y === 300 || transformation.Y === 890 ? 1 : 0;
 
         return {
-            id: index + 1,
+            id: checkpoint.id,
             description: checkpoint.description,
             skinColor: getRandomFromArray(skinColors),
             transformation,
@@ -361,57 +365,60 @@ function getBodyDirection(transformation, path) {
     }
 }
 
-function calculateBusted(isApproved, checkpoints, transformation) {
+function calculateBusted(wasBusted, isBusted, blockingCheckPointId, checkpoints, transformation) {
 
-    const lastFalseIndex    = isApproved.lastIndexOf(false);
-    const bustingGuard      = checkpoints[lastFalseIndex];
+    if (wasBusted) return true;
+
+    if (!isBusted) return false;
+
+    const bustingGuard      = checkpoints[blockingCheckPointId];
     const bustingGuardX     = bustingGuard.transformation.X;
     const bustingGuardY     = bustingGuard.transformation.Y;
     const buyerX            = transformation.X;
     const buyerY            = transformation.Y;
 
     if (buyerY === bustingGuardY) {
-        if (buyerY === 300) {
-            return buyerX < bustingGuardX;
+        if (buyerY === 300 || buyerY === 890) {
+            return buyerX <= (bustingGuardX + 50);
         }
 
         if (buyerY === 600) {
-            return buyerX > bustingGuardX;
-        }
-
-        if (buyerY === 890) {
-            return buyerX < bustingGuardX;
+            return buyerX >= (bustingGuardX - 50);
         }
 
         return false;
     }
 
-    if (buyerY <= bustingGuardY) {
-        return false;
-    }
-
-    return true;
+    return buyerY >= bustingGuardY;
 }
 
-function calculateApproved(checkpoints, isApproved, previousBuyerState = { isApproved: [] }, transformation) {
+function calculateApproved(checkpoints, blockingCheckPointId, previousBuyerState, transformation) {
 
     const currentCheckpoint = checkpoints.reduce((acc, check) => (
-        check.transformation === transformation ? check : acc
+        check.transformation.Y === transformation.Y &&
+        transformation.X > (check.transformation.X - 50) &&
+        transformation.X < (check.transformation.X + 50)
+            ? check
+            : acc
     ), null);
 
     if (!currentCheckpoint) {
-        return previousBuyerState.isApproved;
+        return previousBuyerState ? previousBuyerState.isApproved : [];
     }
 
     const checkpointsPassed = checkpoints.indexOf(currentCheckpoint) + 1;
+    const isApproved = [];
+
+    for (let id = 0; id < checkpointsPassed; id++) {
+        isApproved[id] = blockingCheckPointId !== id;
+    }
 
     // Returns isApproved array with length of checkpoints that have been passed
-    return isApproved.slice(0, checkpointsPassed);
+    return isApproved;
 }
 
-function calculateShirtColor(isApproved, approved) {
+function calculateShirtColor(guardAmount, approved) {
 
-    const guardAmount = isApproved.length;
     const amountOfFalseApproved = approved.filter(isFalse).length;
     const shirtColorStepSize = 100 / guardAmount;
 
@@ -425,7 +432,8 @@ function getColorForPercentage(pct) {
         { pct: 100, color: { r: 0xff, g: 0x00, b: 0 } },
     ];
 
-    for (var i = 1; i < percentColors.length - 1; i++) {
+    let i;
+    for (i = 1; i < percentColors.length - 1; i++) {
         if (pct < percentColors[i].pct) {
             break;
         }
@@ -459,7 +467,7 @@ function createStatusFromStatus(oldStatus, isBusted, isFraudulent, isException, 
     } = oldStatus;
 
     currentState += 1;
-    percentage = 100 / stateCount * currentState;
+    percentage = 100 / (stateCount + 1) * currentState;
 
     if (isException) {
         errors += 1;

@@ -117,14 +117,20 @@
 }
 
 .AdyenGame-overlayContent {
+    display: flex;
     font-size: 1.6rem;
     font-family: "proxima-nova", arial, sans-serif;
-    padding: 15px 15px 0 15px;
+    padding: 15px 20px 0 20px;
+    justify-content: space-between;
+    align-items: center;
+    height: 360px;
+    user-select: none;
 }
 
 .PerformanceOverlay {
     max-width: 420px;
-    margin: 30px auto 0;
+    display: flex;
+    /*margin: 30px auto 0;*/
 }
 
 .PerformanceOverlay-sider {
@@ -169,6 +175,13 @@
     margin: 0;
 }
 
+.PerformanceOverlay .Results-checkpoint {
+    font-size: 2.3rem;
+    line-height: 7rem;
+    color: #000;
+    margin: 0;
+}
+
 .PerformanceOverlay .Score-svgIcon {
     display: inline-block;
     width: 60px;
@@ -191,7 +204,13 @@
 
 .PerformanceOverlay-sider .Sider-puppet {
     width: 158px;
-    transform: translate(-35px,-41px) scale(0.5,0.5);
+    transform: translate(-35px, -22px) scale(0.5);
+    height: 193px;
+}
+
+.PerformanceOverlay-sider .Sider-guard {
+    width: 122px;
+    transform: translate(-19px,-16px) scale(.76);
     height: 193px;
 }
 

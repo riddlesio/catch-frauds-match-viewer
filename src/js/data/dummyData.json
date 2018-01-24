@@ -6,109 +6,60 @@
       }
   ],
   "matchData": {
-      "score": 82.25,
-      "settings": {
-        "players": {
-          "names": [
-            "Player 1"
-          ],
-          "count": 1
-        },
-        "checkpoints": [
-          {
-            "description": "This guard checks for very high amounts."
-          },
-          {
-            "description": "This guard checks if the country is suspicious."
-          },
-          {
-            "description": "This guard checks for identity."
-          },
-          {
-            "description": "This guard checks the customer purchase history."
-          },
-          {
-            "description": "This guard checks something else."
-          },
-          {
-            "description": "This guard checks the reliability of the one who receives money."
-          },
-          {
-            "description": "This guard checks if the purchased item fits the buyer."
-          }
-        ]
-      },
-      "states": [
-        {
-          "isRefused": false,
-          "exception": null,
-          "isCheckpointApproved": [ true, true, true, true, false, false, false ],
-          "round": 1,
-          "isFraudulent": false
-        },
-        {
-          "isRefused": false,
-          "exception": null,
-          "isCheckpointApproved": [ true, true, true, true, false, false, false ],
-          "round": 2,
-          "isFraudulent": false
-        },
-        {
-          "isRefused": false,
-          "exception": "Err11111",
-          "isCheckpointApproved": [],
-          "round": 3,
-          "isFraudulent": true
-        },
-        {
-          "isRefused": false,
-          "exception": null,
-          "isCheckpointApproved": [ true, true, true, true, false, false, false ],
-          "round": 4,
-          "isFraudulent": false
-        },
-        {
-          "isRefused": true,
-          "exception": null,
-          "isCheckpointApproved": [ true, true, true, true, false, false, false ],
-          "round": 5,
-          "isFraudulent": true
-        },
-        {
-          "isRefused": false,
-          "exception": "Err11111",
-          "isCheckpointApproved": [],
-          "round": 6,
-          "isFraudulent": true
-        },
-        {
-          "isRefused": true,
-          "exception": null,
-          "isCheckpointApproved": [ true, true, true, true, false, false, false ],
-          "round": 7,
-          "isFraudulent": false
-        },
-        {
-          "isRefused": false,
-          "exception": "Err33333333",
-          "isCheckpointApproved": [],
-          "round": 8,
-          "isFraudulent": true
-        },
-        {
-          "isRefused": false,
-          "exception": null,
-          "isCheckpointApproved": [ true, true, true, true, false, false, false ],
-          "round": 9,
-          "isFraudulent": true
-        },
-        {
-          "isRefused": false,
-          "exception": "Err44444444",
-          "isCheckpointApproved": [],
-          "round": 10,
-          "isFraudulent": true
-        }
-      ]
+    "settings": {
+      "players": {
+        "names": ["player0"],
+        "count": 1
+      }
+    },
+    "score": 0,
+    "fraudTypes": [{
+      "description": "no fraud",
+      "type": 0
+    }, {
+      "description": "High amount (>5000 EUR) where Issuer Country differs from Shopper Country and Shopper Country is high risk country. ",
+      "type": 1
+    }, {
+      "description": " Multiple cards for one shopper where Issuer Country differs from Shopper Country.",
+      "type": 2
+    }, {
+      "description": "\"Multiple transactions for the same shopper in short time frame (velocity), with two ranges: between 5 and 20 transactions, within 0 - 5 min.\"",
+      "type": 3
+    }, {
+      "description": "Multiple transactions for the same shopper with different (disposal) email addresses.",
+      "type": 4
+    }, {
+      "description": "Multiple transactions coming from high risk countries",
+      "type": 5
+    }],
+    "winner": null,
+    "checkpoints": [{
+      "description": "null",
+      "falsePositives": 0,
+      "id": 0,
+      "frauds": [{
+        "detectedFrauds": 0,
+        "type": 1
+      }, {
+        "detectedFrauds": 0,
+        "type": 2
+      }, {
+        "detectedFrauds": 0,
+        "type": 3
+      }, {
+        "detectedFrauds": 0,
+        "type": 4
+      }, {
+        "detectedFrauds": 0,
+        "type": 5
+      }]
+    }],
+    "states": [{
+      "isFraudulent": true,
+      "exception": "Invalid input: Move does not contain authorized or rejected",
+      "isRefused": null,
+      "round": 1,
+      "isCheckpointApproved": null
+    }]
   }
 }

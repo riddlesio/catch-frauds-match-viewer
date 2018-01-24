@@ -59,7 +59,6 @@ const lifeCycle = {
         if (isDifferentBuyer || !buyerDetailsVisible) {
             this.showBuyerDetails(buyerStats);
         } else {
-            this.props.controls.play();
             this.hideBuyerDetails();
         }
     },
@@ -67,6 +66,8 @@ const lifeCycle = {
     showGuardNotes(guardId, event) {
 
         event.stopPropagation();
+
+        console.log(guardId);
 
         this.setState({
             descriptionVisible: true,
@@ -88,8 +89,6 @@ const lifeCycle = {
         }
 
         if (this.state.buyerDetailsVisible) {
-
-            this.props.controls.play();
             this.hideBuyerDetails();
         }
     },
@@ -97,13 +96,11 @@ const lifeCycle = {
 
 const GameView = component('GameView', lifeCycle, function (props) {
 
-    const { state, settings, score } = props;
+    const { state, settings, score, checkpointScores } = props;
     const { descriptionVisible, guardId, buyerId, buyerApproved, buyerDetailsVisible } = this.state;
     const { status, checkpoints, buyers, error } = state;
     const { canvas, name } = settings;
     const { width, height } = canvas;
-
-    console.log(state);
 
     return (
         <div style={{ height: '100%' }}>
@@ -170,6 +167,20 @@ const GameView = component('GameView', lifeCycle, function (props) {
                     <polygon className="LargePuppet-5"
                              points="77 109 77 113 97 113 97 133 82 133 82 122 93 122 93 118 81.53 118 77.19 118 77 118 77 137 81.53 137 101 137 101 132.84 101 113.28 101 109 77 109"/>
                 </symbol>
+                <symbol id="large-guard">
+                    <polygon points="107.5 65 62.5 65 57.5 65 57.5 70 57.5 80 62.5 80 62.5 70 107.5 70 107.5 65" />
+                    <path d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z" />
+                    <path d="M117.5,120v5h-5v-5h5Zm-70,0v5h5v-5h-5Zm10-5h-5v5h5v22h50V120h5v-5h-55Z" />
+                    <polygon points="57.5 142 57.5 147.74 57.5 165 63.5 165 63.5 148 102.5 148 102.5 165 107.5 165 107.5 147.74 107.5 142 57.5 142" />
+                    <rect className="Guard-3" x="84.78" y="142" width="6" height="6" transform="translate(175.56 290) rotate(-180)" />
+                    <path style={{ fill: '#C18473' }} d="M42.5,125h5v17h-5V125Zm75,0v17h5V125h-5Z" />
+                    <polygon style={{ fill: '#C18473' }} points="62.5 70 62.5 80 57.5 80 57.5 90 62.5 90 62.5 110 62.5 115 92.5 115 92.5 110 107.5 110 107.5 70 62.5 70" />
+                    <rect x="71.5" y="80" width="5" height="5" />
+                    <rect x="96.5" y="80" width="5" height="5" />
+                    <path className="Guard-5" d="M101.5,95v5h-30V95h30Z" />
+                    <polygon points="112.5 65 112.5 45 57.5 45 57.5 65 57.5 70 117.5 70 117.5 65 112.5 65" />
+                    <polygon className="Guard-3" points="96.5 55 81.5 55 81.5 60 86.5 60 86.5 65 91.5 65 91.5 60 96.5 60 96.5 55" />
+                </symbol>
             </svg>
             <svg
                 className="AdyenGame"
@@ -201,9 +212,14 @@ const GameView = component('GameView', lifeCycle, function (props) {
             <CheckpointDescription
                 descriptionVisible={ descriptionVisible }
                 hideNotes={ this.hideGuardNotes }
-                checkpoint={ checkpoints[guardId - 1] }
+                checkpoint={ checkpoints[guardId] }
             />
-            <MatchResults status={ status } name={ name } score={ score }/>
+            <MatchResults
+                status={ status }
+                name={ name }
+                score={ score }
+                checkpointScores={ checkpointScores }
+            />
         </div>
     );
 });

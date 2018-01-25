@@ -120,7 +120,9 @@ function CheckpointScore({ name, checkpointScore }) {
 
     const unfairlyJailedResult = renderResult('unfairlyJailed', falsePositives, 'false positive');
     const typesDetectedResults = frauds.map(({ detectedFrauds, type }) => {
-        return renderResult('fairlyJailed', detectedFrauds, `fraud-${type} detected`);
+        const letter = String.fromCharCode(96 + type);
+
+        return renderResult('fairlyJailed', detectedFrauds, `fraud-${letter} detected`);
     });
 
     return (

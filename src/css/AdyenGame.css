@@ -177,7 +177,7 @@
 
 .PerformanceOverlay .Results-checkpoint {
     font-size: 2.3rem;
-    line-height: 7rem;
+    line-height: 5rem;
     color: #000;
     margin: 0;
 }
@@ -246,6 +246,14 @@
 
     .AdyenGame-overlayContent {
         padding: 15px 30px 0;
+    }
+
+    .PerformanceOverlay-results ul {
+        font-size: 0.9rem;
+    }
+
+    .PerformanceOverlay .Results-checkpoint {
+        font-size: 2.0rem;
     }
 }
 

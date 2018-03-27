@@ -81,7 +81,7 @@ function createStateParser({ buyers, errors, settings, checkpoints, stateCount, 
                 const previousBuyerState = previousState && previousState.buyers.find(
                     buyer => buyer.id === id);
                 const wasBusted = previousBuyerState && previousBuyerState.isBusted;
-                const { blockingCheckPointId, isFraudulent, exception } = result;
+                const { blockingCheckPointIds, isFraudulent, exception } = result;
 
                 const isBusted = result.isRefused;
 
@@ -90,9 +90,9 @@ function createStateParser({ buyers, errors, settings, checkpoints, stateCount, 
                 const bodyDirection = getBodyDirection(transformation, path);
 
                 const busted = calculateBusted(
-                    wasBusted, isBusted, blockingCheckPointId, checkpoints, transformation);
+                    wasBusted, isBusted, blockingCheckPointIds, checkpoints, transformation);
                 const approved = calculateApproved(
-                    checkpoints, blockingCheckPointId, previousBuyerState, transformation);
+                    checkpoints, blockingCheckPointIds, previousBuyerState, transformation);
                 const shirtColorPercentage = calculateShirtColor(checkpoints.length, approved);
                 const shirtColor = getColorForPercentage(shirtColorPercentage);
                 const emotion = position > checkoutPosition
@@ -365,13 +365,13 @@ function getBodyDirection(transformation, path) {
     }
 }
 
-function calculateBusted(wasBusted, isBusted, blockingCheckPointId, checkpoints, transformation) {
+function calculateBusted(wasBusted, isBusted, blockingCheckPointIds, checkpoints, transformation) {
 
     if (wasBusted) return true;
 
-    if (!isBusted) return false;
+    if (!isBusted || blockingCheckPointIds.length <= 0) return false;
 
-    const bustingGuard      = checkpoints[blockingCheckPointId];
+    const bustingGuard      = checkpoints[blockingCheckPointIds[0]];
     const bustingGuardX     = bustingGuard.transformation.X;
     const bustingGuardY     = bustingGuard.transformation.Y;
     const buyerX            = transformation.X;
@@ -392,7 +392,7 @@ function calculateBusted(wasBusted, isBusted, blockingCheckPointId, checkpoints,
     return buyerY >= bustingGuardY;
 }
 
-function calculateApproved(checkpoints, blockingCheckPointId, previousBuyerState, transformation) {
+function calculateApproved(checkpoints, blockingCheckPointIds, previousBuyerState, transformation) {
 
     const currentCheckpoint = checkpoints.reduce((acc, check) => (
         check.transformation.Y === transformation.Y &&
@@ -410,7 +410,7 @@ function calculateApproved(checkpoints, blockingCheckPointId, previousBuyerState
     const isApproved = [];
 
     for (let id = 0; id < checkpointsPassed; id++) {
-        isApproved[id] = blockingCheckPointId !== id;
+        isApproved[id] = blockingCheckPointIds.indexOf(id) < 0;
     }
 
     // Returns isApproved array with length of checkpoints that have been passed

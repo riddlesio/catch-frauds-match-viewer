@@ -12,668 +12,662 @@
         "count": 1
       }
     },
-    "score": 46.15,
+    "score": 0,
     "fraudTypes": [{
-      "description": "no fraud",
       "type": 0
     }, {
-      "description": "High amount (>5000 EUR) where Issuer Country differs from Shopper Country and Shopper Country is high risk country.",
       "type": 1
     }, {
-      "description": " Multiple cards for one shopper where Issuer Country differs from Shopper Country.",
       "type": 2
     }, {
-      "description": "\"Multiple transactions for the same shopper in short time frame (velocity), with two ranges: between 5 and 20 transactions, within 0 - 5 min.\"",
       "type": 3
     }, {
-      "description": "Multiple transactions for the same shopper with different (disposal) email addresses.",
       "type": 4
     }, {
-      "description": "Multiple transactions coming from high risk countries",
       "type": 5
     }],
     "winner": null,
     "checkpoints": [{
-      "description": "Rejects French visa cards",
-      "falsePositives": 0,
+      "description": "Rejects odd transactions",
+      "falsePositives": 38,
       "id": 0,
       "frauds": [{
-        "detectedFrauds": 0,
+        "detectedFrauds": 3,
         "type": 1
       }, {
-        "detectedFrauds": 0,
+        "detectedFrauds": 2,
         "type": 2
       }, {
-        "detectedFrauds": 0,
+        "detectedFrauds": 3,
         "type": 3
       }, {
-        "detectedFrauds": 0,
+        "detectedFrauds": 2,
         "type": 4
       }, {
-        "detectedFrauds": 0,
+        "detectedFrauds": 2,
         "type": 5
       }]
     }, {
-      "description": "Rejects transaction amounts higher than 10000",
-      "falsePositives": 22,
+      "description": "Rejects transaction amounts higher than 100.00",
+      "falsePositives": 12,
       "id": 1,
       "frauds": [{
         "detectedFrauds": 4,
         "type": 1
       }, {
-        "detectedFrauds": 5,
+        "detectedFrauds": 0,
         "type": 2
       }, {
-        "detectedFrauds": 2,
+        "detectedFrauds": 1,
         "type": 3
       }, {
         "detectedFrauds": 0,
         "type": 4
       }, {
-        "detectedFrauds": 1,
+        "detectedFrauds": 0,
         "type": 5
       }]
     }],
     "states": [{
-      "isFraudulent": true,
+      "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 1,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": true,
-      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 2,
-      "blockingCheckPointId": 1
+      "round": 1
     }, {
-      "isFraudulent": true,
+      "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [1],
       "isRefused": true,
-      "round": 3,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": true,
-      "exception": null,
-      "isRefused": false,
-      "round": 4,
-      "blockingCheckPointId": null
+      "round": 2
     }, {
       "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 5,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 6,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 7,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 8,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 9,
-      "blockingCheckPointId": 1
+      "round": 3
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 10,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 11,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 12,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 13,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 14,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 15,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 16,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 17,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 18,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 19,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 20,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 21,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 22,
-      "blockingCheckPointId": 1
+      "round": 4
     }, {
       "isFraudulent": true,
       "exception": null,
-      "isRefused": false,
-      "round": 23,
-      "blockingCheckPointId": null
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 5
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 6
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 24,
-      "blockingCheckPointId": 1
+      "round": 7
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 8
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 9
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 10
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 11
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 12
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 13
     }, {
       "isFraudulent": true,
       "exception": null,
-      "isRefused": false,
-      "round": 25,
-      "blockingCheckPointId": null
+      "blockingCheckPointIds": [1],
+      "isRefused": true,
+      "round": 14
     }, {
       "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 26,
-      "blockingCheckPointId": null
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 15
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 27,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 28,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 29,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 30,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 31,
-      "blockingCheckPointId": null
+      "round": 16
     }, {
       "isFraudulent": true,
       "exception": null,
-      "isRefused": false,
-      "round": 32,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 33,
-      "blockingCheckPointId": 1
+      "round": 17
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 34,
-      "blockingCheckPointId": null
+      "round": 18
     }, {
       "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 35,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 36,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 37,
-      "blockingCheckPointId": 1
+      "round": 19
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 20
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 38,
-      "blockingCheckPointId": 1
+      "round": 21
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 39,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 40,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 41,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 42,
-      "blockingCheckPointId": null
+      "round": 22
     }, {
       "isFraudulent": true,
       "exception": null,
-      "isRefused": false,
-      "round": 43,
-      "blockingCheckPointId": null
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 23
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 24
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 44,
-      "blockingCheckPointId": 1
+      "round": 25
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 26
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 27
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 28
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 29
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [1],
+      "isRefused": true,
+      "round": 30
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 31
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [1],
       "isRefused": true,
-      "round": 45,
-      "blockingCheckPointId": 1
+      "round": 32
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0, 1],
+      "isRefused": true,
+      "round": 33
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 34
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 35
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 36
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0, 1],
+      "isRefused": true,
+      "round": 37
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 38
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 39
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 40
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 41
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 42
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 46,
-      "blockingCheckPointId": 1
+      "round": 43
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [1],
+      "isRefused": true,
+      "round": 44
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0, 1],
+      "isRefused": true,
+      "round": 45
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 46
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 47
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 48
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 49
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 47,
-      "blockingCheckPointId": null
+      "round": 50
     }, {
       "isFraudulent": true,
       "exception": null,
-      "isRefused": false,
-      "round": 48,
-      "blockingCheckPointId": null
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 51
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 49,
-      "blockingCheckPointId": null
+      "round": 52
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [0, 1],
       "isRefused": true,
-      "round": 50,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 51,
-      "blockingCheckPointId": 1
+      "round": 53
     }, {
       "isFraudulent": true,
       "exception": null,
-      "isRefused": true,
-      "round": 52,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 53,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 54,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 55,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 56,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 57,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 58,
-      "blockingCheckPointId": null
+      "round": 54
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 59,
-      "blockingCheckPointId": 1
+      "round": 55
     }, {
       "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 60,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 61,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 62,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 63,
-      "blockingCheckPointId": null
+      "blockingCheckPointIds": [1],
+      "isRefused": true,
+      "round": 56
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 64,
-      "blockingCheckPointId": 1
+      "round": 57
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 65,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 66,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 67,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 68,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 69,
-      "blockingCheckPointId": 1
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 70,
-      "blockingCheckPointId": null
+      "round": 58
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 71,
-      "blockingCheckPointId": 1
+      "round": 59
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 72,
-      "blockingCheckPointId": null
+      "round": 60
     }, {
       "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 73,
-      "blockingCheckPointId": null
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 61
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 74,
-      "blockingCheckPointId": null
+      "round": 62
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 63
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 75,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 76,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 77,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 78,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": true,
-      "round": 79,
-      "blockingCheckPointId": 1
+      "round": 64
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 80,
-      "blockingCheckPointId": 1
+      "round": 65
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 81,
-      "blockingCheckPointId": null
+      "round": 66
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 67
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 68
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [0, 1],
       "isRefused": true,
-      "round": 82,
-      "blockingCheckPointId": 1
+      "round": 69
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [1],
+      "isRefused": true,
+      "round": 70
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0, 1],
+      "isRefused": true,
+      "round": 71
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 72
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 73
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 74
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0, 1],
+      "isRefused": true,
+      "round": 75
     }, {
       "isFraudulent": true,
       "exception": null,
+      "blockingCheckPointIds": [1],
       "isRefused": true,
-      "round": 83,
-      "blockingCheckPointId": 1
+      "round": 76
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 77
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 78
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 79
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 80
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 81
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 82
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 83
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 84
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 85
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 86
     }, {
       "isFraudulent": true,
       "exception": null,
-      "isRefused": false,
-      "round": 84,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": true,
-      "exception": null,
-      "isRefused": false,
-      "round": 85,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 86,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 87,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 88,
-      "blockingCheckPointId": 1
+      "round": 87
     }, {
       "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 89,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 90,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
-      "isRefused": false,
-      "round": 91,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
+      "blockingCheckPointIds": [1],
       "isRefused": true,
-      "round": 92,
-      "blockingCheckPointId": 1
+      "round": 88
     }, {
       "isFraudulent": false,
       "exception": null,
-      "isRefused": false,
-      "round": 93,
-      "blockingCheckPointId": null
-    }, {
-      "isFraudulent": false,
-      "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 94,
-      "blockingCheckPointId": 1
+      "round": 89
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [1],
       "isRefused": true,
-      "round": 95,
-      "blockingCheckPointId": 1
+      "round": 90
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 96,
-      "blockingCheckPointId": 1
+      "round": 91
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 97,
-      "blockingCheckPointId": null
+      "round": 92
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [0],
       "isRefused": true,
-      "round": 98,
-      "blockingCheckPointId": 1
+      "round": 93
     }, {
       "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 99,
-      "blockingCheckPointId": null
+      "round": 94
     }, {
-      "isFraudulent": true,
+      "isFraudulent": false,
       "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 95
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
       "isRefused": false,
-      "round": 100,
-      "blockingCheckPointId": null
+      "round": 96
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 97
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 98
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [0],
+      "isRefused": true,
+      "round": 99
+    }, {
+      "isFraudulent": false,
+      "exception": null,
+      "blockingCheckPointIds": [],
+      "isRefused": false,
+      "round": 100
     }]
   }
 }
